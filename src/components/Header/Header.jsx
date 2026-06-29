@@ -1,5 +1,5 @@
 import SocialIcons from "./SocialIcons";
-import renderMenuItem from "./ui/helpers/renderMenuItem";
+import MenuList from "./ui/MenuList";
 
 const menu = [
   { label: "About", page: "about" },
@@ -37,17 +37,19 @@ const menu = [
 
 const Header = () => {
   return (
-    <section role="menu" className="flex w-screen justify-between gap-4 border-b-2 border-b-gray-200 bg-gray-100 px-4 py-2 shadow-md">
-      <nav className="flex gap-4">
-        <a href="/" className="contents">
-          <img src="/Logo.svg" className="w-45" alt="" />
-        </a>
-        <nav className="contents">
-          <ul className="flex items-center gap-2">{menu.map((item) => renderMenuItem(item))}</ul>
+    <header className="w-screen justify-between border-b-2 border-b-gray-200 bg-gray-100 px-4 py-2 shadow-md xl:flex">
+      <div className="flex w-full justify-between">
+        <nav className="flex gap-3" aria-label="Header">
+          <a href="/" className="contents">
+            <img src="/Logo.svg" className="w-35" alt="dataMares" />
+          </a>
+          <MenuList menu={menu} className="hidden xl:contents" />
         </nav>
-      </nav>
-      <SocialIcons />
-    </section>
+
+        <SocialIcons />
+      </div>
+      <MenuList menu={menu} className="block xl:hidden" />
+    </header>
   );
 };
 

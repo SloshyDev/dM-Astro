@@ -1,13 +1,13 @@
 import * as React from "react";
 
-const TwitterIcon = ({ link }) => (
+const TwitterIcon = ({ link, size }) => (
   <li>
     <a
       href={link}
       aria-label="Twitter"
       target="_blank"
       className="block rounded-full bg-[#316564] p-2 transition-transform duration-150 focus-within:scale-105 focus-within:bg-[#2A5855] hover:scale-105 hover:bg-[#2A5855]">
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 14 14">
+      <svg xmlns="http://www.w3.org/2000/svg" className={size} viewBox="0 0 14 14">
         <g fill="none">
           <g clipPath="url(#SVGG1Ot4cAD)">
             <path
