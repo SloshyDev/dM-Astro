@@ -2,17 +2,51 @@
 import Header from "../components/Header/Header";
 import ViewPort from "../components/ViewPort";
 import "../styles/global.css";
+
+const siteUrl = "https://datamares.org";
+const defaultTitle = "dataMares | Scientific knowledge for conservation";
+const defaultDescription =
+  "dataMares facilitates access to scientific knowledge and data to promote transparency, education, and evidence-based conservation in Mexico's ecosystems.";
+const defaultImage = "/Logo.svg";
+
+const {
+  title = defaultTitle,
+  description = defaultDescription,
+  image = defaultImage,
+  type = "website",
+} = Astro.props;
+
+const lang = Astro.currentLocale ?? "en";
+const canonicalUrl = new URL(Astro.url.pathname, siteUrl).toString();
+const imageUrl = new URL(image, siteUrl).toString();
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={lang}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" href="/favicon.ico" />
+    <link rel="canonical" href={canonicalUrl} />
     <meta name="generator" content={Astro.generator} />
-    <title>Astro Basics</title>
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="author" content="dataMares" />
+
+    <meta property="og:site_name" content="dataMares" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content={type} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={imageUrl} />
+    <meta property="og:image:alt" content="dataMares logo" />
+    <meta property="og:locale" content={lang === "es" ? "es_MX" : "en_US"} />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={imageUrl} />
   </head>
   <body>
     <Header client:load />

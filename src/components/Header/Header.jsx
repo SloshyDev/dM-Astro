@@ -39,10 +39,10 @@ const Header = () => {
   return (
     <section role="menu" className="flex w-screen justify-between gap-4 border-b-2 border-b-gray-200 bg-gray-100 px-4 py-2 shadow-md">
       <nav className="flex gap-4">
-        <a href="/">
+        <a href="/" className="contents">
           <img src="/Logo.svg" className="w-45" alt="" />
         </a>
-        <nav>
+        <nav className="contents">
           <ul className="flex items-center gap-2">{menu.map((item) => renderMenuItem(item))}</ul>
         </nav>
       </nav>
