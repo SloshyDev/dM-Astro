@@ -1,0 +1,18 @@
+---
+import SimpleMenuPage from "../../components/SimpleMenuPage.astro";
+import { getMenuPages } from "../../components/Header/menuData";
+import Layout from "../../layouts/Layout.astro";
+
+export function getStaticPaths() {
+  return getMenuPages("es").map((page) => ({
+    params: { slug: page.slug },
+    props: { page },
+  }));
+}
+
+const { page } = Astro.props;
+---
+
+<Layout title={`${page.label} | dataMares`}>
+  <SimpleMenuPage title={page.label} section={page.section} scientificName={page.scientificName} lang="es" />
+</Layout>
