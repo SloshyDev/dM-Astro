@@ -2,6 +2,7 @@
 import Header from "../components/Header/Header";
 import ViewPort from "../components/ViewPort";
 import "../styles/global.css";
+const currentLang = Astro.currentLocale;
 
 const siteUrl = "https://datamares.org";
 const defaultTitle = "dataMares | WORK • PUBLISH • RELEASE";
@@ -19,6 +20,7 @@ const {
 const lang = Astro.currentLocale ?? "en";
 const canonicalUrl = new URL(Astro.url.pathname, siteUrl).toString();
 const imageUrl = new URL(image, siteUrl).toString();
+const pathname = Astro.url.pathname;
 ---
 
 <!doctype html>
@@ -49,7 +51,7 @@ const imageUrl = new URL(image, siteUrl).toString();
     <meta name="twitter:image" content={imageUrl} />
   </head>
   <body>
-    <Header client:load />
+    <Header client:load lang={currentLang} pathname={pathname} />
     <section class=" min-h-screen">
       <slot />
     </section>
