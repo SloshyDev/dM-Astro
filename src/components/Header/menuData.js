@@ -1,36 +1,3 @@
-/**
- * @typedef {"en" | "es"} SupportedLanguage
- */
-
-/**
- * @typedef {Object} RawMenuItem
- * @property {string} id Stable identifier shared by the localized versions of a page.
- * @property {string | Partial<Record<SupportedLanguage, string>>} label Visible label, either shared or localized.
- * @property {string | Partial<Record<SupportedLanguage, string>>} [page] Route slug, either shared or localized.
- * @property {string} [scientificName] Optional scientific name displayed next to the label.
- * @property {RawMenuItem[]} [children] Nested menu entries.
- */
-
-/**
- * @typedef {Object} LocalizedMenuItem
- * @property {string} id Stable menu identifier.
- * @property {string} label Label resolved for the requested language.
- * @property {string | undefined} page Absolute localized path.
- * @property {string} slug Localized route slug.
- * @property {string | undefined} scientificName Optional scientific name.
- * @property {LocalizedMenuItem[] | undefined} submenu Localized child entries.
- */
-
-/**
- * @typedef {Object} MenuPage
- * @property {string} id Stable menu identifier.
- * @property {string} slug Localized route slug.
- * @property {string} label Localized page label.
- * @property {string | undefined} section Immediate parent label.
- * @property {string | undefined} scientificName Optional scientific name.
- * @property {string} path Absolute localized path.
- */
-
 const rawMenu = [
   {
     id: "about",
@@ -150,39 +117,16 @@ const rawMenu = [
   },
 ];
 
-/**
- * Resolves a shared or localized menu field.
- *
- * @param {string | Partial<Record<SupportedLanguage, string>> | undefined} value Field to resolve.
- * @param {SupportedLanguage} lang Requested language.
- * @returns {string} The shared value, localized value, or an empty string when unavailable.
- */
 const getLocalizedValue = (value, lang) => {
   if (typeof value === "string") return value;
   return value?.[lang] ?? "";
 };
 
-/**
- * Builds an absolute path for a localized slug.
- *
- * @param {string | undefined} slug Localized slug without a leading locale segment.
- * @param {SupportedLanguage} lang Requested language.
- * @returns {string | undefined} `/slug` for English, `/es/slug` for Spanish, or `undefined` without a slug.
- */
 const buildPath = (slug, lang) => {
   if (!slug) return undefined;
   return lang === "es" ? `/es/${slug}` : `/${slug}`;
 };
 
-/**
- * Recursively converts raw menu data into the navigation tree for one language.
- * Entries that have neither a localized page nor localized children are removed.
- *
- * @param {SupportedLanguage} [lang="en"] Language used to resolve labels and paths.
- * @param {RawMenuItem[]} [items=rawMenu] Menu branch to localize; primarily useful for recursion and tests.
- * @returns {LocalizedMenuItem[]} Localized navigation tree.
- * @throws {TypeError} If `items` is not an array-like value that supports `map`.
- */
 export const getLocalizedMenu = (lang = "en", items = rawMenu) =>
   items
     .map((item) => {
@@ -204,46 +148,35 @@ export const getLocalizedMenu = (lang = "en", items = rawMenu) =>
     })
     .filter(Boolean);
 
-/**
- * Flattens all routable entries for one language into static-page descriptors.
- *
- * @param {SupportedLanguage} [lang="en"] Language used to resolve labels and paths.
- * @param {RawMenuItem[]} [items=rawMenu] Menu branch to flatten.
- * @param {string[]} [parentLabels=[]] Ancestor labels accumulated during recursion.
- * @returns {MenuPage[]} Flat list consumed by Astro's dynamic route generators.
- * @throws {TypeError} If `items` does not support `flatMap` or `parentLabels` is not iterable.
- */
-export const getMenuPages = (lang = "en", items = rawMenu, parentLabels = []) =>
-  items.flatMap((item) => {
-    const label = getLocalizedValue(item.label, lang);
-    const slug = getLocalizedValue(item.page, lang);
-    const section = parentLabels.at(-1);
-    const currentLabels = label ? [...parentLabels, label] : parentLabels;
-    const children = item.children ? getMenuPages(lang, item.children, currentLabels) : [];
+export const getMenuPages = (lang = "en", items = rawMenu, parentLabels = []) => {
+  const pages = [];
 
-    if (!label || !slug) return children;
+  const addPages = (menuItems, labels) => {
+    menuItems.forEach((item) => {
+      const label = getLocalizedValue(item.label, lang);
+      const slug = getLocalizedValue(item.page, lang);
+      const section = labels.at(-1);
+      const currentLabels = label ? [...labels, label] : labels;
 
-    return [
-      {
-        id: item.id,
-        slug,
-        label,
-        section,
-        scientificName: item.scientificName,
-        path: buildPath(slug, lang),
-      },
-      ...children,
-    ];
-  });
+      if (label && slug) {
+        pages.push({
+          id: item.id,
+          slug,
+          label,
+          section,
+          scientificName: item.scientificName,
+          path: buildPath(slug, lang),
+        });
+      }
 
-/**
- * Resolves the English and Spanish equivalents of the current route.
- * Pages are paired by their stable menu `id`; unknown routes fall back to each locale's home page.
- *
- * @param {string} [currentPath="/"] Current pathname, with or without a trailing slash.
- * @returns {{en: string, es: string}} Equivalent paths keyed by supported language.
- * @throws {TypeError} If `currentPath` is not a string.
- */
+      if (item.children) addPages(item.children, currentLabels);
+    });
+  };
+
+  addPages(items, parentLabels);
+  return pages;
+};
+
 export const getLanguageLinks = (currentPath = "/") => {
   const normalizedPath = currentPath.replace(/\/$/, "") || "/";
   const pages = ["en", "es"].flatMap((lang) =>
