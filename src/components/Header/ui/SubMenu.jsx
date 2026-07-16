@@ -2,21 +2,13 @@ import { ChevronDownIcon } from "@heroicons/react/16/solid";
 
 const styles = {
   gray: {
-    rootButton: "group-focus-within:bg-gray-200 group-hover:bg-gray-200 focus-within:bg-gray-200 hover:bg-gray-200",
-    nestedButton: "group-focus-within/nested:bg-gray-200 group-hover/nested:bg-gray-200 focus-within:bg-gray-200 hover:bg-gray-200",
+    rootButton:
+      "group-focus-within:bg-gray-200 group-hover:bg-gray-200 focus-within:bg-gray-200 hover:bg-gray-200 dark:group-focus-within:bg-slate-700 dark:group-hover:bg-slate-700 dark:focus-within:bg-slate-700 dark:hover:bg-slate-700",
+    nestedButton:
+      "group-focus-within/nested:bg-gray-200 group-hover/nested:bg-gray-200 focus-within:bg-gray-200 hover:bg-gray-200 dark:group-focus-within/nested:bg-slate-700 dark:group-hover/nested:bg-slate-700 dark:focus-within:bg-slate-700 dark:hover:bg-slate-700",
   },
 };
 
-/**
- * Renders a desktop dropdown or nested flyout menu.
- *
- * @param {Object} props Component properties.
- * @param {string} props.label Visible submenu label.
- * @param {import("react").ReactNode} props.children Nested menu entries.
- * @param {"gray"} [props.bgColor="gray"] Key used to select interaction color classes.
- * @param {boolean} [props.nested=false] Whether the submenu is nested inside another dropdown.
- * @returns {import("react").JSX.Element} List item containing the submenu trigger and entries.
- */
 const SubMenu = ({ label, children, bgColor = "gray", nested = false }) => {
   const buttonColorClass = nested ? styles[bgColor]?.nestedButton : styles[bgColor]?.rootButton;
 
@@ -32,10 +24,10 @@ const SubMenu = ({ label, children, bgColor = "gray", nested = false }) => {
         className={`z-10 flex cursor-pointer items-center rounded-md px-3 py-1 transition-colors ${nested ? "w-full justify-between" : ""} ${buttonColorClass}`}>
         <p className="whitespace-nowrap">{label}</p>
 
-        <ChevronDownIcon className={`size-5 text-[#316663] transition-transform ${arrowClass}`} />
+        <ChevronDownIcon className={`size-5 text-[#316663] transition-transform dark:text-[#70b7b1] ${arrowClass}`} />
       </button>
 
-      <ul className={`absolute hidden w-max max-w-[24rem] rounded-md bg-gray-100 bg-clip-content shadow-md ${submenuClass}`}>{children}</ul>
+      <ul className={`absolute hidden w-max max-w-[24rem] rounded-md bg-gray-100 bg-clip-content shadow-md dark:bg-slate-900 ${submenuClass}`}>{children}</ul>
     </li>
   );
 };

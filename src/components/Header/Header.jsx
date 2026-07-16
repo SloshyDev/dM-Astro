@@ -3,16 +3,6 @@ import MenuList from "./ui/MenuList";
 import MobileMenu from "./ui/MobileMenu";
 import { getLanguageLinks, getLocalizedMenu } from "./menuData";
 
-/**
- * Renders links to the equivalent English and Spanish routes.
- *
- * @param {Object} props Component properties.
- * @param {string} [props.className=""] Optional classes applied to the navigation element.
- * @param {"en" | "es"} props.lang Active language used for `aria-current`.
- * @param {string} props.pathname Current URL pathname used to pair translated routes.
- * @returns {import("react").JSX.Element} Accessible language selector.
- * @throws {TypeError} If `pathname` is not a string.
- */
 const LanguageLinks = ({ className = "", lang, pathname }) => {
   const links = getLanguageLinks(pathname);
   const languages = [
@@ -39,20 +29,11 @@ const LanguageLinks = ({ className = "", lang, pathname }) => {
   );
 };
 
-/**
- * Renders the responsive site header, localized navigation, social links, and mobile drawer.
- *
- * @param {Object} props Component properties.
- * @param {"en" | "es"} [props.lang="en"] Active site language.
- * @param {string} [props.pathname="/"] Current URL pathname.
- * @returns {import("react").JSX.Element} Hydratable site header.
- * @throws {TypeError} If `pathname` is not a string or localized menu data is malformed.
- */
 const Header = ({ lang = "en", pathname = "/" }) => {
   const menu = getLocalizedMenu(lang);
 
   return (
-    <header className="sticky top-0 z-40 w-screen border-b-2 border-b-gray-200 bg-gray-100 px-4 py-2 shadow-md">
+    <header className="sticky top-0 z-40 w-screen border-b-2 border-b-gray-200 bg-gray-100 px-4 py-2 shadow-md transition-colors dark:border-slate-700 dark:bg-slate-900">
       <div className="flex w-full items-center justify-between gap-4">
         <nav className="flex min-w-0 items-center gap-3" aria-label="Header">
           <a href="/" className="contents">
@@ -71,7 +52,7 @@ const Header = ({ lang = "en", pathname = "/" }) => {
       </div>
       <MenuList
         menu={menu}
-        className="mt-2 hidden border-t border-gray-200 pt-2 min-[900px]:block min-[1700px]:hidden"
+        className="mt-2 hidden border-t border-gray-200 pt-2 min-[900px]:block min-[1700px]:hidden dark:border-slate-700"
         listClassName="flex flex-wrap items-center justify-start gap-x-5 gap-y-2"
       />
     </header>

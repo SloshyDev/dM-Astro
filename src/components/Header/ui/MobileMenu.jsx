@@ -2,19 +2,6 @@ import { Bars3Icon, ChevronRightIcon, XMarkIcon } from "@heroicons/react/16/soli
 import { useEffect, useState } from "react";
 import SocialIcons from "../SocialIcons";
 
-/**
- * Renders one item in the mobile navigation drawer.
- *
- * @param {Object} props Component properties.
- * @param {Object} props.item Localized menu node.
- * @param {string} props.item.label Visible item label.
- * @param {string} [props.item.page] Destination path for a leaf item.
- * @param {string} [props.item.scientificName] Optional scientific name.
- * @param {Array<Object>} [props.item.submenu] Nested menu nodes.
- * @param {() => void} props.closeMenu Callback that closes and resets the drawer.
- * @param {(item: Object) => void} props.openSubmenu Callback that navigates into a submenu.
- * @returns {import("react").JSX.Element} A submenu button or destination link.
- */
 const MobileMenuItem = ({ item, closeMenu, openSubmenu }) => {
   const hasSubmenu = item.submenu?.length;
 
@@ -24,9 +11,9 @@ const MobileMenuItem = ({ item, closeMenu, openSubmenu }) => {
         <button
           type="button"
           onClick={() => openSubmenu(item)}
-          className="flex min-h-12 w-full items-center justify-between gap-3 border-b border-gray-200 px-4 py-3 text-left text-base font-medium text-gray-950">
+          className="flex min-h-12 w-full items-center justify-between gap-3 border-b border-gray-200 px-4 py-3 text-left text-base font-medium text-gray-950 transition-colors hover:bg-gray-200 dark:border-slate-700 dark:text-gray-100 dark:hover:bg-slate-700">
           <span>{item.label}</span>
-          <ChevronRightIcon className="size-5 shrink-0 text-[#316663]" />
+          <ChevronRightIcon className="size-5 shrink-0 text-[#316663] dark:text-[#70b7b1]" />
         </button>
       </li>
     );
@@ -34,24 +21,17 @@ const MobileMenuItem = ({ item, closeMenu, openSubmenu }) => {
 
   return (
     <li>
-      <a href={item.page} onClick={closeMenu} className="block min-h-12 border-b border-gray-200 px-4 py-3 text-base text-gray-950">
+      <a
+        href={item.page}
+        onClick={closeMenu}
+        className="block min-h-12 border-b border-gray-200 px-4 py-3 text-base text-gray-950 transition-colors hover:bg-gray-200 dark:border-slate-700 dark:text-gray-100 dark:hover:bg-slate-700">
         {item.label}
-        {item.scientificName && <span className="block text-sm text-[#316663] italic">{item.scientificName}</span>}
+        {item.scientificName && <span className="block text-sm text-[#316663] italic dark:text-[#70b7b1]">{item.scientificName}</span>}
       </a>
     </li>
   );
 };
 
-/**
- * Renders the small-screen navigation trigger and hierarchical slide-out drawer.
- * The component maintains a breadcrumb stack and closes when Escape is pressed.
- *
- * @param {Object} props Component properties.
- * @param {import("react").ReactNode} props.languageLinks Language selector displayed in the drawer header.
- * @param {Array<Object>} props.menu Localized root menu nodes.
- * @returns {import("react").JSX.Element} Mobile navigation trigger and conditional drawer.
- * @throws {TypeError} If `menu` or a nested submenu does not support `map`.
- */
 const MobileMenu = ({ languageLinks, menu }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [breadcrumb, setBreadcrumb] = useState([]);
@@ -85,7 +65,7 @@ const MobileMenu = ({ languageLinks, menu }) => {
         aria-label="Open main navigation"
         aria-expanded={isOpen}
         onClick={openMenu}
-        className="flex size-10 items-center justify-center rounded-full bg-white text-[#316663] shadow-sm transition-colors hover:bg-gray-200 min-[900px]:hidden">
+        className="flex size-10 items-center justify-center rounded-full bg-white text-[#316663] shadow-sm transition-colors hover:bg-gray-200 min-[900px]:hidden dark:bg-slate-800 dark:text-[#70b7b1] dark:hover:bg-slate-700">
         <Bars3Icon className="size-6" />
       </button>
 
@@ -96,36 +76,38 @@ const MobileMenu = ({ languageLinks, menu }) => {
             role="dialog"
             aria-modal="true"
             aria-label="Main navigation menu"
-            className="absolute top-0 right-0 flex h-dvh w-[min(24rem,calc(100vw-2rem))] flex-col bg-gray-100 shadow-xl">
-            <div className="flex min-h-16 items-center justify-between gap-3 border-b border-gray-200 px-4">
+            className="absolute top-0 right-0 flex h-dvh w-[min(24rem,calc(100vw-2rem))] flex-col bg-gray-100 shadow-xl dark:bg-slate-900">
+            <div className="flex min-h-16 items-center justify-between gap-3 border-b border-gray-200 px-4 dark:border-slate-700">
               <div className="flex min-w-0 items-center gap-3">
-                <p className="text-sm font-semibold tracking-wide text-[#316663] uppercase">Menu</p>
+                <p className="text-sm font-semibold tracking-wide text-[#316663] uppercase dark:text-[#70b7b1]">Menu</p>
                 {languageLinks}
               </div>
               <button
                 type="button"
                 aria-label="Close main navigation"
                 onClick={closeMenu}
-                className="flex size-10 shrink-0 items-center justify-center rounded-full bg-white text-[#316663] shadow-sm transition-colors hover:bg-gray-200">
+                className="flex size-10 shrink-0 items-center justify-center rounded-full bg-white text-[#316663] shadow-sm transition-colors hover:bg-gray-200 dark:bg-slate-800 dark:text-[#70b7b1] dark:hover:bg-slate-700">
                 <XMarkIcon className="size-6" />
               </button>
             </div>
 
             <nav className="min-h-0 flex-1 overflow-y-auto" aria-label="Main navigation">
               {breadcrumb.length > 0 && (
-                <ol className="flex items-center gap-1 overflow-x-auto border-b border-gray-200 px-4 py-3 text-sm text-gray-600">
+                <ol className="flex items-center gap-1 overflow-x-auto border-b border-gray-200 px-4 py-3 text-sm text-gray-600 dark:border-slate-700 dark:text-slate-300">
                   <li>
-                    <button type="button" onClick={() => goToBreadcrumb(0)} className="font-medium whitespace-nowrap text-[#316663]">
+                    <button type="button" onClick={() => goToBreadcrumb(0)} className="font-medium whitespace-nowrap text-[#316663] dark:text-[#70b7b1]">
                       Menu
                     </button>
                   </li>
                   {breadcrumb.map((item, index) => (
                     <li key={item.id ?? item.label} className="flex items-center gap-1">
-                      <ChevronRightIcon className="size-4 shrink-0 text-gray-400" />
+                      <ChevronRightIcon className="size-4 shrink-0 text-gray-400 dark:text-slate-500" />
                       <button
                         type="button"
                         onClick={() => goToBreadcrumb(index + 1)}
-                        className={`whitespace-nowrap ${index === breadcrumb.length - 1 ? "font-semibold text-gray-950" : "text-[#316663]"}`}>
+                        className={`whitespace-nowrap ${
+                          index === breadcrumb.length - 1 ? "font-semibold text-gray-950 dark:text-gray-100" : "text-[#316663] dark:text-[#70b7b1]"
+                        }`}>
                         {item.label}
                       </button>
                     </li>
@@ -139,7 +121,7 @@ const MobileMenu = ({ languageLinks, menu }) => {
               </ul>
             </nav>
 
-            <div className="border-t border-gray-200 px-4 py-4">
+            <div className="border-t border-gray-200 px-4 py-4 dark:border-slate-700">
               <SocialIcons />
             </div>
           </aside>
