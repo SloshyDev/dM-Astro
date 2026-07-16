@@ -1,13 +1,5 @@
 import React from "react";
 
-/**
- * Renders the email navigation icon.
- *
- * @param {Object} props Component properties.
- * @param {string} props.link Mail URL, normally using the `mailto:` scheme.
- * @param {string} props.size CSS classes controlling SVG dimensions.
- * @returns {import("react").JSX.Element} List item containing the email link.
- */
 const MailIcon = ({ link, size }) => {
   return (
     <li>

@@ -1,13 +1,5 @@
 import React from "react";
 
-/**
- * Renders the Instagram navigation icon.
- *
- * @param {Object} props Component properties.
- * @param {string} props.link Destination URL.
- * @param {string} props.size CSS classes controlling SVG dimensions.
- * @returns {import("react").JSX.Element} List item containing the Instagram link.
- */
 export default function InstagramIcon({ link, size }) {
   return (
     <li>

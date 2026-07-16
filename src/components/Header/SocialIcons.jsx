@@ -5,11 +5,6 @@ import MailIcon from "../../Assets/MailIcon";
 import InstagramIcon from "../../Assets/InstagramIcon";
 import TableuIcon from "../../Assets/TableuIcon";
 
-/**
- * Renders the dataMares Tableau, email, and social-network links.
- *
- * @returns {import("react").JSX.Element} Navigation list containing all configured social links.
- */
 const SocialIcons = () => {
   const size = "size-4";
 

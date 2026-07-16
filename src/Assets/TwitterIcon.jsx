@@ -1,13 +1,5 @@
 import * as React from "react";
 
-/**
- * Renders the X/Twitter navigation icon.
- *
- * @param {Object} props Component properties.
- * @param {string} props.link Destination URL.
- * @param {string} props.size CSS classes controlling SVG dimensions.
- * @returns {import("react").JSX.Element} List item containing the external X/Twitter link.
- */
 const TwitterIcon = ({ link, size }) => (
   <li>
     <a
