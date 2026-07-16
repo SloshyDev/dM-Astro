@@ -1,5 +1,4 @@
 import { ChevronDownIcon } from "@heroicons/react/16/solid";
-import { useState } from "react";
 
 const styles = {
   gray: {
@@ -21,12 +20,12 @@ const SubMenu = ({ label, children, bgColor = "gray", nested = false }) => {
         type="button"
         aria-expanded
         className={`z-10 flex cursor-pointer items-center rounded-md px-3 py-1 transition-colors ${nested ? "w-full justify-between" : ""} ${buttonColorClass}`}>
-        <p>{label}</p>
+        <p className="whitespace-nowrap">{label}</p>
 
         <ChevronDownIcon className={`size-5 text-[#316663] transition-transform ${arrowClass}`} />
       </button>
 
-      <ul className={`absolute hidden w-max rounded-md bg-gray-100 bg-clip-content shadow-md ${submenuClass}`}>{children}</ul>
+      <ul className={`absolute hidden w-max max-w-[24rem] rounded-md bg-gray-100 bg-clip-content shadow-md ${submenuClass}`}>{children}</ul>
     </li>
   );
 };

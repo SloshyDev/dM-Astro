@@ -1,31 +1,26 @@
 import SocialIcons from "./SocialIcons";
 import MenuList from "./ui/MenuList";
-import { GlobeAltIcon } from "@heroicons/react/16/solid";
+import MobileMenu from "./ui/MobileMenu";
 import { getLanguageLinks, getLocalizedMenu } from "./menuData";
 
-const LanguageLinks = ({ lang, pathname }) => {
+const LanguageLinks = ({ className = "", lang, pathname }) => {
   const links = getLanguageLinks(pathname);
   const languages = [
-    { code: "en", label: "English", icon: "EN", href: links.en },
-    { code: "es", label: "Español", icon: "ES", href: links.es },
+    { code: "en", label: "English", flag: "/Flags/US.svg", href: links.en },
+    { code: "es", label: "Español", flag: "/Flags/MX.svg", href: links.es },
   ];
 
   return (
-    <nav aria-label="Language selector">
-      <ul className="flex items-center gap-1 rounded-full bg-white px-2 py-1 shadow-sm">
-        <li>
-          <GlobeAltIcon className="size-4 text-[#316663]" aria-hidden="true" />
-        </li>
+    <nav className={className} aria-label="Language selector">
+      <ul className="flex items-center gap-2">
         {languages.map((language) => (
           <li key={language.code}>
             <a
               href={language.href}
               aria-label={language.label}
               aria-current={lang === language.code ? "page" : undefined}
-              className={`flex size-7 items-center justify-center rounded-full text-[0.65rem] font-semibold transition-colors ${
-                lang === language.code ? "bg-[#316663] text-white" : "text-[#316663] hover:bg-gray-200"
-              }`}>
-              {language.icon}
+              className="block rounded-full transition-transform duration-150 focus-within:scale-105 hover:scale-105">
+              <img src={language.flag} alt="" className="size-8 rounded-full object-cover" />
             </a>
           </li>
         ))}
@@ -38,21 +33,28 @@ const Header = ({ lang = "en", pathname = "/" }) => {
   const menu = getLocalizedMenu(lang);
 
   return (
-    <header className="sticky top-0 w-screen justify-between border-b-2 border-b-gray-200 bg-gray-100 px-4 py-2 shadow-md xl:flex">
-      <div className="flex w-full justify-between">
-        <nav className="flex gap-3" aria-label="Header">
+    <header className="sticky top-0 z-40 w-screen border-b-2 border-b-gray-200 bg-gray-100 px-4 py-2 shadow-md">
+      <div className="flex w-full items-center justify-between gap-4">
+        <nav className="flex min-w-0 items-center gap-3" aria-label="Header">
           <a href="/" className="contents">
-            <img src="/Logo.svg" className="w-35" alt="dataMares" />
+            <img src="/Logo.svg" className="w-35 shrink-0" alt="dataMares" />
           </a>
-          <MenuList menu={menu} className="hidden xl:contents" />
+          <MenuList menu={menu} className="hidden min-[1700px]:contents" />
         </nav>
 
-        <div className="flex items-center gap-3">
-          <LanguageLinks lang={lang} pathname={pathname} />
-          <SocialIcons />
+        <div className="flex shrink-0 items-center gap-2">
+          <div className="hidden min-[900px]:contents">
+            <SocialIcons />
+          </div>
+          <LanguageLinks className="hidden min-[900px]:block" lang={lang} pathname={pathname} />
+          <MobileMenu languageLinks={<LanguageLinks lang={lang} pathname={pathname} />} menu={menu} />
         </div>
       </div>
-      <MenuList menu={menu} className="block xl:hidden" />
+      <MenuList
+        menu={menu}
+        className="mt-2 hidden border-t border-gray-200 pt-2 min-[900px]:block min-[1700px]:hidden"
+        listClassName="flex flex-wrap items-center justify-start gap-x-5 gap-y-2"
+      />
     </header>
   );
 };

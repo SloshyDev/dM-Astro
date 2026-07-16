@@ -1,9 +1,9 @@
 import React from "react";
 import renderMenuItem from "./helpers/renderMenuItem";
 
-const MenuList = ({ className = "", menu }) => (
+const MenuList = ({ className = "", listClassName = "flex items-center gap-1", menu }) => (
   <nav className={className} aria-label="Main navigation">
-    <ul className="flex items-center">{menu.map((item) => renderMenuItem(item))}</ul>
+    <ul className={listClassName}>{menu.map((item) => renderMenuItem(item))}</ul>
   </nav>
 );
 
