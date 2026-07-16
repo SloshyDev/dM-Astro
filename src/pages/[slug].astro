@@ -3,6 +3,12 @@ import SimpleMenuPage from "../components/SimpleMenuPage.astro";
 import { getMenuPages } from "../components/Header/menuData";
 import Layout from "../layouts/Layout.astro";
 
+/**
+ * Generates every English route declared in the menu data.
+ *
+ * @returns {Array<{params: {slug: string}, props: {page: import("../components/Header/menuData").MenuPage}}>} Astro static route definitions.
+ * @throws {TypeError} If the menu configuration cannot be flattened.
+ */
 export function getStaticPaths() {
   return getMenuPages("en").map((page) => ({
     params: { slug: page.slug },

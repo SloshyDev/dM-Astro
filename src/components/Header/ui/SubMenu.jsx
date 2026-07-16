@@ -7,6 +7,16 @@ const styles = {
   },
 };
 
+/**
+ * Renders a desktop dropdown or nested flyout menu.
+ *
+ * @param {Object} props Component properties.
+ * @param {string} props.label Visible submenu label.
+ * @param {import("react").ReactNode} props.children Nested menu entries.
+ * @param {"gray"} [props.bgColor="gray"] Key used to select interaction color classes.
+ * @param {boolean} [props.nested=false] Whether the submenu is nested inside another dropdown.
+ * @returns {import("react").JSX.Element} List item containing the submenu trigger and entries.
+ */
 const SubMenu = ({ label, children, bgColor = "gray", nested = false }) => {
   const buttonColorClass = nested ? styles[bgColor]?.nestedButton : styles[bgColor]?.rootButton;
 

@@ -1,5 +1,12 @@
 import React from "react";
 
+/**
+ * Renders the branded Tableau profile link.
+ *
+ * @param {Object} props Component properties.
+ * @param {string} props.link Destination Tableau URL.
+ * @returns {import("react").JSX.Element} List item containing the Tableau image link.
+ */
 const TableuIcon = ({ link }) => {
   return (
     <li>

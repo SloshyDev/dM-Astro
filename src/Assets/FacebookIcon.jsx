@@ -1,5 +1,13 @@
 import * as React from "react";
 
+/**
+ * Renders the Facebook navigation icon.
+ *
+ * @param {Object} props Component properties.
+ * @param {string} props.link Destination URL.
+ * @param {string} props.size CSS classes controlling SVG dimensions.
+ * @returns {import("react").JSX.Element} List item containing the external Facebook link.
+ */
 const FacebookIcon = ({ link, size }) => (
   <li>
     <a
