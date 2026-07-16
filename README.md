@@ -181,7 +181,6 @@ Esta es una API interna del proyecto; los módulos no se publican actualmente co
 | ---------------------- | ----------------------------------------------- | -------------------------------------------------------- |
 | `Layout.astro`         | `title?`, `description?`, `image?`, `type?`     | Define el documento, SEO, Open Graph y monta el header.  |
 | `SimpleMenuPage.astro` | `title`, `section?`, `scientificName?`, `lang?` | Renderiza el contenido provisional de una ruta del menú. |
-| `Welcome.astro`        | Sin props                                       | Muestra el locale actual en las páginas de inicio.       |
 
 ## Internacionalización
 
