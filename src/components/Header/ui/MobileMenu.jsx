@@ -1,6 +1,6 @@
-import { Bars3Icon, ChevronRightIcon, XMarkIcon } from "@heroicons/react/16/solid";
 import { useEffect, useState } from "react";
 import SocialIcons from "../SocialIcons";
+import Icon from "../../Icon";
 
 const MobileMenuItem = ({ item, closeMenu, openSubmenu }) => {
   const hasSubmenu = item.submenu?.length;
@@ -13,7 +13,7 @@ const MobileMenuItem = ({ item, closeMenu, openSubmenu }) => {
           onClick={() => openSubmenu(item)}
           className="flex min-h-12 w-full items-center justify-between gap-3 border-b border-gray-200 px-4 py-3 text-left text-base font-medium text-gray-950 transition-colors hover:bg-gray-200 dark:border-slate-700 dark:text-gray-100 dark:hover:bg-slate-700">
           <span>{item.label}</span>
-          <ChevronRightIcon className="size-5 shrink-0 text-[#316663] dark:text-[#70b7b1]" />
+          <Icon name="chevronRight" className="size-5 shrink-0 text-[#316663] dark:text-[#70b7b1]" />
         </button>
       </li>
     );
@@ -66,7 +66,7 @@ const MobileMenu = ({ languageLinks, menu }) => {
         aria-expanded={isOpen}
         onClick={openMenu}
         className="flex size-10 items-center justify-center rounded-full bg-white text-[#316663] shadow-sm transition-colors hover:bg-gray-200 min-[900px]:hidden dark:bg-slate-800 dark:text-[#70b7b1] dark:hover:bg-slate-700">
-        <Bars3Icon className="size-6" />
+        <Icon name="bars" className="size-6" />
       </button>
 
       {isOpen && (
@@ -87,7 +87,7 @@ const MobileMenu = ({ languageLinks, menu }) => {
                 aria-label="Close main navigation"
                 onClick={closeMenu}
                 className="flex size-10 shrink-0 items-center justify-center rounded-full bg-white text-[#316663] shadow-sm transition-colors hover:bg-gray-200 dark:bg-slate-800 dark:text-[#70b7b1] dark:hover:bg-slate-700">
-                <XMarkIcon className="size-6" />
+                <Icon name="close" className="size-6" />
               </button>
             </div>
 
@@ -101,7 +101,7 @@ const MobileMenu = ({ languageLinks, menu }) => {
                   </li>
                   {breadcrumb.map((item, index) => (
                     <li key={item.id ?? item.label} className="flex items-center gap-1">
-                      <ChevronRightIcon className="size-4 shrink-0 text-gray-400 dark:text-slate-500" />
+                      <Icon name="chevronRight" className="size-4 shrink-0 text-gray-400 dark:text-slate-500" />
                       <button
                         type="button"
                         onClick={() => goToBreadcrumb(index + 1)}
