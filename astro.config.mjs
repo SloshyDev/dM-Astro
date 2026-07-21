@@ -10,6 +10,10 @@ import react from "@astrojs/react";
 
 // https://astro.build/config
 export default defineConfig({
+  build: {
+      inlineStylesheets: "always"
+  },
+
   i18n:{
       locales:["es","en"],
       defaultLocale: "en"
