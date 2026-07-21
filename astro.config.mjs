@@ -4,7 +4,7 @@ import tailwindcss from '@tailwindcss/vite'
 
 
 
-import react from "@astrojs/react";
+import preact from "@astrojs/preact";
 
 
 
@@ -23,5 +23,5 @@ export default defineConfig({
       plugins: [tailwindcss()]
   },
 
-  integrations: [react()]
+  integrations: [preact({ compat: true })]
 });

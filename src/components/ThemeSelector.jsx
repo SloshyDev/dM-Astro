@@ -1,11 +1,11 @@
-import { ComputerDesktopIcon, MoonIcon, SunIcon } from "@heroicons/react/16/solid";
 import { useEffect, useRef, useState } from "react";
+import Icon from "./Icon";
 
 const STORAGE_KEY = "datamares-theme";
 const THEMES = [
-  { value: "light", label: "Claro", Icon: SunIcon },
-  { value: "dark", label: "Oscuro", Icon: MoonIcon },
-  { value: "system", label: "Sistema", Icon: ComputerDesktopIcon },
+  { value: "light", label: "Claro", icon: "sun" },
+  { value: "dark", label: "Oscuro", icon: "moon" },
+  { value: "system", label: "Sistema", icon: "computer" },
 ];
 
 const resolveTheme = (preference, systemTheme) => {
@@ -69,7 +69,6 @@ const ThemeSelector = () => {
   }, [isOpen]);
 
   const selectedTheme = THEMES.find(({ value }) => value === preference) ?? THEMES[2];
-  const SelectedIcon = selectedTheme.Icon;
 
   return (
     <div ref={containerRef} className="theme-selector fixed bottom-4 left-4 z-50">
@@ -77,7 +76,7 @@ const ThemeSelector = () => {
         <div
           className="theme-selector__menu absolute bottom-full left-0 mb-2 w-40 overflow-hidden rounded-xl border border-gray-200 bg-white p-1 text-gray-900 shadow-xl dark:border-slate-700 dark:bg-slate-800 dark:text-gray-100"
           role="menu">
-          {THEMES.map(({ value, label, Icon }) => {
+          {THEMES.map(({ value, label, icon }) => {
             const isSelected = preference === value;
 
             return (
@@ -95,7 +94,7 @@ const ThemeSelector = () => {
                     ? "bg-[#316663] text-white dark:bg-[#70b7b1] dark:text-slate-950"
                     : "text-gray-600 hover:bg-gray-200 hover:text-gray-900 dark:text-slate-300 dark:hover:bg-slate-700 dark:hover:text-white"
                 }`}>
-                <Icon className="size-5" aria-hidden="true" />
+                <Icon name={icon} className="size-5" aria-hidden="true" />
                 {label}
               </button>
             );
@@ -110,7 +109,7 @@ const ThemeSelector = () => {
         aria-expanded={isOpen}
         onClick={() => setIsOpen((current) => !current)}
         className="theme-selector__trigger flex h-11 items-center gap-2 rounded-full border border-gray-200 bg-white px-4 text-sm font-bold tracking-wide text-[#316663] uppercase shadow-lg transition-all hover:scale-105 dark:border-slate-700 dark:bg-slate-800 dark:text-[#70b7b1]">
-        <SelectedIcon className="size-5" aria-hidden="true" />
+        <Icon name={selectedTheme.icon} className="size-5" aria-hidden="true" />
         {selectedTheme.label}
       </button>
     </div>
