@@ -1,0 +1,68 @@
+name: Desplegar producción
+
+on:
+  push:
+    branches:
+      - produccion
+
+concurrency:
+  group: bcomic-studio-production
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    name: Construir y publicar
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Obtener el código
+        uses: actions/checkout@v4
+
+      - name: Preparar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Instalar dependencias
+        run: npm ci
+
+      - name: Construir el sitio
+        run: npm run build
+        env:
+          STRAPI_URL: ${{ secrets.STRAPI_URL }}
+
+      - name: Configurar acceso seguro al servidor
+        env:
+          DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
+          DEPLOY_SSH_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+        run: |
+          mkdir -p ~/.ssh
+          printf '%s' "$DEPLOY_SSH_KEY" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          ssh-keyscan -H "$DEPLOY_HOST" >> ~/.ssh/known_hosts
+
+      - name: Publicar en el VPS
+        env:
+          DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
+          DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
+          GITHUB_SHA: ${{ github.sha }}
+        run: |
+          RELEASE_DIR="/var/www/bcomic.studio-release-${GITHUB_SHA}"
+          ssh -i ~/.ssh/deploy_key "$DEPLOY_USER@$DEPLOY_HOST" "rm -rf '$RELEASE_DIR' && mkdir -p '$RELEASE_DIR'"
+          rsync -az --delete -e "ssh -i ~/.ssh/deploy_key" dist/ "$DEPLOY_USER@$DEPLOY_HOST:$RELEASE_DIR/"
+          ssh -i ~/.ssh/deploy_key "$DEPLOY_USER@$DEPLOY_HOST" "
+            set -eu
+            test -f '$RELEASE_DIR/index.html'
+            rm -rf /var/www/bcomic.studio-previous-auto
+            if [ -d /var/www/bcomic.studio ]; then
+              mv /var/www/bcomic.studio /var/www/bcomic.studio-previous-auto
+            fi
+            mv '$RELEASE_DIR' /var/www/bcomic.studio
+            chown -R www-data:www-data /var/www/bcomic.studio
+            nginx -t
+            systemctl reload nginx
+          "
