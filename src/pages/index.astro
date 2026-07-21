@@ -1,6 +1,12 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import { getHomeData } from "../api/home/getHomeData";
+import Layout from "../layouts/Layout.astro";
+import CarrouselBanners from "../components/Home/CarrouselBanners.jsx";
+
+const homeData = await getHomeData("en");
+console.dir(homeData, { depth: null, colors: true });
 ---
 
 <Layout>
+  <CarrouselBanners data={homeData} client:load />
 </Layout>
