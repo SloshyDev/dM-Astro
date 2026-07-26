@@ -1,0 +1,19 @@
+query HomeQuery($locale: I18NLocaleCode) {
+  home(locale: $locale) {
+    Carrousel {
+      ... on ComponentImageWithLinkImageWithLink {
+        Image {
+          formats
+        }
+      }
+      ... on ComponentDataContentDataContent {
+        data_contents {
+          Slug
+          Banner {
+            formats
+          }
+        }
+      }
+    }
+  }
+}

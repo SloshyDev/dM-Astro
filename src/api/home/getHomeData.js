@@ -1,24 +1,4 @@
-const HOME_QUERY = /* GraphQL */ `
-  query HomeQuery($locale: I18NLocaleCode) {
-    home(locale: $locale) {
-      Carrousel {
-        ... on ComponentImageWithLinkImageWithLink {
-          Image {
-            formats
-          }
-        }
-        ... on ComponentDataContentDataContent {
-          data_contents {
-            Slug
-            Banner {
-              formats
-            }
-          }
-        }
-      }
-    }
-  }
-`;
+import HOME_QUERY from "./home.graphql?raw";
 
 const withAbsoluteUrls = (media, strapiUrl) => {
   if (!media?.formats) return media;
