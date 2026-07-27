@@ -74,9 +74,9 @@ const pathname = Astro.url.pathname;
       })();
     </script>
   </head>
-  <body class="bg-white text-gray-900 transition-colors duration-150 dark:bg-[#0b1117] dark:text-gray-100">
+  <body class="bg-white text-gray-900 transition-colors duration-150 dark:bg-zinc-900 dark:text-gray-100">
     <Header client:idle lang={lang} pathname={pathname} />
-    <section class=" min-h-screen">
+    <section class="min-h-screen max-w-[2560px] mx-auto">
       <slot />
     </section>
     <ThemeSelector client:idle />

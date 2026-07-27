@@ -3,6 +3,7 @@ const IconPath = ({ name }) => {
   if (name === "close") return <path stroke="currentColor" strokeLinecap="round" strokeWidth="1.8" d="m6 6 12 12M18 6 6 18" />;
   if (name === "chevronDown") return <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.8" d="m6 9 6 6 6-6" />;
   if (name === "chevronRight") return <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.8" d="m9 6 6 6-6 6" />;
+  if (name === "chevronDoubleRight") return <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.8" d="m5 6 6 6-6 6m8-12 6 6-6 6" />;
   if (name === "sun") {
     return <>
       <circle cx="12" cy="12" r="3.5" stroke="currentColor" strokeWidth="1.8" />

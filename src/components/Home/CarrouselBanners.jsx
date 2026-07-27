@@ -33,7 +33,18 @@ const CarrouselBanners = ({ data, strapiUrl }) => {
   const heightRatio = Math.max(...splides.map((splide) => splide.height / splide.width).filter(Number.isFinite));
 
   return (
-    <Splide className="w-[73%]" options={heightRatio ? { heightRatio } : undefined} aria-label="My Favorite Images">
+    <Splide
+      className="w-[73%]"
+      options={{
+        type: "loop",
+        pauseOnHover: true,
+        pagination: false,
+        autoplay: true,
+        duration: 3000,
+        arrowPath: "M8 8 17 20 8 32M22 8l9 12-9 12",
+        ...(heightRatio ? { heightRatio } : {}),
+      }}
+      aria-label="Banners Carrousel">
       {splides.map((splide) => {
         const srcSet = Object.values(splide.formats || {})
           .filter((format) => format?.url && format.width)
