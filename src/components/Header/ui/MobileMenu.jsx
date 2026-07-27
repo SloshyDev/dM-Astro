@@ -11,7 +11,7 @@ const MobileMenuItem = ({ item, closeMenu, openSubmenu }) => {
         <button
           type="button"
           onClick={() => openSubmenu(item)}
-          className="flex min-h-12 w-full items-center justify-between gap-3 border-b border-gray-200 px-4 py-3 text-left text-base font-medium text-gray-950 transition-colors hover:bg-gray-200 dark:border-slate-700 dark:text-gray-100 dark:hover:bg-slate-700">
+          className="flex min-h-12 w-full items-center justify-between gap-3 border-b border-zinc-200 px-4 py-3 text-left text-base font-medium text-zinc-950 transition-colors hover:bg-zinc-200 dark:border-zinc-700 dark:text-zinc-100 dark:hover:bg-zinc-700">
           <span>{item.label}</span>
           <Icon name="chevronRight" className="size-5 shrink-0 text-[#316663] dark:text-[#70b7b1]" />
         </button>
@@ -24,7 +24,7 @@ const MobileMenuItem = ({ item, closeMenu, openSubmenu }) => {
       <a
         href={item.page}
         onClick={closeMenu}
-        className="block min-h-12 border-b border-gray-200 px-4 py-3 text-base text-gray-950 transition-colors hover:bg-gray-200 dark:border-slate-700 dark:text-gray-100 dark:hover:bg-slate-700">
+        className="block min-h-12 border-b border-zinc-200 px-4 py-3 text-base text-zinc-950 transition-colors hover:bg-zinc-200 dark:border-zinc-700 dark:text-zinc-100 dark:hover:bg-zinc-700">
         {item.label}
         {item.scientificName && <span className="block text-sm text-[#316663] italic dark:text-[#70b7b1]">{item.scientificName}</span>}
       </a>
@@ -65,19 +65,19 @@ const MobileMenu = ({ languageLinks, menu }) => {
         aria-label="Open main navigation"
         aria-expanded={isOpen}
         onClick={openMenu}
-        className="flex size-10 items-center justify-center rounded-full bg-white text-[#316663] shadow-sm transition-colors hover:bg-gray-200 min-[900px]:hidden dark:bg-slate-800 dark:text-[#70b7b1] dark:hover:bg-slate-700">
+        className="flex size-10 items-center justify-center rounded-full bg-white text-[#316663] shadow-sm transition-colors hover:bg-zinc-200 min-[900px]:hidden dark:bg-zinc-800 dark:text-[#70b7b1] dark:hover:bg-zinc-700">
         <Icon name="bars" className="size-6" />
       </button>
 
       {isOpen && (
         <div className="fixed inset-0 z-50 min-[900px]:hidden">
-          <button type="button" aria-label="Close main navigation overlay" onClick={closeMenu} className="absolute inset-0 bg-gray-950/35" />
+          <button type="button" aria-label="Close main navigation overlay" onClick={closeMenu} className="absolute inset-0 bg-zinc-950/35" />
           <aside
             role="dialog"
             aria-modal="true"
             aria-label="Main navigation menu"
-            className="absolute top-0 right-0 flex h-dvh w-[min(24rem,calc(100vw-2rem))] flex-col bg-gray-100 shadow-xl dark:bg-slate-900">
-            <div className="flex min-h-16 items-center justify-between gap-3 border-b border-gray-200 px-4 dark:border-slate-700">
+            className="absolute top-0 right-0 flex h-dvh w-[min(24rem,calc(100vw-2rem))] flex-col bg-zinc-100 shadow-xl dark:bg-zinc-900">
+            <div className="flex min-h-16 items-center justify-between gap-3 border-b border-zinc-200 px-4 dark:border-zinc-700">
               <div className="flex min-w-0 items-center gap-3">
                 <p className="text-sm font-semibold tracking-wide text-[#316663] uppercase dark:text-[#70b7b1]">Menu</p>
                 {languageLinks}
@@ -86,14 +86,14 @@ const MobileMenu = ({ languageLinks, menu }) => {
                 type="button"
                 aria-label="Close main navigation"
                 onClick={closeMenu}
-                className="flex size-10 shrink-0 items-center justify-center rounded-full bg-white text-[#316663] shadow-sm transition-colors hover:bg-gray-200 dark:bg-slate-800 dark:text-[#70b7b1] dark:hover:bg-slate-700">
+                className="flex size-10 shrink-0 items-center justify-center rounded-full bg-white text-[#316663] shadow-sm transition-colors hover:bg-zinc-200 dark:bg-zinc-800 dark:text-[#70b7b1] dark:hover:bg-zinc-700">
                 <Icon name="close" className="size-6" />
               </button>
             </div>
 
             <nav className="min-h-0 flex-1 overflow-y-auto" aria-label="Main navigation">
               {breadcrumb.length > 0 && (
-                <ol className="flex items-center gap-1 overflow-x-auto border-b border-gray-200 px-4 py-3 text-sm text-gray-600 dark:border-slate-700 dark:text-slate-300">
+                <ol className="flex items-center gap-1 overflow-x-auto border-b border-zinc-200 px-4 py-3 text-sm text-zinc-600 dark:border-zinc-700 dark:text-zinc-300">
                   <li>
                     <button type="button" onClick={() => goToBreadcrumb(0)} className="font-medium whitespace-nowrap text-[#316663] dark:text-[#70b7b1]">
                       Menu
@@ -101,12 +101,12 @@ const MobileMenu = ({ languageLinks, menu }) => {
                   </li>
                   {breadcrumb.map((item, index) => (
                     <li key={item.id ?? item.label} className="flex items-center gap-1">
-                      <Icon name="chevronRight" className="size-4 shrink-0 text-gray-400 dark:text-slate-500" />
+                      <Icon name="chevronRight" className="size-4 shrink-0 text-zinc-400 dark:text-zinc-500" />
                       <button
                         type="button"
                         onClick={() => goToBreadcrumb(index + 1)}
                         className={`whitespace-nowrap ${
-                          index === breadcrumb.length - 1 ? "font-semibold text-gray-950 dark:text-gray-100" : "text-[#316663] dark:text-[#70b7b1]"
+                          index === breadcrumb.length - 1 ? "font-semibold text-zinc-950 dark:text-zinc-100" : "text-[#316663] dark:text-[#70b7b1]"
                         }`}>
                         {item.label}
                       </button>
@@ -121,7 +121,7 @@ const MobileMenu = ({ languageLinks, menu }) => {
               </ul>
             </nav>
 
-            <div className="border-t border-gray-200 px-4 py-4 dark:border-slate-700">
+            <div className="border-t border-zinc-200 px-4 py-4 dark:border-zinc-700">
               <SocialIcons />
             </div>
           </aside>
