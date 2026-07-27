@@ -4,6 +4,10 @@ query HomeQuery($locale: I18NLocaleCode) {
       ... on ComponentImageWithLinkImageWithLink {
         Image {
           formats
+          url
+          height
+          width
+          hash
         }
       }
       ... on ComponentDataContentDataContent {
@@ -11,6 +15,10 @@ query HomeQuery($locale: I18NLocaleCode) {
           Slug
           Banner {
             formats
+            url
+            height
+            width
+            hash
           }
         }
       }

@@ -7,5 +7,7 @@ const homeData = await getHomeData("en");
 ---
 
 <Layout>
-  <CarrouselBanners data={homeData} client:idle />
+  <section class="flex pt-8 mx-4">
+     <CarrouselBanners data={homeData} strapiUrl={import.meta.env.STRAPI_URL} client:idle />
+  </section>
 </Layout>
