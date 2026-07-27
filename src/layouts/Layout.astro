@@ -1,6 +1,7 @@
 ---
 import Header from "../components/Header/Header";
 import ThemeSelector from "../components/ThemeSelector";
+import ViewPort from "../components/ViewPort";
 import "../styles/global.css";
 
 const siteUrl = "https://datamares.org";
@@ -79,5 +80,6 @@ const pathname = Astro.url.pathname;
       <slot />
     </section>
     <ThemeSelector client:idle />
+    <ViewPort client:only/>
   </body>
 </html>

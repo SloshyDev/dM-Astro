@@ -1,54 +1,60 @@
+import React from "react";
+import "@splidejs/react-splide/css/core";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
-import "@splidejs/react-splide/css";
 
-const FORMAT_ORDER = ["thumbnail", "small", "medium", "large"];
+const toAbsoluteUrl = (url, strapiUrl) => {
+  if (!url || url.startsWith("http")) return url;
+  return new URL(url, strapiUrl).toString();
+};
 
-const getSlides = (carrousel) =>
-  carrousel.flatMap((item, itemIndex) => {
-    if (item.Image?.formats) {
-      return [{ id: `image-${itemIndex}`, formats: item.Image.formats, alt: `Banner ${itemIndex + 1}` }];
-    }
+const CarrouselBanners = ({ data, strapiUrl }) => {
+  const splides = [];
 
-    return (item.data_contents || [])
-      .filter((content) => content.Banner?.formats)
-      .map((content, contentIndex) => ({
-        id: `content-${itemIndex}-${contentIndex}`,
-        formats: content.Banner.formats,
-        alt: content.Slug?.replaceAll("_", " ") || `Banner ${itemIndex + 1}`,
-      }));
+  data?.Carrousel?.forEach((banner) => {
+    banner.Image
+      ? splides.push({
+          url: toAbsoluteUrl(banner.Image.url, strapiUrl),
+          width: banner.Image.width,
+          height: banner.Image.height,
+          formats: banner.Image.formats,
+          hash: banner.Image.hash,
+        })
+      : banner.data_contents?.forEach((banner) => {
+          splides.push({
+            url: toAbsoluteUrl(banner.Banner.url, strapiUrl),
+            width: banner.Banner.width,
+            height: banner.Banner.height,
+            formats: banner.Banner.formats,
+            hash: banner.Banner.hash,
+          });
+        });
   });
 
-const CarrouselBanners = ({ data }) => {
-  const slides = getSlides(data?.Carrousel || []);
-
-  if (!slides.length) return null;
+  const heightRatio = Math.max(...splides.map((splide) => splide.height / splide.width).filter(Number.isFinite));
 
   return (
-    <Splide aria-label="Banners destacados" options={{ type: "loop", perPage: 1, perMove: 1 }}>
-      {slides.map(({ alt, formats, id }, index) => {
-        const sources = FORMAT_ORDER.map((name) => formats[name]).filter((format) => format?.url && format.width);
-        const fallback = sources.at(-1) || sources[0];
-        const srcSet = sources.map((format) => `${format.url} ${format.width}w`).join(", ");
-
-        if (!fallback) return null;
+    <Splide className="w-[73%]" options={heightRatio ? { heightRatio } : undefined} aria-label="My Favorite Images">
+      {splides.map((splide) => {
+        const srcSet = Object.values(splide.formats || {})
+          .filter((format) => format?.url && format.width)
+          .map((format) => `${toAbsoluteUrl(format.url, strapiUrl)} ${format.width}w`)
+          .concat(splide.url && splide.width ? `${splide.url} ${splide.width}w` : [])
+          .join(", ");
 
         return (
-          <SplideSlide key={id}>
+          <SplideSlide className="h-full" key={splide.hash || splide.url}>
             <img
-              src={fallback.url}
-              srcSet={srcSet}
+              className="block h-full w-full rounded-xl object-cover"
+              loading="lazy"
               sizes="100vw"
-              width={fallback.width}
-              height={fallback.height}
-              alt={alt}
-              loading={index === 0 ? "eager" : "lazy"}
-              fetchPriority={index === 0 ? "high" : "auto"}
-              className="aspect-[2.7/1] h-auto w-full object-cover"
+              src={splide.url}
+              srcSet={srcSet || undefined}
+              alt="Image in large container"
             />
           </SplideSlide>
         );
       })}
-      </Splide>
+    </Splide>
   );
 };
 

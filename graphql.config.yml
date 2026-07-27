@@ -1,0 +1,4 @@
+schema: https://api.yokaicdmx.com/graphql
+
+documents:
+  - "src/**/*.graphql"
