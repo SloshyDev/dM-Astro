@@ -9,11 +9,11 @@ const status = lang === "es" ? "Contenido en desarrollo" : "Content in progress"
 ---
 
 <main class="mx-auto flex min-h-[70vh] max-w-5xl flex-col justify-center px-6 py-20">
-  <p class="mb-3 text-sm font-semibold uppercase tracking-wide text-[#316663] dark:text-[#70b7b1]">{eyebrow}</p>
-  <h1 class="max-w-3xl text-4xl font-semibold text-gray-900 dark:text-gray-100 md:text-6xl">{title}</h1>
-  {scientificName && <p class="mt-4 text-xl italic text-[#316663] dark:text-[#70b7b1]">{scientificName}</p>}
-  <p class="mt-6 max-w-2xl text-lg leading-8 text-gray-600 dark:text-slate-300">{description}</p>
-  <div class="mt-8 w-fit rounded-full border border-[#316663]/30 px-4 py-2 text-sm font-medium text-[#316663] dark:border-[#70b7b1]/40 dark:text-[#70b7b1]">
+  <p class="mb-3 text-sm font-semibold uppercase tracking-wide text-dm-interactive dark:text-dm-interactive-soft">{eyebrow}</p>
+  <h1 class="max-w-3xl font-myriad text-4xl font-semibold text-dm-text-light dark:text-white md:text-6xl">{title}</h1>
+  {scientificName && <p class="mt-4 text-xl italic text-dm-interactive dark:text-dm-interactive-soft">{scientificName}</p>}
+  <p class="mt-6 max-w-2xl text-lg leading-8 text-dm-text-light/70 dark:text-white/70">{description}</p>
+  <div class="mt-8 w-fit rounded-full border border-dm-interactive/30 px-4 py-2 text-sm font-medium text-dm-interactive dark:border-dm-interactive-soft/40 dark:text-dm-interactive-soft">
     {status}
   </div>
 </main>

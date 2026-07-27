@@ -1,13 +1,13 @@
 import React from "react";
 
-const Link = ({ label, page, bgHover, scientificName }) => {
+const Link = ({ label, page, scientificName }) => {
   return (
     <li>
       <a
         href={`${page}`}
-        className={`block w-full rounded-md bg-zinc-100 px-3 py-1 whitespace-nowrap transition-colors dark:bg-zinc-900 dark:text-zinc-100 dark:focus-within:bg-zinc-700 dark:hover:bg-zinc-700 focus-within:${bgHover} hover:${bgHover}`}>
+        className="block w-full rounded-md bg-dm-surface-light px-3 py-1 whitespace-nowrap transition-colors focus-within:bg-dm-interactive-soft/20 hover:bg-dm-interactive-soft/20 dark:bg-dm-surface-dark dark:text-white dark:focus-within:bg-dm-interactive/30 dark:hover:bg-dm-interactive/30">
         {label}
-        {scientificName && <span className="text-[#316663] italic dark:text-[#70b7b1]"> ({scientificName})</span>}
+        {scientificName && <span className="text-dm-interactive italic dark:text-dm-interactive-soft"> ({scientificName})</span>}
       </a>
     </li>
   );

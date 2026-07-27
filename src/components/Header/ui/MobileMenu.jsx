@@ -11,9 +11,9 @@ const MobileMenuItem = ({ item, closeMenu, openSubmenu }) => {
         <button
           type="button"
           onClick={() => openSubmenu(item)}
-          className="flex min-h-12 w-full items-center justify-between gap-3 border-b border-zinc-200 px-4 py-3 text-left text-base font-medium text-zinc-950 transition-colors hover:bg-zinc-200 dark:border-zinc-700 dark:text-zinc-100 dark:hover:bg-zinc-700">
+          className="flex min-h-12 w-full items-center justify-between gap-3 border-b border-dm-border-light px-4 py-3 text-left text-base font-medium text-dm-text-light transition-colors hover:bg-dm-interactive-soft/20 dark:border-dm-border-dark dark:text-white dark:hover:bg-dm-interactive/30">
           <span>{item.label}</span>
-          <Icon name="chevronRight" className="size-5 shrink-0 text-[#316663] dark:text-[#70b7b1]" />
+          <Icon name="chevronRight" className="size-5 shrink-0 text-dm-interactive dark:text-dm-interactive-soft" />
         </button>
       </li>
     );
@@ -24,9 +24,9 @@ const MobileMenuItem = ({ item, closeMenu, openSubmenu }) => {
       <a
         href={item.page}
         onClick={closeMenu}
-        className="block min-h-12 border-b border-zinc-200 px-4 py-3 text-base text-zinc-950 transition-colors hover:bg-zinc-200 dark:border-zinc-700 dark:text-zinc-100 dark:hover:bg-zinc-700">
+        className="block min-h-12 border-b border-dm-border-light px-4 py-3 text-base text-dm-text-light transition-colors hover:bg-dm-interactive-soft/20 dark:border-dm-border-dark dark:text-white dark:hover:bg-dm-interactive/30">
         {item.label}
-        {item.scientificName && <span className="block text-sm text-[#316663] italic dark:text-[#70b7b1]">{item.scientificName}</span>}
+        {item.scientificName && <span className="block text-sm text-dm-interactive italic dark:text-dm-interactive-soft">{item.scientificName}</span>}
       </a>
     </li>
   );
@@ -65,48 +65,48 @@ const MobileMenu = ({ languageLinks, menu }) => {
         aria-label="Open main navigation"
         aria-expanded={isOpen}
         onClick={openMenu}
-        className="flex size-10 items-center justify-center rounded-full bg-white text-[#316663] shadow-sm transition-colors hover:bg-zinc-200 min-[900px]:hidden dark:bg-zinc-800 dark:text-[#70b7b1] dark:hover:bg-zinc-700">
+        className="flex size-10 items-center justify-center rounded-full bg-white text-dm-interactive shadow-sm transition-colors hover:bg-dm-interactive-soft/20 min-[900px]:hidden dark:bg-dm-surface-deep dark:text-dm-interactive-soft dark:hover:bg-dm-interactive/30">
         <Icon name="bars" className="size-6" />
       </button>
 
       {isOpen && (
         <div className="fixed inset-0 z-50 min-[900px]:hidden">
-          <button type="button" aria-label="Close main navigation overlay" onClick={closeMenu} className="absolute inset-0 bg-zinc-950/35" />
+          <button type="button" aria-label="Close main navigation overlay" onClick={closeMenu} className="absolute inset-0 bg-dm-surface-deep/40" />
           <aside
             role="dialog"
             aria-modal="true"
             aria-label="Main navigation menu"
-            className="absolute top-0 right-0 flex h-dvh w-[min(24rem,calc(100vw-2rem))] flex-col bg-zinc-100 shadow-xl dark:bg-zinc-900">
-            <div className="flex min-h-16 items-center justify-between gap-3 border-b border-zinc-200 px-4 dark:border-zinc-700">
+            className="absolute top-0 right-0 flex h-dvh w-[min(24rem,calc(100vw-2rem))] flex-col bg-dm-surface-light shadow-xl dark:bg-dm-surface-dark">
+            <div className="flex min-h-16 items-center justify-between gap-3 border-b border-dm-border-light px-4 dark:border-dm-border-dark">
               <div className="flex min-w-0 items-center gap-3">
-                <p className="text-sm font-semibold tracking-wide text-[#316663] uppercase dark:text-[#70b7b1]">Menu</p>
+                <p className="text-sm font-semibold tracking-wide text-dm-interactive uppercase dark:text-dm-interactive-soft">Menu</p>
                 {languageLinks}
               </div>
               <button
                 type="button"
                 aria-label="Close main navigation"
                 onClick={closeMenu}
-                className="flex size-10 shrink-0 items-center justify-center rounded-full bg-white text-[#316663] shadow-sm transition-colors hover:bg-zinc-200 dark:bg-zinc-800 dark:text-[#70b7b1] dark:hover:bg-zinc-700">
+                className="flex size-10 shrink-0 items-center justify-center rounded-full bg-white text-dm-interactive shadow-sm transition-colors hover:bg-dm-interactive-soft/20 dark:bg-dm-surface-deep dark:text-dm-interactive-soft dark:hover:bg-dm-interactive/30">
                 <Icon name="close" className="size-6" />
               </button>
             </div>
 
             <nav className="min-h-0 flex-1 overflow-y-auto" aria-label="Main navigation">
               {breadcrumb.length > 0 && (
-                <ol className="flex items-center gap-1 overflow-x-auto border-b border-zinc-200 px-4 py-3 text-sm text-zinc-600 dark:border-zinc-700 dark:text-zinc-300">
+                <ol className="flex items-center gap-1 overflow-x-auto border-b border-dm-border-light px-4 py-3 text-sm text-dm-text-light/70 dark:border-dm-border-dark dark:text-white/70">
                   <li>
-                    <button type="button" onClick={() => goToBreadcrumb(0)} className="font-medium whitespace-nowrap text-[#316663] dark:text-[#70b7b1]">
+                    <button type="button" onClick={() => goToBreadcrumb(0)} className="font-medium whitespace-nowrap text-dm-interactive dark:text-dm-interactive-soft">
                       Menu
                     </button>
                   </li>
                   {breadcrumb.map((item, index) => (
                     <li key={item.id ?? item.label} className="flex items-center gap-1">
-                      <Icon name="chevronRight" className="size-4 shrink-0 text-zinc-400 dark:text-zinc-500" />
+                      <Icon name="chevronRight" className="size-4 shrink-0 text-dm-interactive/50 dark:text-dm-interactive-soft/50" />
                       <button
                         type="button"
                         onClick={() => goToBreadcrumb(index + 1)}
                         className={`whitespace-nowrap ${
-                          index === breadcrumb.length - 1 ? "font-semibold text-zinc-950 dark:text-zinc-100" : "text-[#316663] dark:text-[#70b7b1]"
+                          index === breadcrumb.length - 1 ? "font-semibold text-dm-text-light dark:text-white" : "text-dm-interactive dark:text-dm-interactive-soft"
                         }`}>
                         {item.label}
                       </button>
@@ -121,7 +121,7 @@ const MobileMenu = ({ languageLinks, menu }) => {
               </ul>
             </nav>
 
-            <div className="border-t border-zinc-200 px-4 py-4 dark:border-zinc-700">
+            <div className="border-t border-dm-border-light px-4 py-4 dark:border-dm-border-dark">
               <SocialIcons />
             </div>
           </aside>

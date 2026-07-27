@@ -33,7 +33,7 @@ const Header = ({ lang = "en", pathname = "/" }) => {
   const menu = getLocalizedMenu(lang);
 
   return (
-    <header className="sticky top-0 z-40 w-screen border-b-2 border-b-zinc-200 bg-zinc-100 px-4 py-2 shadow-md transition-colors dark:border-zinc-700 dark:bg-zinc-900">
+    <header className="sticky top-0 z-40 w-screen border-b-2 border-b-dm-border-light bg-dm-surface-light px-4 py-2 shadow-md transition-colors dark:border-dm-border-dark dark:bg-dm-surface-dark">
       <div className="mx-auto flex w-full max-w-[2560px] items-center justify-between gap-4">
         <nav className="flex min-w-0 items-center gap-3" aria-label="Header">
           <a href="/" className="contents">
@@ -52,7 +52,7 @@ const Header = ({ lang = "en", pathname = "/" }) => {
       </div>
       <MenuList
         menu={menu}
-        className="mt-2 hidden border-t border-zinc-200 pt-2 min-[900px]:block min-[1700px]:hidden dark:border-zinc-700"
+        className="mt-2 hidden border-t border-dm-border-light pt-2 min-[900px]:block min-[1700px]:hidden dark:border-dm-border-dark"
         listClassName="flex flex-wrap items-center justify-start gap-x-5 gap-y-2"
       />
     </header>

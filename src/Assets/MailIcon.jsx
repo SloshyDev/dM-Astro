@@ -6,7 +6,7 @@ const MailIcon = ({ link, size }) => {
       <a
         href={link}
         aria-label="Mail"
-        className="block rounded-full bg-[#316564] p-2 transition-transform duration-150 focus-within:scale-105 focus-within:bg-[#2A5855] hover:scale-105 hover:bg-[#2A5855]">
+        className="block rounded-full bg-dm-interactive p-2 transition-transform duration-150 focus-within:scale-105 focus-within:bg-dm-teal-mid hover:scale-105 hover:bg-dm-teal-mid">
         <svg xmlns="http://www.w3.org/2000/svg" className={size} viewBox="0 0 20 20">
           <path
             className="fill-white"

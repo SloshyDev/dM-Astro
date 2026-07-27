@@ -74,7 +74,7 @@ const ThemeSelector = () => {
     <div ref={containerRef} className="theme-selector fixed bottom-4 left-4 z-50">
       {isOpen && (
         <div
-          className="theme-selector__menu absolute bottom-full left-0 mb-2 w-40 overflow-hidden rounded-xl border border-gray-200 bg-white p-1 text-gray-900 shadow-xl dark:border-slate-700 dark:bg-slate-800 dark:text-gray-100"
+          className="theme-selector__menu absolute bottom-full left-0 mb-2 w-40 overflow-hidden rounded-xl border border-dm-border-light bg-white p-1 text-dm-text-light shadow-xl dark:border-dm-border-dark dark:bg-dm-surface-deep dark:text-white"
           role="menu">
           {THEMES.map(({ value, label, icon }) => {
             const isSelected = preference === value;
@@ -91,8 +91,8 @@ const ThemeSelector = () => {
                 }}
                 className={`theme-selector__option flex w-full items-center gap-3 rounded-lg px-3 py-2 text-left text-sm font-semibold transition-colors ${
                   isSelected
-                    ? "bg-[#316663] text-white dark:bg-[#70b7b1] dark:text-slate-950"
-                    : "text-gray-600 hover:bg-gray-200 hover:text-gray-900 dark:text-slate-300 dark:hover:bg-slate-700 dark:hover:text-white"
+                    ? "bg-dm-interactive text-white dark:bg-dm-interactive-soft dark:text-dm-surface-deep"
+                    : "text-dm-text-light/70 hover:bg-dm-interactive-soft/20 hover:text-dm-text-light dark:text-white/70 dark:hover:bg-dm-interactive/30 dark:hover:text-white"
                 }`}>
                 <Icon name={icon} className="size-5" aria-hidden="true" />
                 {label}
@@ -108,7 +108,7 @@ const ThemeSelector = () => {
         aria-haspopup="menu"
         aria-expanded={isOpen}
         onClick={() => setIsOpen((current) => !current)}
-        className="theme-selector__trigger flex h-11 items-center gap-2 rounded-full border border-gray-200 bg-white px-4 text-sm font-bold tracking-wide text-[#316663] uppercase shadow-lg transition-all hover:scale-105 dark:border-slate-700 dark:bg-slate-800 dark:text-[#70b7b1]">
+        className="theme-selector__trigger flex h-11 items-center gap-2 rounded-full border border-dm-border-light bg-white px-4 text-sm font-bold tracking-wide text-dm-interactive uppercase shadow-lg transition-all hover:scale-105 dark:border-dm-border-dark dark:bg-dm-surface-deep dark:text-dm-interactive-soft">
         <Icon name={selectedTheme.icon} className="size-5" aria-hidden="true" />
         {selectedTheme.label}
       </button>
