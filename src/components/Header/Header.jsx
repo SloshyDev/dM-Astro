@@ -33,11 +33,11 @@ const Header = ({ lang = "en", pathname = "/" }) => {
   const menu = getLocalizedMenu(lang);
 
   return (
-    <header className="sticky top-0 z-40 w-screen border-b-2 border-b-gray-200 bg-gray-100 px-4 py-2 shadow-md transition-colors dark:border-slate-700 dark:bg-slate-900">
-      <div className="flex w-full items-center justify-between gap-4">
+    <header className="sticky top-0 z-40 w-screen border-b-2 border-b-zinc-200 bg-zinc-100 px-4 py-2 shadow-md transition-colors dark:border-zinc-700 dark:bg-zinc-900">
+      <div className="mx-auto flex w-full max-w-[2560px] items-center justify-between gap-4">
         <nav className="flex min-w-0 items-center gap-3" aria-label="Header">
           <a href="/" className="contents">
-            <img src="/Logo.svg" className="w-35 shrink-0" alt="dataMares" />
+            <img src="/Logo.svg" width={834} height={32} className="w-35 shrink-0" alt="dataMares" />
           </a>
           <MenuList menu={menu} className="hidden min-[1700px]:contents" />
         </nav>
@@ -52,7 +52,7 @@ const Header = ({ lang = "en", pathname = "/" }) => {
       </div>
       <MenuList
         menu={menu}
-        className="mt-2 hidden border-t border-gray-200 pt-2 min-[900px]:block min-[1700px]:hidden dark:border-slate-700"
+        className="mt-2 hidden border-t border-zinc-200 pt-2 min-[900px]:block min-[1700px]:hidden dark:border-zinc-700"
         listClassName="flex flex-wrap items-center justify-start gap-x-5 gap-y-2"
       />
     </header>

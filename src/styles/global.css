@@ -11,3 +11,23 @@ html,
 body {
   min-height: 100%;
 }
+
+.splide__arrows{
+  @apply absolute z-10 top-1/2 transform -translate-y-1/2 flex justify-between w-full;
+}
+
+.splide__arrow {
+  @apply  fill-none stroke-[.3rem] stroke-white/65 cursor-pointer;
+}
+
+.splide__arrow--prev {
+  @apply rotate-180;
+}
+
+.splide__arrow svg{
+  @apply size-12
+}
+
+.splide__arrow:focus, .splide__arrow:hover{
+  @apply stroke-white transition-colors duration-300
+}
