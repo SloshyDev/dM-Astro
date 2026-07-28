@@ -114,11 +114,20 @@ El manual utiliza Myriad Pro Bold Condensed en altas para títulos de 22 a 30 pt
 Las familias están disponibles como tokens de Tailwind:
 
 ```html
-<h1 class="font-myriad text-4xl font-bold uppercase">Título editorial</h1>
+<h1 class="font-myriad text-4xl font-semibold uppercase">Título editorial</h1>
+<h2 class="font-myriad-condensed text-3xl font-bold uppercase">Subtítulo condensado</h2>
 <p class="font-open-sans text-base">Contenido del sitio</p>
 ```
 
-Los tokens no descargan las fuentes. Los archivos o el proveedor web de Myriad Pro y Open Sans deben cargarse por separado.
+Myriad Pro se carga localmente desde `public/fonts/` con estas variantes:
+
+| Utilidad | Archivo | Peso |
+| --- | --- | --- |
+| `font-myriad` | `MYRIADPRO-REGULAR.OTF` | 400 Regular |
+| `font-myriad` | `MYRIADPRO-SEMIBOLD.OTF` | 600 Semibold |
+| `font-myriad-condensed` | `MYRIADPRO-BOLDCOND.OTF` | 700 Bold Condensed |
+
+Open Sans no tiene un archivo local en el proyecto todavía. La utilidad `font-open-sans` usa Open Sans cuando esté instalada o cargada por otro medio y, mientras tanto, utiliza Arial como respaldo.
 
 ## Reglas de uso
 

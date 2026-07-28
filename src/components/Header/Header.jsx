@@ -52,7 +52,7 @@ const Header = ({ lang = "en", pathname = "/" }) => {
       </div>
       <MenuList
         menu={menu}
-        className="mt-2 hidden border-t border-zinc-200 pt-2 min-[900px]:block min-[1700px]:hidden dark:border-zinc-700"
+        className="mt-2 hidden min-[900px]:block min-[1700px]:hidden"
         listClassName="flex flex-wrap items-center justify-start gap-x-5 gap-y-2"
       />
     </header>
