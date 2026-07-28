@@ -13,7 +13,7 @@ const renderMenuItem = (item, nested = false) => {
     );
   }
 
-  return <Link key={item.page ?? item.label} scientificName={item.scientificName} bgHover="bg-zinc-200" label={item.label} page={item.page} />;
+  return <Link key={item.page ?? item.label} scientificName={item.scientificName} label={item.label} page={item.page} />;
 };
 
 export default renderMenuItem;

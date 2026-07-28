@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="864" height="1821" viewBox="0 0 864 1821">
+  <rect width="864" height="1821" fill="#fff"/>
+  <g font-family="Arial, Helvetica, sans-serif" text-anchor="middle">
+    <text x="432" y="120" font-size="92" font-weight="300" text-anchor="end" fill="#23736f">data</text><text x="432" y="120" font-size="92" font-weight="700" text-anchor="start" fill="#699948">Mares</text>
+
+    <g fill="#23736f" font-size="27" font-weight="700" letter-spacing="2"><text x="432" y="205">INSTITUTIONAL</text></g>
+    <g stroke="#a1a1aa" stroke-width="2"><path d="M37 193h260"/><path d="M567 193h260"/></g>
+    <g font-size="16" fill="#27272a"><rect x="37" y="242" width="111" height="131" fill="#699948"/><rect x="169" y="242" width="111" height="131" fill="#5a853e"/><rect x="301" y="242" width="111" height="131" fill="#3a5f28"/><rect x="433" y="242" width="111" height="131" fill="#23736f"/><rect x="565" y="242" width="111" height="131" fill="#1b6460"/><rect x="697" y="242" width="111" height="131" fill="#004340"/>
+      <text x="92" y="412">green</text><text x="92" y="439">#699948</text>
+      <text x="224" y="412">green-mid</text><text x="224" y="439">#5A853E</text>
+      <text x="356" y="412">green-dark</text><text x="356" y="439">#3A5F28</text>
+      <text x="488" y="412">teal</text><text x="488" y="439">#23736F</text>
+      <text x="620" y="412">teal-mid</text><text x="620" y="439">#1B6460</text>
+      <text x="752" y="412">teal-dark</text><text x="752" y="439">#004340</text></g>
+
+    <g fill="#00a79d" font-size="27" font-weight="700" letter-spacing="2"><text x="432" y="526">AQUA</text></g>
+    <g stroke="#a1a1aa" stroke-width="2"><path d="M37 514h300"/><path d="M527 514h300"/></g>
+    <g font-size="16" fill="#27272a"><rect x="37" y="556" width="135" height="117" fill="#00a79d"/><rect x="200" y="556" width="135" height="117" fill="#27aae1"/><rect x="363" y="556" width="135" height="117" fill="#8aceae"/><rect x="526" y="556" width="135" height="117" fill="#59c9e5"/><rect x="689" y="556" width="135" height="117" fill="#01649c"/>
+      <text x="105" y="704">aqua-teal</text><text x="267" y="704">aqua-blue</text><text x="431" y="704">aqua-mint</text><text x="594" y="704">aqua-sky</text><text x="756" y="704">aqua-ocean</text></g>
+
+    <g fill="#39b54a" font-size="27" font-weight="700" letter-spacing="2"><text x="432" y="790">NATURA</text></g>
+    <g stroke="#a1a1aa" stroke-width="2"><path d="M37 778h300"/><path d="M527 778h300"/></g>
+    <g font-size="16" fill="#27272a"><rect x="37" y="820" width="135" height="117" fill="#d7df23"/><rect x="200" y="820" width="135" height="117" fill="#8dc63f"/><rect x="363" y="820" width="135" height="117" fill="#39b54a"/><rect x="526" y="820" width="135" height="117" fill="#009444"/><rect x="689" y="820" width="135" height="117" fill="#006838"/>
+      <text x="105" y="968">natura-lime</text><text x="267" y="968">natura-leaf</text><text x="431" y="968">natura-green</text><text x="594" y="968">natura-emerald</text><text x="756" y="968">natura-forest</text></g>
+
+    <g fill="#be1e2d" font-size="27" font-weight="700" letter-spacing="2"><text x="432" y="1054">DESTACA</text></g>
+    <g stroke="#a1a1aa" stroke-width="2"><path d="M37 1042h300"/><path d="M527 1042h300"/></g>
+    <g font-size="16" fill="#27272a"><rect x="37" y="1084" width="135" height="117" fill="#be1e2d"/><rect x="200" y="1084" width="135" height="117" fill="#ef4136"/><rect x="363" y="1084" width="135" height="117" fill="#f15a29"/><rect x="526" y="1084" width="135" height="117" fill="#f7941d"/><rect x="689" y="1084" width="135" height="117" fill="#ffc20e"/>
+      <text x="105" y="1232">destaca-crimson</text><text x="267" y="1232">destaca-coral</text><text x="431" y="1232">destaca-vermilion</text><text x="594" y="1232">destaca-orange</text><text x="756" y="1232">destaca-yellow</text></g>
+
+    <g fill="#594a42" font-size="27" font-weight="700" letter-spacing="2"><text x="432" y="1318">TERRA</text></g>
+    <g stroke="#a1a1aa" stroke-width="2"><path d="M37 1306h300"/><path d="M527 1306h300"/></g>
+    <g font-size="16" fill="#27272a"><rect x="37" y="1348" width="135" height="117" fill="#594a42"/><rect x="200" y="1348" width="135" height="117" fill="#9b8579"/><rect x="363" y="1348" width="135" height="117" fill="#c2b59b"/><rect x="526" y="1348" width="135" height="117" fill="#8b5e3c"/><rect x="689" y="1348" width="135" height="117" fill="#c49a6c"/>
+      <text x="105" y="1496">terra-dark</text><text x="267" y="1496">terra-taupe</text><text x="431" y="1496">terra-sand</text><text x="594" y="1496">terra-brown</text><text x="756" y="1496">terra-tan</text></g>
+
+    <g fill="#0f766e" font-size="27" font-weight="700" letter-spacing="2"><text x="432" y="1582">INTERFACE</text></g>
+    <g stroke="#a1a1aa" stroke-width="2"><path d="M37 1570h260"/><path d="M567 1570h260"/></g>
+    <g font-size="15" fill="#27272a"><rect x="37" y="1612" width="111" height="82" fill="#f4f4f5" stroke="#d4d4d8"/><rect x="169" y="1612" width="111" height="82" fill="#18181b"/><rect x="301" y="1612" width="111" height="82" fill="#09090b"/><rect x="433" y="1612" width="111" height="82" fill="#3f3f46"/><rect x="565" y="1612" width="111" height="82" fill="#0f766e"/><rect x="697" y="1612" width="111" height="82" fill="#5eead4"/>
+      <text x="92" y="1724">zinc-100</text><text x="224" y="1724">zinc-900</text><text x="356" y="1724">zinc-950</text><text x="488" y="1724">zinc-700</text><text x="620" y="1724">teal-700</text><text x="752" y="1724">teal-300</text></g>
+    <g fill="#0f766e"><text x="236" y="1782" font-size="29">Myriad Pro</text><text x="236" y="1809" font-size="16" fill="#27272a">Headings</text><path d="M432 1750v64" stroke="#a1a1aa"/><text x="628" y="1782" font-size="29">Open Sans</text><text x="628" y="1809" font-size="16" fill="#27272a">Body &amp; UI</text></g>
+  </g>
+</svg>

@@ -24,7 +24,7 @@ const SubMenu = ({ label, children, bgColor = "zinc", nested = false }) => {
         className={`z-10 flex cursor-pointer items-center rounded-md px-3 py-1 transition-colors ${nested ? "w-full justify-between" : ""} ${buttonColorClass}`}>
         <p className="whitespace-nowrap">{label}</p>
 
-        <Icon name="chevronDown" className={`size-5 text-[#316663] transition-transform dark:text-[#70b7b1] ${arrowClass}`} />
+        <Icon name="chevronDown" className={`size-5 text-teal-700 transition-transform dark:text-teal-300 ${arrowClass}`} />
       </button>
 
       <ul className={`absolute hidden w-max max-w-[24rem] rounded-md bg-zinc-100 bg-clip-content shadow-md dark:bg-zinc-900 ${submenuClass}`}>{children}</ul>

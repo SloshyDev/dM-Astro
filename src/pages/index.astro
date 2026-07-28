@@ -8,6 +8,6 @@ const homeData = await getHomeData("en");
 
 <Layout>
   <section class="flex pt-8 mx-4">
-     <CarrouselBanners data={homeData} strapiUrl={import.meta.env.STRAPI_URL} client:idle />
+     <CarrouselBanners data={homeData} client:idle />
   </section>
 </Layout>

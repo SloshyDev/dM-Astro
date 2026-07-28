@@ -6,7 +6,7 @@ export default function InstagramIcon({ link, size }) {
       <a
         href={link}
         aria-label="Mail"
-        className="block rounded-full bg-[#316564] p-2 transition-transform duration-150 focus-within:scale-105 focus-within:bg-[#2A5855] hover:scale-105 hover:bg-[#2A5855]">
+        className="block rounded-full bg-teal-700 p-2 transition-transform duration-150 focus-within:scale-105 focus-within:bg-teal-800 hover:scale-105 hover:bg-teal-800">
         <svg xmlns="http://www.w3.org/2000/svg" className={size} viewBox="0 0 24 24">
           <g fill="none" className="stroke-white" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2">
             <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />

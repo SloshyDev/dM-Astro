@@ -2,7 +2,7 @@
 
 ![Lámina de identidad visual con tokens de Tailwind](../public/brand/datamares-identidad-visual-v2.png)
 
-Esta guía combina el manual institucional de dataMares, la interfaz actual del sitio y los colores necesarios para los temas claro y oscuro. Los valores del manual fueron extraídos directamente del PDF vectorial.
+Esta guía combina el manual institucional de dataMares, la interfaz actual del sitio y los colores necesarios para los temas claro y oscuro. Los valores del manual fueron extraídos directamente del PDF vectorial. Los nombres `dm-*` de las tablas son referencias del manual, no utilidades de Tailwind.
 
 ## Identidad institucional
 
@@ -90,17 +90,17 @@ Usar Terra en categorías terrestres, mapas, fondos editoriales cálidos y visua
 
 ### Tema claro
 
-- Fondo general blanco o `dm-surface-light`.
-- Texto principal `dm-text-light`.
-- Bordes `dm-border-light`.
-- Acción principal `dm-interactive`; hover y foco `dm-interactive-soft`.
+- Fondo general blanco o `zinc-100`.
+- Texto principal `zinc-900`.
+- Bordes `zinc-200`.
+- Acción principal `teal-700`; hover y foco `teal-300`.
 
 ### Tema oscuro
 
-- Fondo general `dm-surface-dark`; capas profundas `dm-surface-deep`.
+- Fondo general `zinc-900`; capas profundas `zinc-950`.
 - Texto blanco o zinc claro.
-- Bordes `dm-border-dark`.
-- Acción principal `dm-interactive-soft`; fondos activos `dm-interactive`.
+- Bordes `zinc-700`.
+- Acción principal `teal-300`; fondos activos `teal-700`.
 
 ## Tipografía
 
@@ -124,36 +124,36 @@ Los tokens no descargan las fuentes. Los archivos o el proveedor web de Myriad P
 
 - Usar los colores institucionales para marca y estructura; las familias Aqua, Natura, Destaca y Terra clasifican contenido.
 - No usar más de dos acentos fuertes dentro del mismo bloque.
-- No usar `dm-aqua-mint`, `dm-terra-sand` ni `dm-destaca-yellow` para texto pequeño sobre blanco.
+- No usar los tonos aqua claros, arena o amarillo para texto pequeño sobre blanco.
 - Los estados de foco deben incluir contorno, subrayado o cambio de forma además del color.
 - Sobre fotografías, usar controles blancos y una sombra o capa de contraste cuando sea necesario.
 
 ## Uso de la paleta en Tailwind
 
-Los tokens están definidos en `src/styles/global.css` dentro de `@theme`. Tailwind genera automáticamente utilidades `bg-*`, `text-*`, `border-*`, `fill-*`, `stroke-*`, `ring-*` y variantes como `hover:` o `dark:`.
+La interfaz usa las escalas estándar de Tailwind. No hay tokens de color personalizados en `@theme`: se usan directamente utilidades `bg-*`, `text-*`, `border-*`, `fill-*`, `stroke-*`, `ring-*` y variantes como `hover:` o `dark:`.
 
 ### Referencia rápida
 
-| Necesidad | Token recomendado | Ejemplo |
+| Necesidad | Escala Tailwind | Ejemplo |
 | --- | --- | --- |
-| Marca principal verde | `dm-green` | `text-dm-green` |
-| Marca principal turquesa | `dm-teal` | `bg-dm-teal` |
-| Fondo institucional oscuro | `dm-teal-dark` | `bg-dm-teal-dark` |
-| Enlace o control | `dm-interactive` | `text-dm-interactive` |
-| Hover o foco | `dm-interactive-soft` | `hover:text-dm-interactive-soft` |
-| Información oceánica | `dm-aqua-blue` | `border-dm-aqua-blue` |
-| Conservación o biodiversidad | `dm-natura-green` | `bg-dm-natura-green` |
-| Alerta o dato destacado | `dm-destaca-coral` | `text-dm-destaca-coral` |
-| Contenido terrestre | `dm-terra-brown` | `bg-dm-terra-brown` |
-| Superficie clara | `dm-surface-light` | `bg-dm-surface-light` |
-| Superficie oscura | `dm-surface-dark` | `dark:bg-dm-surface-dark` |
-| Borde según tema | `dm-border-light` / `dm-border-dark` | `border-dm-border-light dark:border-dm-border-dark` |
+| Marca principal verde | `green-*` | `text-green-600` |
+| Marca principal turquesa | `teal-*` | `bg-teal-700` |
+| Fondo institucional oscuro | `teal-*` | `bg-teal-950` |
+| Enlace o control | `teal-*` | `text-teal-700` |
+| Hover o foco | `teal-*` | `hover:text-teal-300` |
+| Información oceánica | `sky-*` | `border-sky-500` |
+| Conservación o biodiversidad | `emerald-*` | `bg-emerald-600` |
+| Alerta o dato destacado | `red-*` | `text-red-500` |
+| Contenido terrestre | `stone-*` | `bg-stone-600` |
+| Superficie clara | `zinc-*` | `bg-zinc-100` |
+| Superficie oscura | `zinc-*` | `dark:bg-zinc-900` |
+| Borde según tema | `zinc-*` | `border-zinc-200 dark:border-zinc-700` |
 
 ### Ejemplos
 
 ```html
-<section class="bg-dm-surface-light text-dm-text-light dark:bg-dm-surface-dark dark:text-white">
-  <h2 class="font-myriad text-dm-teal dark:text-dm-interactive-soft">
+<section class="bg-zinc-100 text-zinc-900 dark:bg-zinc-900 dark:text-white">
+  <h2 class="font-myriad text-teal-700 dark:text-teal-300">
     Biodiversidad marina
   </h2>
   <p class="font-open-sans">Contenido editorial.</p>
@@ -162,10 +162,10 @@ Los tokens están definidos en `src/styles/global.css` dentro de `@theme`. Tailw
 
 ```html
 <a
-  class="font-open-sans text-dm-interactive underline decoration-transparent transition-colors hover:text-dm-interactive-soft hover:decoration-current focus:ring-2 focus:ring-dm-interactive-soft"
+  class="font-open-sans text-teal-700 underline decoration-transparent transition-colors hover:text-teal-300 hover:decoration-current focus:ring-2 focus:ring-teal-300"
 >
   Ver publicación
 </a>
 ```
 
-Se puede aplicar opacidad con la sintaxis normal de Tailwind, por ejemplo `bg-dm-teal/80`, `stroke-dm-interactive-soft/70` o `border-dm-green/40`.
+Se puede aplicar opacidad con la sintaxis normal de Tailwind, por ejemplo `bg-teal-700/80`, `stroke-teal-300/70` o `border-green-600/40`.

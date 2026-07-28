@@ -1,19 +1,15 @@
 import React from "react";
 import "@splidejs/react-splide/css/core";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
+import { getAbsoluteUrl, getImageSrcSet } from "../../utils/media";
 
-const toAbsoluteUrl = (url, strapiUrl) => {
-  if (!url || url.startsWith("http")) return url;
-  return new URL(url, strapiUrl).toString();
-};
-
-const CarrouselBanners = ({ data, strapiUrl }) => {
+const CarrouselBanners = ({ data }) => {
   const splides = [];
 
   data?.Carrousel?.forEach((banner) => {
     banner.Image
       ? splides.push({
-          url: toAbsoluteUrl(banner.Image.url, strapiUrl),
+          url: getAbsoluteUrl(banner.Image.url),
           width: banner.Image.width,
           height: banner.Image.height,
           formats: banner.Image.formats,
@@ -21,7 +17,7 @@ const CarrouselBanners = ({ data, strapiUrl }) => {
         })
       : banner.data_contents?.forEach((banner) => {
           splides.push({
-            url: toAbsoluteUrl(banner.Banner.url, strapiUrl),
+            url: getAbsoluteUrl(banner.Banner.url),
             width: banner.Banner.width,
             height: banner.Banner.height,
             formats: banner.Banner.formats,
@@ -46,11 +42,7 @@ const CarrouselBanners = ({ data, strapiUrl }) => {
       }}
       aria-label="Banners Carrousel">
       {splides.map((splide) => {
-        const srcSet = Object.values(splide.formats || {})
-          .filter((format) => format?.url && format.width)
-          .map((format) => `${toAbsoluteUrl(format.url, strapiUrl)} ${format.width}w`)
-          .concat(splide.url && splide.width ? `${splide.url} ${splide.width}w` : [])
-          .join(", ");
+        const srcSet = getImageSrcSet(splide);
 
         return (
           <SplideSlide className="h-full" key={splide.hash || splide.url}>

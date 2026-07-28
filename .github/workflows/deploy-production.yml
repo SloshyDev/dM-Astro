@@ -34,6 +34,7 @@ jobs:
         run: npm run build
         env:
           STRAPI_URL: ${{ secrets.STRAPI_URL }}
+          PUBLIC_STRAPI_URL: ${{ secrets.STRAPI_URL }}
 
       - name: Configurar acceso seguro al servidor
         env:

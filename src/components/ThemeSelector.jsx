@@ -74,7 +74,7 @@ const ThemeSelector = () => {
     <div ref={containerRef} className="theme-selector fixed bottom-4 left-4 z-50">
       {isOpen && (
         <div
-          className="theme-selector__menu absolute bottom-full left-0 mb-2 w-40 overflow-hidden rounded-xl border border-gray-200 bg-white p-1 text-gray-900 shadow-xl dark:border-slate-700 dark:bg-slate-800 dark:text-gray-100"
+          className="theme-selector__menu absolute bottom-full left-0 mb-2 w-40 overflow-hidden rounded-xl border border-zinc-200 bg-white p-1 text-zinc-900 shadow-xl dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100"
           role="menu">
           {THEMES.map(({ value, label, icon }) => {
             const isSelected = preference === value;
@@ -91,8 +91,8 @@ const ThemeSelector = () => {
                 }}
                 className={`theme-selector__option flex w-full items-center gap-3 rounded-lg px-3 py-2 text-left text-sm font-semibold transition-colors ${
                   isSelected
-                    ? "bg-[#316663] text-white dark:bg-[#70b7b1] dark:text-slate-950"
-                    : "text-gray-600 hover:bg-gray-200 hover:text-gray-900 dark:text-slate-300 dark:hover:bg-slate-700 dark:hover:text-white"
+                    ? "bg-teal-700 text-white dark:bg-teal-300 dark:text-zinc-950"
+                    : "text-zinc-600 hover:bg-zinc-200 hover:text-zinc-900 dark:text-zinc-300 dark:hover:bg-zinc-700 dark:hover:text-white"
                 }`}>
                 <Icon name={icon} className="size-5" aria-hidden="true" />
                 {label}
@@ -108,7 +108,7 @@ const ThemeSelector = () => {
         aria-haspopup="menu"
         aria-expanded={isOpen}
         onClick={() => setIsOpen((current) => !current)}
-        className="theme-selector__trigger flex h-11 items-center gap-2 rounded-full border border-gray-200 bg-white px-4 text-sm font-bold tracking-wide text-[#316663] uppercase shadow-lg transition-all hover:scale-105 dark:border-slate-700 dark:bg-slate-800 dark:text-[#70b7b1]">
+        className="theme-selector__trigger flex h-11 items-center gap-2 rounded-full border border-zinc-200 bg-white px-4 text-sm font-bold tracking-wide text-teal-700 uppercase shadow-lg transition-all hover:scale-105 dark:border-zinc-700 dark:bg-zinc-800 dark:text-teal-300">
         <Icon name={selectedTheme.icon} className="size-5" aria-hidden="true" />
         {selectedTheme.label}
       </button>
