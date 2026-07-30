@@ -1,8 +1,7 @@
 ---
 import { getHomeData } from "../api/home/getHomeData";
 import Layout from "../layouts/Layout.astro";
-import CarrouselBanners from "../components/Home/CarrouselBanners.jsx";
-import { getAbsoluteUrl, getImageSrcSet, getLink } from "../utils/media";
+import CarrouselBanners from "../components/Home/CarrouselBanners.astro";
 import LatestNews from "../components/Home/LatestNews.astro";
 
 const homeData = await getHomeData("en");
@@ -12,7 +11,7 @@ const Carrousel = homeData.Carrousel;
 
 <Layout>
   <section class="md:flex justify-between pt-8 mx-4 mb-4">
-    <CarrouselBanners carrousel={Carrousel} client:load />
+    <CarrouselBanners carrousel={Carrousel} />
     <LatestNews latest_news={latest_news} />
   </section>
 </Layout>

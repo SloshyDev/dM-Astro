@@ -1,0 +1,92 @@
+---
+import "@splidejs/splide/css/core";
+import Link from "../Link.astro";
+import { getAbsoluteUrl, getImageSrcSet, getLink } from "../../utils/media";
+
+const { carrousel = [] } = Astro.props;
+const slides = carrousel.flatMap((banner) => {
+  if (banner.Image) {
+    return [
+      {
+        link: banner.Link,
+        typeOfLink: banner.TypeOfLink,
+        title: banner.Title,
+        url: getAbsoluteUrl(banner.Image.url),
+        width: banner.Image.width,
+        height: banner.Image.height,
+        formats: banner.Image.formats,
+        hash: banner.Image.hash,
+      },
+    ];
+  }
+
+  return (banner.data_contents ?? []).map((dataContent) => ({
+    link: dataContent.Slug,
+    typeOfLink: "dataContent",
+    title: dataContent.Title,
+    url: getAbsoluteUrl(dataContent.Banner.url),
+    width: dataContent.Banner.width,
+    height: dataContent.Banner.height,
+    formats: dataContent.Banner.formats,
+    hash: dataContent.Banner.hash,
+  }));
+});
+
+const heightRatio = Math.max(...slides.map((slide) => slide.height / slide.width).filter(Number.isFinite));
+---
+
+<!-- Guardamos heightRatio en el data-attribute data-height-ratio -->
+<section class="splide banners w-[73%]" aria-label="Banners carousel" data-height-ratio={heightRatio || undefined}>
+  <div class="splide__track">
+    <ul class="splide__list">
+      {
+        slides.map((slide) => {
+          const href = getLink(slide.link, slide.typeOfLink);
+          const srcSet = getImageSrcSet(slide);
+
+          return (
+            <li class="splide__slide h-full">
+              <Link
+                href={href}
+                class="block h-full"
+                target={slide.typeOfLink === "ExternalLink" ? "_blank" : undefined}
+                rel={slide.typeOfLink === "ExternalLink" ? "noopener noreferrer" : undefined}>
+                <img
+                  class="block h-full w-full rounded-xl object-cover"
+                  loading="lazy"
+                  sizes="100vw"
+                  src={slide.url}
+                  srcset={srcSet || undefined}
+                  alt={slide.title}
+                />
+              </Link>
+            </li>
+          );
+        })
+      }
+    </ul>
+  </div>
+</section>
+
+<script>
+  import Splide from "@splidejs/splide";
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const bannerEl = document.querySelector(".banners") as HTMLElement | null;
+
+    if (bannerEl) {
+      const heightRatioAttr = bannerEl.dataset.heightRatio;
+      const heightRatio = heightRatioAttr ? parseFloat(heightRatioAttr) : undefined;
+
+      // Importante: Usar el selector de clase ".banners" en lugar de "banners"
+      new Splide(bannerEl, {
+        type: "loop",
+        pauseOnHover: true,
+        pagination: false,
+        autoplay: true,
+        arrowPath: "M8 8 17 20 8 32M22 8l9 12-9 12",
+        ...(heightRatio ? { heightRatio } : {}),
+      }).mount();
+    }
+  });
+</script>
