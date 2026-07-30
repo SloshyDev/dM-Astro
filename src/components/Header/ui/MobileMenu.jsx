@@ -11,7 +11,7 @@ const MobileMenuItem = ({ item, closeMenu, openSubmenu }) => {
         <button
           type="button"
           onClick={() => openSubmenu(item)}
-          className="flex min-h-12 w-full items-center justify-between gap-3 border-b border-zinc-200 px-4 py-3 text-left text-base font-medium text-zinc-950 transition-colors hover:bg-zinc-200 dark:border-zinc-700 dark:text-zinc-100 dark:hover:bg-zinc-700">
+          className="font-myriad text-md flex min-h-12 w-full items-center justify-between gap-3 border-b border-zinc-200 px-4 py-3 text-left text-base font-medium text-zinc-950 transition-colors hover:bg-zinc-200 dark:border-zinc-700 dark:text-zinc-100 dark:hover:bg-zinc-700">
           <span>{item.label}</span>
           <Icon name="chevronRight" className="size-5 shrink-0 text-teal-700 dark:text-teal-300" />
         </button>
@@ -24,7 +24,7 @@ const MobileMenuItem = ({ item, closeMenu, openSubmenu }) => {
       <a
         href={item.page}
         onClick={closeMenu}
-        className="block min-h-12 border-b border-zinc-200 px-4 py-3 text-base text-zinc-950 transition-colors hover:bg-zinc-200 dark:border-zinc-700 dark:text-zinc-100 dark:hover:bg-zinc-700">
+        className="font-myriad text-md block min-h-12 border-b border-zinc-200 px-4 py-3 text-base text-zinc-950 transition-colors hover:bg-zinc-200 dark:border-zinc-700 dark:text-zinc-100 dark:hover:bg-zinc-700">
         {item.label}
         {item.scientificName && <span className="block text-sm text-teal-700 italic dark:text-teal-300">{item.scientificName}</span>}
       </a>

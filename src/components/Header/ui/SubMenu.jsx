@@ -22,7 +22,7 @@ const SubMenu = ({ label, children, bgColor = "zinc", nested = false }) => {
         type="button"
         aria-expanded
         className={`z-10 flex cursor-pointer items-center rounded-md px-3 py-1 transition-colors ${nested ? "w-full justify-between" : ""} ${buttonColorClass}`}>
-        <p className="whitespace-nowrap">{label}</p>
+        <p className="font-myriad text-md whitespace-nowrap">{label}</p>
 
         <Icon name="chevronDown" className={`size-5 text-teal-700 transition-transform dark:text-teal-300 ${arrowClass}`} />
       </button>
