@@ -54,11 +54,11 @@ body {
 }
 
 .splide__arrows {
-  @apply absolute top-1/2 z-10 flex w-full -translate-y-1/2 transform justify-between;
+  @apply pointer-events-none absolute top-1/2 z-10 flex w-full -translate-y-1/2 transform justify-between;
 }
 
 .splide__arrow {
-  @apply w-18 cursor-pointer fill-none stroke-white/65 stroke-[.3rem];
+  @apply pointer-events-auto w-18 cursor-pointer fill-none stroke-white/65 stroke-[.3rem];
 }
 
 .splide__arrow--prev {
