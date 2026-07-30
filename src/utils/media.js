@@ -1,4 +1,5 @@
 const strapiUrl = import.meta.env.PUBLIC_STRAPI_URL?.replace(/\/$/, "");
+const baseUrl = import.meta.env.BASE_URL?.replace(/\/$/, "");
 
 export const getAbsoluteUrl = (url) => {
   if (!url || /^https?:\/\//i.test(url)) return url;
@@ -17,4 +18,16 @@ export const getImageSrcSet = (image) => {
   }
 
   return formats.join(", ");
+};
+
+export const getLink = (link, type) => {
+  if (!link) return "";
+
+  if (type === "ExternalLink" || /^(https?:)?\/\/|^(mailto:|tel:)/i.test(link)) {
+    return link;
+  }
+
+  const normalizedLink = link.replace(/^\/+/, "");
+  const path = type === "dataContent" ? `/datacontent/${normalizedLink}` : `/${normalizedLink}`;
+  return baseUrl ? `${baseUrl}${path}` : path;
 };

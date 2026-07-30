@@ -2,6 +2,9 @@ query HomeQuery($locale: I18NLocaleCode) {
   home(locale: $locale) {
     Carrousel {
       ... on ComponentImageWithLinkImageWithLink {
+        Link
+        TypeOfLink
+        Title
         Image {
           formats
           url
@@ -13,6 +16,7 @@ query HomeQuery($locale: I18NLocaleCode) {
       ... on ComponentDataContentDataContent {
         data_contents {
           Slug
+          Title
           Banner {
             formats
             url
@@ -20,6 +24,42 @@ query HomeQuery($locale: I18NLocaleCode) {
             width
             hash
           }
+        }
+      }
+    }
+    latest_news {
+      Title
+      Image {
+        url
+        width
+        height
+        formats
+      }
+      Link
+      TypeOfLink
+    }
+    Promos {
+      ... on ComponentDataContentDataContent {
+        data_contents {
+          Slug
+          Promo {
+            url
+            width
+            height
+            formats
+            hash
+          }
+        }
+      }
+      ... on ComponentImageWithLinkImageWithLink {
+        Link
+        TypeOfLink
+        Image {
+          url
+          width
+          height
+          hash
+          formats
         }
       }
     }

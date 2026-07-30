@@ -29,11 +29,19 @@
 @theme {
   --breakpoint-xl: 120rem;
   --breakpoint-2xl: 128rem;
+  --breakpoint-3xl: 160rem;
 
   --font-myriad: "Myriad Pro", "Arial Narrow", sans-serif;
   --font-myriad-condensed: "Myriad Pro Condensed", "Arial Narrow", sans-serif;
   --font-open-sans: "Open Sans", Arial, sans-serif;
-
+  --color-teal-dark: #004340;
+  --color-teal-mid: #1b6460;
+  --color-teal: #23736f;
+  --color-green: #699948;
+  --color-green-mid: #5a853e;
+  --color-green-dark: #3a5f28;
+  --color-natura-lime: #d8df50;
+  --background-image-gradient-buttom: linear-gradient(0deg, #1b716f 0%, #a0ae20 100%);
 }
 
 html,
@@ -41,22 +49,27 @@ body {
   min-height: 100%;
 }
 
-.splide__arrows{
-  @apply absolute z-10 top-1/2 transform -translate-y-1/2 flex justify-between w-full;
+.dm_button {
+  @apply font-myriad-condensed bg-gradient-buttom border-teal-dark from-green to-natura-lime rounded-xl border-4 bg-linear-to-b from-55% pt-2 pb-1 text-center leading-none font-black text-white transition-transform duration-300 hover:scale-105 md:text-[1.8vw];
+}
+
+.splide__arrows {
+  @apply absolute top-1/2 z-10 flex w-full -translate-y-1/2 transform justify-between;
 }
 
 .splide__arrow {
-  @apply  fill-none stroke-[.3rem] stroke-white/65 cursor-pointer;
+  @apply w-18 cursor-pointer fill-none stroke-white/65 stroke-[.3rem];
 }
 
 .splide__arrow--prev {
   @apply rotate-180;
 }
 
-.splide__arrow svg{
-  @apply size-12
+.splide__arrow svg {
+  @apply size-12;
 }
 
-.splide__arrow:focus, .splide__arrow:hover{
-  @apply stroke-white transition-colors duration-300
+.splide__arrow:focus,
+.splide__arrow:hover {
+  @apply stroke-white transition-colors duration-300;
 }

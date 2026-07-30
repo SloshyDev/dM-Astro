@@ -1,0 +1,28 @@
+---
+import { getAbsoluteUrl, getImageSrcSet, getLink } from "../../utils/media";
+
+const { latest_news } = Astro.props;
+const locale = Astro.currentLocale;
+---
+
+<div class="w-[24%] flex flex-col justify-between">
+  <div class="bg-teal-dark rounded-2xl overflow-hidden md:p-[.4vw] p-2 3xl:p-2 hover:scale-105 transition-transform duration-300">
+    <h2 class="font-myriad-condensed font-black leading-none text-natura-lime text-center md: my-1 md:text-[1.8vw] 3xl:text-4xl">
+      {locale === "en" ? "LATEST NEWS" : "NOTICIAS"}
+    </h2>
+    <a
+      href={getLink(latest_news.Link, latest_news.TypeOfLink)}
+      class=""
+      target={latest_news.TypeOfLink === "ExternalLink" ? "_blank" : undefined}
+      rel={latest_news.TypeOfLink === "ExternalLink" ? "noopener noreferrer" : undefined}>
+      <img
+        loading="lazy"
+        sizes="100vw"
+        src={getAbsoluteUrl(latest_news.Image.url)}
+        srcset={getImageSrcSet(latest_news.Image) || undefined}
+        alt={latest_news.Title}
+      />
+    </a>
+  </div>
+  <a class="dm_button" href={"/news"}> {locale === "en" ? "VISIT THE NEWS ARCHIVE" : "VISITA EL MURO DE NOTICIAS"} </a>
+</div>

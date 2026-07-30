@@ -1,10 +1,18 @@
 ---
 import { getHomeData } from "../../api/home/getHomeData";
 import Layout from "../../layouts/Layout.astro";
+import CarrouselBanners from "../../components/Home/CarrouselBanners.jsx";
+import LatestNews from "../../components/Home/LatestNews.astro";
 
-const homeData = await getHomeData("en");
+const homeData = await getHomeData("es");
+const latest_news = homeData.latest_news;
+const Carrousel = homeData.Carrousel;
+const Promos = homeData.Promos;
 ---
 
 <Layout>
-  <p>{JSON.stringify(homeData, null, 2)}</p>
+  <section class="md:flex justify-between pt-8 mx-4 mb-4">
+    <CarrouselBanners carrousel={Carrousel} client:load />
+    <LatestNews latest_news={latest_news} />
+  </section>
 </Layout>

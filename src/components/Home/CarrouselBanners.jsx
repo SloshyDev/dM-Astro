@@ -1,14 +1,20 @@
 import React from "react";
 import "@splidejs/react-splide/css/core";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
-import { getAbsoluteUrl, getImageSrcSet } from "../../utils/media";
+import Link from "../Link";
+import { getAbsoluteUrl, getImageSrcSet, getLink } from "../../utils/media";
 
-const CarrouselBanners = ({ data }) => {
+const getBannerHref = ({ link, typeOfLink }) => getLink(link, typeOfLink);
+
+const CarrouselBanners = ({ carrousel }) => {
   const splides = [];
 
-  data?.Carrousel?.forEach((banner) => {
+  carrousel?.forEach((banner) => {
     banner.Image
       ? splides.push({
+          link: banner.Link,
+          typeOfLink: banner.TypeOfLink,
+          title: banner.Title,
           url: getAbsoluteUrl(banner.Image.url),
           width: banner.Image.width,
           height: banner.Image.height,
@@ -17,6 +23,9 @@ const CarrouselBanners = ({ data }) => {
         })
       : banner.data_contents?.forEach((banner) => {
           splides.push({
+            link: banner.Slug,
+            typeOfLink: "dataContent",
+            title: banner.Title,
             url: getAbsoluteUrl(banner.Banner.url),
             width: banner.Banner.width,
             height: banner.Banner.height,
@@ -43,17 +52,23 @@ const CarrouselBanners = ({ data }) => {
       aria-label="Banners Carrousel">
       {splides.map((splide) => {
         const srcSet = getImageSrcSet(splide);
+        const href = getBannerHref(splide);
 
         return (
           <SplideSlide className="h-full" key={splide.hash || splide.url}>
-            <img
-              className="block h-full w-full rounded-xl object-cover"
-              loading="lazy"
-              sizes="100vw"
-              src={splide.url}
-              srcSet={srcSet || undefined}
-              alt="Image in large container"
-            />
+            <Link
+              href={href}
+              className="block h-full"
+              {...(splide.typeOfLink === "ExternalLink" ? { target: "_blank", rel: "noopener noreferrer" } : {})}>
+              <img
+                className="block h-full w-full rounded-xl object-cover"
+                loading="lazy"
+                sizes="100vw"
+                src={splide.url}
+                srcSet={srcSet || undefined}
+                alt={splide.title}
+              />
+            </Link>
           </SplideSlide>
         );
       })}
