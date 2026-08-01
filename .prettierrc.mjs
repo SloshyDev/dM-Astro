@@ -1,12 +1,13 @@
 export default {
-  bracketSameLine:true,
-  printWidth:160,
+  plugins: ["prettier-plugin-astro", "prettier-plugin-tailwindcss"],
+  bracketSameLine: true,
+  printWidth: 160,
   overrides: [
     {
-      files: '*.astro',
+      files: "*.astro",
       options: {
-        parser: 'astro',
+        parser: "astro",
       },
     },
   ],
-};   
+};
