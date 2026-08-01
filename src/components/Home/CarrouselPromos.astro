@@ -1,0 +1,85 @@
+---
+import { slide } from "astro:transitions";
+import { getAbsoluteUrl, getImageSrcSet, getLink } from "../../utils/media";
+import Link from "../Link.astro";
+
+const { promos = [] } = Astro.props;
+
+const splides = promos.flatMap((splide) =>
+  (splide.data_contents ?? []).flatMap((content) => {
+    const promo = content.Promo;
+
+    if (!promo) return [];
+
+    return [
+      {
+        link: content.Slug,
+        typeOfLink: "dataContent",
+        url: getAbsoluteUrl(promo.url),
+        width: promo.width,
+        height: promo.height,
+        formats: promo.formats,
+        hash: promo.hash,
+      },
+    ];
+  }),
+);
+---
+
+<section class="splide carrouselPromos max_page" aria-label="Promos Carrousel">
+  <div class="splide__track">
+    <ul class="splide__list">
+      {
+        splides.map((splide) => {
+          const href = getLink(splide.link, splide.typeOfLink);
+          const srcSet = getImageSrcSet(splide);
+
+          return (
+            <li class="splide__slide h-full">
+              <Link
+                href={href}
+                class="block"
+                target={splide.typeOfLink === "ExternalLink" ? "_blank" : undefined}
+                rel={splide.typeOfLink === "ExternalLink" ? "noopener noreferrer" : undefined}>
+                <img
+                  class="rounded-xl transition-transform duration-300 hover:scale-[.95]"
+                  loading="lazy"
+                  sizes="100vw"
+                  srcset={srcSet}
+                  src={splide.url}
+                  alt=""
+                />
+              </Link>
+            </li>
+          );
+        })
+      }
+    </ul>
+  </div>
+</section>
+
+<script>
+  import Splide from "@splidejs/splide";
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const carrouselPromos = document.querySelector(".carrouselPromos") as HTMLElement | null;
+
+    if (carrouselPromos) {
+      new Splide(carrouselPromos, {
+        perPage: 4,
+        gap: "2rem",
+        arrowPath: "M8 8 17 20 8 32M22 8l9 12-9 12",
+        arrows: false,
+        breakpoints: {
+          900: {
+            pagination: true,
+            type: "loop",
+            autoplay: true,
+            perPage: 1,
+            arrows: true,
+          },
+        },
+      }).mount();
+    }
+  });
+</script>

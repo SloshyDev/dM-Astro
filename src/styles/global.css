@@ -27,8 +27,8 @@
 }
 
 @theme {
-  --breakpoint-xl: 100rem;
-  --breakpoint-2xl: 128rem;
+  --breakpoint-xl: 57rem;
+  --breakpoint-2xl: 100rem;
   --breakpoint-3xl: 160rem;
 
   --font-myriad: "Myriad Pro", "Arial Narrow", sans-serif;
@@ -52,8 +52,12 @@ body {
   min-height: 100%;
 }
 
+.max_page {
+  @apply mx-auto max-w-[2560px];
+}
+
 .dm_button {
-  @apply font-myriad-condensed bg-gradient-buttom border-teal-dark from-green to-natura-lime rounded-xl border-4 bg-linear-to-b from-55% pt-2 pb-1 text-center leading-none font-black text-white transition-transform duration-300 hover:scale-105 text-3xl xl:text-[1.8vw] 3xl:text-5xl;
+  @apply font-myriad-condensed bg-gradient-buttom border-teal-dark from-green to-natura-lime 3xl:text-5xl rounded-xl border-4 bg-linear-to-b from-55% pt-3 pb-1 text-center text-3xl leading-none font-black text-white transition-transform duration-300 hover:scale-105 xl:text-[1.8vw];
 }
 
 .splide__arrows {
@@ -75,4 +79,16 @@ body {
 .splide__arrow:focus,
 .splide__arrow:hover {
   @apply stroke-white transition-colors duration-300;
+}
+
+.splide__pagination__page {
+  @apply relative top-4 m-2 size-2 rounded-full bg-white/60;
+}
+
+.splide__pagination__page.is-active {
+  @apply scale-125 bg-white;
+}
+
+.menu_link {
+  @apply font-menu 3xl:text-xl text-menu-text dark:text-menu-text-dark text-xl 2xl:text-[0.93vw];
 }

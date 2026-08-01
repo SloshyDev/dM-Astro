@@ -36,7 +36,7 @@ const heightRatio = Math.max(...slides.map((slide) => slide.height / slide.width
 ---
 
 <!-- Guardamos heightRatio en el data-attribute data-height-ratio -->
-<section class="splide banners w-[73%]" aria-label="Banners carousel" data-height-ratio={heightRatio || undefined}>
+<section class="splide carrouselBanners overflow-hidden rounded-2xl xl:w-[73%]" aria-label="Banners carousel" data-height-ratio={heightRatio || undefined}>
   <div class="splide__track">
     <ul class="splide__list">
       {
@@ -52,9 +52,9 @@ const heightRatio = Math.max(...slides.map((slide) => slide.height / slide.width
                 target={slide.typeOfLink === "ExternalLink" ? "_blank" : undefined}
                 rel={slide.typeOfLink === "ExternalLink" ? "noopener noreferrer" : undefined}>
                 <img
-                  class="block h-full w-full rounded-xl object-cover"
+                  class="block h-full w-full rounded-xl object-cover transition-transform duration-300 hover:scale-105"
                   loading="lazy"
-                  sizes="100vw"
+                  sizes="(min-width: 1600px) 73vw, 100vw"
                   src={slide.url}
                   srcset={srcSet || undefined}
                   alt={slide.title}
@@ -72,14 +72,13 @@ const heightRatio = Math.max(...slides.map((slide) => slide.height / slide.width
   import Splide from "@splidejs/splide";
 
   document.addEventListener("DOMContentLoaded", () => {
-    const bannerEl = document.querySelector(".banners") as HTMLElement | null;
+    const carrouselBanners = document.querySelector(".carrouselBanners") as HTMLElement | null;
 
-    if (bannerEl) {
-      const heightRatioAttr = bannerEl.dataset.heightRatio;
+    if (carrouselBanners) {
+      const heightRatioAttr = carrouselBanners.dataset.heightRatio;
       const heightRatio = heightRatioAttr ? parseFloat(heightRatioAttr) : undefined;
 
-      // Importante: Usar el selector de clase ".banners" en lugar de "banners"
-      new Splide(bannerEl, {
+      new Splide(carrouselBanners, {
         type: "loop",
         pauseOnHover: true,
         pagination: false,

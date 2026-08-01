@@ -10,12 +10,7 @@ const defaultDescription =
   "dataMares facilitates access to scientific knowledge and data to promote transparency, education, and evidence-based conservation in Mexico's ecosystems.";
 const defaultImage = "/Logo.svg";
 
-const {
-  title = defaultTitle,
-  description = defaultDescription,
-  image = defaultImage,
-  type = "website",
-} = Astro.props;
+const { title = defaultTitle, description = defaultDescription, image = defaultImage, type = "website" } = Astro.props;
 
 const lang = Astro.currentLocale === "es" ? "es" : "en";
 const canonicalUrl = new URL(Astro.url.pathname, siteUrl).toString();
@@ -61,12 +56,7 @@ const pathname = Astro.url.pathname;
           // Use the system preference when storage is unavailable.
         }
 
-        const theme =
-          preference === "system"
-            ? window.matchMedia("(prefers-color-scheme: dark)").matches
-              ? "dark"
-              : "light"
-            : preference;
+        const theme = preference === "system" ? (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light") : preference;
 
         document.documentElement.dataset.theme = theme;
         document.documentElement.dataset.themePreference = preference;
@@ -76,10 +66,10 @@ const pathname = Astro.url.pathname;
   </head>
   <body class="bg-white text-zinc-900 transition-colors duration-150 dark:bg-zinc-900 dark:text-zinc-100">
     <Header client:idle lang={lang} pathname={pathname} />
-    <section class="min-h-screen max-w-[2560px] mx-auto">
+    <section class="mx-auto min-h-screen">
       <slot />
     </section>
     <ThemeSelector client:idle />
-    <ViewPort client:only/>
+    <ViewPort client:only />
   </body>
 </html>

@@ -63,5 +63,16 @@ query HomeQuery($locale: I18NLocaleCode) {
         }
       }
     }
+    reading_recommendations {
+      Link
+      TypeOfLink
+      Image {
+        width
+        height
+        hash
+        url
+        formats
+      }
+    }
   }
 }

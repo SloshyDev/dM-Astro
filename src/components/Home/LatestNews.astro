@@ -5,9 +5,9 @@ const { latest_news } = Astro.props;
 const locale = Astro.currentLocale;
 ---
 
-<div class="w-[24%] flex flex-col justify-between">
-  <div class="bg-teal-dark rounded-2xl overflow-hidden md:p-[.4vw] p-2 3xl:p-2 hover:scale-105 transition-transform duration-300">
-    <h2 class="font-myriad-condensed font-black leading-none text-natura-lime text-center md: my-1 md:text-[1.8vw] 3xl:text-4xl">
+<div class="mx-auto flex flex-col justify-between gap-6 xl:mx-0 xl:w-[24%] xl:gap-0">
+  <div class="bg-teal-dark 3xl:p-2 overflow-hidden rounded-2xl p-2 transition-transform duration-300 hover:scale-105 xl:p-[.4vw]">
+    <h2 class="font-myriad-condensed text-natura-lime md: 3xl:text-5xl my-1 text-center text-3xl leading-none font-black xl:text-[1.8vw]">
       {locale === "en" ? "LATEST NEWS" : "NOTICIAS"}
     </h2>
     <a
@@ -16,8 +16,11 @@ const locale = Astro.currentLocale;
       target={latest_news.TypeOfLink === "ExternalLink" ? "_blank" : undefined}
       rel={latest_news.TypeOfLink === "ExternalLink" ? "noopener noreferrer" : undefined}>
       <img
+        class="w-full rounded-b-xl"
         loading="lazy"
-        sizes="100vw"
+        sizes="auto"
+        width={latest_news.Image.width}
+        height={latest_news.Image.height}
         src={getAbsoluteUrl(latest_news.Image.url)}
         srcset={getImageSrcSet(latest_news.Image) || undefined}
         alt={latest_news.Title}
