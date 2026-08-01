@@ -37,7 +37,7 @@ const Header = ({ lang = "en", pathname = "/" }) => {
       <div className="mx-auto flex w-full max-w-[2560px] items-center justify-between gap-4">
         <nav className="flex min-w-0 items-center gap-3" aria-label="Header">
           <a href="/" className="contents">
-            <img src="/Logo.svg" width={834} height={32} className="w-35 shrink-0" alt="dataMares" />
+            <img src="/Logo.svg" width={834} height={32} className="w-42 xl:w-[8vw] 3xl:w-42 shrink-0" alt="dataMares" />
           </a>
           <MenuList menu={menu} className="hidden min-[1700px]:contents" />
         </nav>
@@ -52,8 +52,8 @@ const Header = ({ lang = "en", pathname = "/" }) => {
       </div>
       <MenuList
         menu={menu}
-        className="mt-2 hidden min-[900px]:block min-[1700px]:hidden"
-        listClassName="flex flex-wrap items-center justify-start gap-x-5 gap-y-2"
+        className="mt-1 hidden min-[900px]:block min-[1700px]:hidden"
+        listClassName="flex flex-wrap items-center justify-start gap-x-1 gap-y-2"
       />
     </header>
   );

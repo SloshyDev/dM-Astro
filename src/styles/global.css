@@ -27,13 +27,16 @@
 }
 
 @theme {
-  --breakpoint-xl: 120rem;
+  --breakpoint-xl: 100rem;
   --breakpoint-2xl: 128rem;
   --breakpoint-3xl: 160rem;
 
   --font-myriad: "Myriad Pro", "Arial Narrow", sans-serif;
   --font-myriad-condensed: "Myriad Pro Condensed", "Arial Narrow", sans-serif;
   --font-open-sans: "Open Sans", Arial, sans-serif;
+  --font-menu: "Myriad Pro", "Arial Narrow", sans-serif;
+  --color-menu-text: #09090b;
+  --color-menu-text-dark: #f4f4f5;
   --color-teal-dark: #004340;
   --color-teal-mid: #1b6460;
   --color-teal: #23736f;
@@ -50,7 +53,7 @@ body {
 }
 
 .dm_button {
-  @apply font-myriad-condensed bg-gradient-buttom border-teal-dark from-green to-natura-lime rounded-xl border-4 bg-linear-to-b from-55% pt-2 pb-1 text-center leading-none font-black text-white transition-transform duration-300 hover:scale-105 md:text-[1.8vw];
+  @apply font-myriad-condensed bg-gradient-buttom border-teal-dark from-green to-natura-lime rounded-xl border-4 bg-linear-to-b from-55% pt-2 pb-1 text-center leading-none font-black text-white transition-transform duration-300 hover:scale-105 text-3xl xl:text-[1.8vw] 3xl:text-5xl;
 }
 
 .splide__arrows {
