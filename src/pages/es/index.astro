@@ -3,16 +3,54 @@ import { getHomeData } from "../../api/home/getHomeData";
 import Layout from "../../layouts/Layout.astro";
 import CarrouselBanners from "../../components/Home/CarrouselBanners.astro";
 import LatestNews from "../../components/Home/LatestNews.astro";
+import CarrouselPromos from "../../components/Home/CarrouselPromos.astro";
+import ReadingRecommendations from "../../components/Home/ReadingRecommendations.astro";
+import DoNotMissIt from "../../components/Home/DoNotMissIt.astro";
 
 const homeData = await getHomeData("es");
 const latest_news = homeData.latest_news;
 const Carrousel = homeData.Carrousel;
 const Promos = homeData.Promos;
+const reading_recommendations = homeData.reading_recommendations;
+const do_not_miss_it = homeData.do_not_miss_it;
 ---
 
 <Layout>
-  <section class="md:flex justify-between pt-8 mx-4 mb-4">
+  <section class="max_page mb-2 flex flex-col-reverse justify-between gap-8 space-y-6 px-4 pt-8 xl:mb-12 xl:flex-row xl:gap-0 xl:space-y-0">
     <CarrouselBanners carrousel={Carrousel} />
     <LatestNews latest_news={latest_news} />
+  </section>
+  <section class="bg-teal-dark mb-2 min-h-13 w-full px-4 pb-12 xl:mb-10">
+    <h2 class="font-myriad-condensed 3xl:text-[2.5rem] py-6 text-center text-3xl leading-none font-black text-white xl:text-[1.8vw]">LO MÁS RECIENTE</h2>
+    <CarrouselPromos promos={Promos} />
+  </section>
+  <section class="max_page mb-2 xl:mb-12">
+    <h2 class="font-myriad-condensed 3xl:text-[2.5rem] text-teal-mid dark:text-teal py-6 text-center text-3xl leading-none font-black xl:pb-6 xl:text-[1.8vw]">
+      PARA LEER TE RECOMENDAMOS...
+    </h2>
+    <ReadingRecommendations reading_recommendations={reading_recommendations} />
+  </section>
+  <section class="max_page mb-8 xl:mb-12">
+    <h2 class="font-myriad-condensed 3xl:text-[2.5rem] text-teal-mid dark:text-teal py-6 text-center text-3xl leading-none font-black xl:pb-6 xl:text-[1.8vw]">
+      PARA NO PERDERSE
+    </h2>
+    <DoNotMissIt do_not_miss_it={do_not_miss_it} />
+  </section>
+  <section class="max_page">
+    <h2 class="text-teal font-myriad-condensed text-center text-5xl leading-none font-black xl:text-6xl">CÓMO FUNCIONA dataMares</h2>
+    <h3 class="text-green font-myriad-condensed text-center text-2xl leading-none font-black xl:text-3xl">¿QUIÉN COLABORA CON DATAMARES?</h3>
+    <a
+      class="bg-natura-mid border-teal-mid mx-auto my-4 block w-72 rounded-full border-8 px-7 py-2 transition-transform duration-200 hover:scale-105 xl:w-80"
+      href="/dataposters">
+      <img width="327" height="65" class="w-72 xl:w-92" src="https://api.yokaicdmx.com/uploads/Recurso_1_6b20200ed7.svg" alt="dataPosters" />
+    </a>
+
+    <img
+      alt="How datamares works"
+      width="1352"
+      height="730"
+      class="mx-4 mb-4 xl:mx-auto xl:mb-12 xl:w-4/6"
+      src="https://api.yokaicdmx.com/uploads/Como_Funciona_Data_Mares_0450803d07.svg"
+    />
   </section>
 </Layout>
