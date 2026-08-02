@@ -1,5 +1,7 @@
 ---
 import Header from "../components/Header/Header";
+import BackToTop from "../components/BackToTop.astro";
+import Footer from "../components/Footer.astro";
 import ThemeSelector from "../components/ThemeSelector";
 import ViewPort from "../components/ViewPort";
 import "../styles/global.css";
@@ -66,11 +68,13 @@ const pathname = Astro.url.pathname;
       })();
     </script>
   </head>
-  <body class="bg-white text-zinc-900 transition-colors duration-150 dark:bg-zinc-900 dark:text-zinc-100">
+  <body id="top" class="bg-white text-zinc-900 transition-colors duration-150 dark:bg-zinc-900 dark:text-zinc-100">
     <Header client:idle lang={lang} pathname={pathname} />
     <main class="mx-auto min-h-screen">
       <slot />
     </main>
+    <Footer lang={lang} />
+    <BackToTop lang={lang} />
     <ThemeSelector client:idle />
     <ViewPort client:only />
   </body>

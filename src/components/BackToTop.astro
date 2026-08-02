@@ -1,0 +1,30 @@
+---
+const { lang = "en" } = Astro.props;
+const label = lang === "es" ? "Volver al inicio" : "Back to top";
+---
+
+<a
+  href="#top"
+  class="bg-teal hover:bg-teal-mid focus:outline-teal pointer-events-none fixed right-5 bottom-5 z-40 grid size-12 translate-y-3 place-items-center rounded-xl text-white opacity-0 shadow-lg transition-all duration-200 hover:scale-105 focus:pointer-events-auto focus:translate-y-0 focus:opacity-100 focus:outline-2 focus:outline-offset-2 data-[visible=true]:pointer-events-auto data-[visible=true]:translate-y-0 data-[visible=true]:opacity-100 sm:right-7 sm:bottom-7 sm:size-12"
+  aria-label={label}
+  data-back-to-top>
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="size-12">
+    <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 15.75 7.5-7.5 7.5 7.5"></path>
+  </svg>
+</a>
+
+<script>
+  const button = document.querySelector("[data-back-to-top]");
+
+  const updateButton = () => {
+    button?.setAttribute("data-visible", String(window.scrollY > 300));
+  };
+
+  button?.addEventListener("click", (event) => {
+    event.preventDefault();
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+
+  updateButton();
+  window.addEventListener("scroll", updateButton, { passive: true });
+</script>
