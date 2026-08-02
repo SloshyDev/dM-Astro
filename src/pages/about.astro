@@ -1,0 +1,117 @@
+---
+import { getAboutData } from "../api/about_us/getAboutData";
+import Layout from "../layouts/Layout.astro";
+import { getAbsoluteUrl, getImageSrcSet } from "../utils/media";
+
+const aboutData = await getAboutData("en");
+
+const banner = aboutData.Banner;
+const dm_icon = aboutData.Dm_team_icon;
+const dm_team = aboutData.Dm_team_connection.nodes;
+const advisory_icon = aboutData.Advisory_team_icon;
+const advisory_board = aboutData.Advisory_board_connection?.nodes ?? [];
+const founding_icon = aboutData.Founding_team_icon;
+const founding_members = aboutData.Founding_group_connection?.nodes ?? [];
+---
+
+<Layout>
+  <section class="max_page pt-4">
+    <img
+      width={banner.width}
+      fetchpriority="high"
+      height={banner.height}
+      class="3xl:rounded-2xl w-full"
+      src={getAbsoluteUrl(banner.url)}
+      alt="Banner about us"
+    />
+    <div class="my-8 xl:my-16">
+      <h2 class="font-myriad 3xl:text-[2.5rem] text-teal-mid dark:text-teal py-6 text-center text-3xl leading-none font-bold xl:pb-6 xl:text-3xl 2xl:text-4xl">
+        MISSION STATEMENT
+      </h2>
+      <p class="font-myriad text- mx-4 text-center text-lg leading-tight text-pretty xl:mx-auto xl:w-3/5 xl:text-xl 2xl:text-2xl">{aboutData.Mission}</p>
+    </div>
+    <div class="my-8 xl:my-16">
+      <h2 class="font-myriad 3xl:text-[2.5rem] text-teal-mid dark:text-teal py-6 text-center text-3xl leading-none font-bold xl:pb-6 xl:text-3xl 2xl:text-4xl">
+        VISION
+      </h2>
+      <p class="font-myriad text- mx-4 text-center text-lg leading-tight text-pretty xl:mx-auto xl:w-3/5 xl:text-xl 2xl:text-2xl">{aboutData.Vision}</p>
+    </div>
+    <div class="mb-20">
+      <p class="font-myriad text-teal flex w-full items-center justify-center gap-2 text-2xl font-bold">
+        <span>
+          <img src={getAbsoluteUrl(dm_icon.url)} width={dm_icon.width} height={dm_icon.height} alt="" />
+        </span>
+        DATAMARES
+      </p>
+      <section class="mx-6 mt-6 grid w-fit grid-cols-2 gap-8 xl:mx-auto xl:grid-cols-3">
+        {
+          dm_team.map((team) => {
+            const srcSet = getImageSrcSet(team);
+            const src = getAbsoluteUrl(team.url);
+
+            return (
+              <img class="mx-auto" width={team.width} height={team.height} srcset={srcSet || undefined} src={src} alt={team.alternativeText || "Team member"} />
+            );
+          })
+        }
+      </section>
+    </div>
+    <details class="group mb-10">
+      <summary class="font-myriad text-teal flex cursor-pointer list-none items-center justify-center gap-2 text-2xl font-bold marker:content-none">
+        <img src={getAbsoluteUrl(advisory_icon.url)} width={advisory_icon.width} height={advisory_icon.height} alt="" />
+        ADVISING COMMITTEE
+        <svg class="size-5 transition-transform group-open:rotate-180" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="m6 9 6 6 6-6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
+        </svg>
+      </summary>
+      <section class="mx-auto mt-6 flex max-w-5xl flex-wrap justify-center gap-x-8 gap-y-10 px-6">
+        {
+          advisory_board.map((member) => {
+            const srcSet = getImageSrcSet(member);
+            const src = getAbsoluteUrl(member.url);
+
+            return (
+              <img
+                class="h-auto w-36 shrink-0 sm:w-44 xl:w-52"
+                width={member.width}
+                height={member.height}
+                srcset={srcSet || undefined}
+                src={src}
+                alt={member.alternativeText || "Advising committee member"}
+              />
+            );
+          })
+        }
+      </section>
+    </details>
+
+    <details class="group mb-20">
+      <summary class="font-myriad text-teal flex cursor-pointer list-none items-center justify-center gap-2 text-2xl font-bold marker:content-none">
+        <img src={getAbsoluteUrl(founding_icon.url)} width={founding_icon.width} height={founding_icon.height} alt="" />
+        FOUNDING MEMBERS
+        <svg class="size-5 transition-transform group-open:rotate-180" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="m6 9 6 6 6-6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
+        </svg>
+      </summary>
+      <section class="mx-auto mt-6 flex max-w-[1200px] flex-wrap justify-center gap-x-8 gap-y-10 px-6">
+        {
+          founding_members.map((member) => {
+            const srcSet = getImageSrcSet(member);
+            const src = getAbsoluteUrl(member.url);
+
+            return (
+              <img
+                class="h-auto w-36 shrink-0 sm:w-44 xl:w-48"
+                width={member.width}
+                height={member.height}
+                srcset={srcSet || undefined}
+                src={src}
+                alt={member.alternativeText || "Founding member"}
+              />
+            );
+          })
+        }
+      </section>
+    </details>
+  </section>
+</Layout>

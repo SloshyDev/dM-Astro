@@ -2,39 +2,15 @@
 
 @custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
 
-@font-face {
-  font-family: "Myriad Pro";
-  src: url("/fonts/MYRIADPRO-REGULAR.OTF") format("opentype");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Myriad Pro";
-  src: url("/fonts/MYRIADPRO-SEMIBOLD.OTF") format("opentype");
-  font-weight: 600;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Myriad Pro Condensed";
-  src: url("/fonts/MYRIADPRO-BOLDCOND.OTF") format("opentype");
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
-
 @theme {
   --breakpoint-xl: 57rem;
   --breakpoint-2xl: 100rem;
   --breakpoint-3xl: 160rem;
 
-  --font-myriad: "Myriad Pro", "Arial Narrow", sans-serif;
-  --font-myriad-condensed: "Myriad Pro Condensed", "Arial Narrow", sans-serif;
+  --font-myriad: "myriad-pro", "Arial Narrow", sans-serif;
+  --font-myriad-condensed: "myriad-pro-cond", "Arial Narrow", sans-serif;
   --font-open-sans: "Open Sans", Arial, sans-serif;
-  --font-menu: "Myriad Pro", "Arial Narrow", sans-serif;
+  --font-menu: "myriad-pro", "Arial Narrow", sans-serif;
   --color-menu-text: #09090b;
   --color-menu-text-dark: #f4f4f5;
   --color-teal-dark: #004340;

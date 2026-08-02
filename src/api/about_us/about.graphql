@@ -1,0 +1,67 @@
+query AboutQuery($locale: I18NLocaleCode) {
+  about(locale: $locale) {
+    Banner {
+      width
+      height
+      url
+    }
+    Mission
+    Vision
+    Dm_team_icon {
+      url
+      width
+      height
+    }
+    Dm_team_connection {
+      nodes {
+        url
+        width
+        height
+        alternativeText
+        formats
+      }
+    }
+    Advisory_team_icon {
+      url
+      width
+      height
+    }
+    Advisory_board_connection {
+      nodes {
+        url
+        width
+        height
+        alternativeText
+        formats
+      }
+    }
+    Founding_team_icon {
+      url
+      width
+      height
+    }
+    Founding_group_connection {
+      nodes {
+        url
+        width
+        height
+        alternativeText
+        formats
+      }
+    }
+    Founding_team_icon {
+      url
+      width
+      height
+    }
+    Founding_group_connection {
+      nodes {
+        url
+        width
+        height
+        alternativeText
+        formats
+      }
+    }
+  }
+}
