@@ -1,0 +1,53 @@
+---
+import { getAbsoluteUrl, getImageSrcSet, getLink } from "../../utils/media";
+
+const { do_not_miss_it = [] } = Astro.props;
+const items = do_not_miss_it.filter((item) => item?.Image?.url);
+const featuredItem = items[0];
+const secondaryItems = items.slice(1, 3);
+const cardSizes = "(min-width: 912px) calc((100vw - 3rem) / 2), calc(100vw - 2rem)";
+---
+
+{
+  featuredItem && (
+    <div class="mx-4 flex flex-col gap-4 xl:flex-row">
+      <a
+        href={getLink(featuredItem.Link, featuredItem.TypeOfLink)}
+        aria-label={featuredItem.Title}
+        class="group block overflow-hidden rounded-2xl bg-zinc-100 xl:w-1/2 dark:bg-zinc-800"
+        target={featuredItem.TypeOfLink === "ExternalLink" ? "_blank" : undefined}
+        rel={featuredItem.TypeOfLink === "ExternalLink" ? "noopener noreferrer" : undefined}>
+        <img
+          src={getAbsoluteUrl(featuredItem.Image.url)}
+          srcset={getImageSrcSet(featuredItem.Image) || undefined}
+          sizes={cardSizes}
+          width={featuredItem.Image.width}
+          height={featuredItem.Image.height}
+          alt={featuredItem.Title ?? ""}
+          class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.02]"
+        />
+      </a>
+
+      <div class="flex flex-col gap-4 xl:w-1/2">
+        {secondaryItems.map((item) => (
+          <a
+            href={getLink(item.Link, item.TypeOfLink)}
+            aria-label={item.Title}
+            class="group block overflow-hidden rounded-2xl bg-zinc-100 xl:flex-1 dark:bg-zinc-800"
+            target={item.TypeOfLink === "ExternalLink" ? "_blank" : undefined}
+            rel={item.TypeOfLink === "ExternalLink" ? "noopener noreferrer" : undefined}>
+            <img
+              src={getAbsoluteUrl(item.Image.url)}
+              srcset={getImageSrcSet(item.Image) || undefined}
+              sizes={cardSizes}
+              width={item.Image.width}
+              height={item.Image.height}
+              alt={item.Title ?? ""}
+              class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.02]"
+            />
+          </a>
+        ))}
+      </div>
+    </div>
+  )
+}

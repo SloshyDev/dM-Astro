@@ -1,3 +1,17 @@
 ---
+import { Image } from "astro:assets";
+import { getAbsoluteUrl, getImageSrcSet } from "../../utils/media";
 
+const { reading_recommendations } = Astro.props;
 ---
+
+<div class="mx-4 flex flex-col gap-4 xl:flex-row">
+  {
+    reading_recommendations.map((reading_recommendation, index) => {
+      const image = reading_recommendation.Image;
+      const src = getAbsoluteUrl(image.url);
+      const srcSet = getImageSrcSet(image);
+      return <img alt={reading_recommendation.Title} sizes="auto" class="h-auto w-full" width={image.width} height={image.height} srcset={srcSet} src={src} />;
+    })
+  }
+</div>

@@ -9,6 +9,7 @@ const defaultTitle = "dataMares | WORK • PUBLISH • RELEASE";
 const defaultDescription =
   "dataMares facilitates access to scientific knowledge and data to promote transparency, education, and evidence-based conservation in Mexico's ecosystems.";
 const defaultImage = "/Logo.svg";
+const strapiOrigin = import.meta.env.PUBLIC_STRAPI_URL?.replace(/\/$/, "");
 
 const { title = defaultTitle, description = defaultDescription, image = defaultImage, type = "website" } = Astro.props;
 
@@ -35,6 +36,7 @@ const pathname = Astro.url.pathname;
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content={type} />
+    {strapiOrigin && <link rel="preconnect" href={strapiOrigin} crossorigin="anonymous" />}
     <meta property="og:url" content={canonicalUrl} />
     <meta property="og:image" content={imageUrl} />
     <meta property="og:image:alt" content="dataMares logo" />
@@ -66,9 +68,9 @@ const pathname = Astro.url.pathname;
   </head>
   <body class="bg-white text-zinc-900 transition-colors duration-150 dark:bg-zinc-900 dark:text-zinc-100">
     <Header client:idle lang={lang} pathname={pathname} />
-    <section class="mx-auto min-h-screen">
+    <main class="mx-auto min-h-screen">
       <slot />
-    </section>
+    </main>
     <ThemeSelector client:idle />
     <ViewPort client:only />
   </body>

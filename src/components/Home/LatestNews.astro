@@ -5,7 +5,7 @@ const { latest_news } = Astro.props;
 const locale = Astro.currentLocale;
 ---
 
-<div class="mx-auto flex flex-col justify-between gap-6 xl:mx-0 xl:w-[24%] xl:gap-0">
+<div class="mx-auto flex w-full flex-col justify-between gap-6 xl:mx-0 xl:w-[24%] xl:gap-0">
   <div class="bg-teal-dark 3xl:p-2 overflow-hidden rounded-2xl p-2 transition-transform duration-300 hover:scale-105 xl:p-[.4vw]">
     <h2 class="font-myriad-condensed text-natura-lime md: 3xl:text-5xl my-1 text-center text-3xl leading-none font-black xl:text-[1.8vw]">
       {locale === "en" ? "LATEST NEWS" : "NOTICIAS"}
@@ -17,7 +17,7 @@ const locale = Astro.currentLocale;
       rel={latest_news.TypeOfLink === "ExternalLink" ? "noopener noreferrer" : undefined}>
       <img
         class="w-full rounded-b-xl"
-        loading="lazy"
+        fetchpriority="high"
         sizes="auto"
         width={latest_news.Image.width}
         height={latest_news.Image.height}

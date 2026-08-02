@@ -4,12 +4,15 @@ import Layout from "../layouts/Layout.astro";
 import CarrouselBanners from "../components/Home/CarrouselBanners.astro";
 import LatestNews from "../components/Home/LatestNews.astro";
 import CarrouselPromos from "../components/Home/CarrouselPromos.astro";
+import ReadingRecommendations from "../components/Home/ReadingRecommendations.astro";
+import DoNotMissIt from "../components/Home/DoNotMissIt.astro";
 
 const homeData = await getHomeData("en");
 const latest_news = homeData.latest_news;
 const Carrousel = homeData.Carrousel;
 const Promos = homeData.Promos;
 const reading_recommendations = homeData.reading_recommendations;
+const do_not_miss_it = homeData.do_not_miss_it;
 ---
 
 <Layout>
@@ -18,12 +21,19 @@ const reading_recommendations = homeData.reading_recommendations;
     <LatestNews latest_news={latest_news} />
   </section>
   <section class="bg-teal-dark mb-2 min-h-13 w-full px-4 pb-12 xl:mb-10">
-    <h2 class="font-myriad-condensed md: 3xl:text-5xl py-6 text-center text-3xl leading-none font-black text-white xl:text-[1.8vw]">MOST RECENT</h2>
+    <h2 class="font-myriad-condensed 3xl:text-[2.5rem] py-6 text-center text-3xl leading-none font-black text-white xl:text-[1.8vw]">MOST RECENT</h2>
     <CarrouselPromos promos={Promos} />
   </section>
   <section class="max_page mb-2 xl:mb-12">
-    <h2 class="font-myriad-condensed md: 3xl:text-5xl text-teal-dark dark:text-teal py-6 text-center text-3xl leading-none font-black xl:text-[1.8vw]">
+    <h2 class="font-myriad-condensed 3xl:text-[2.5rem] text-teal-dark dark:text-teal py-6 text-center text-3xl leading-none font-black xl:pb-6 xl:text-[1.8vw]">
       READING RECOMMENDATIONS
     </h2>
+    <ReadingRecommendations reading_recommendations={reading_recommendations} />
+  </section>
+  <section class="max_page mb-2 xl:mb-12">
+    <h2 class="font-myriad-condensed 3xl:text-[2.5rem] text-teal-dark dark:text-teal py-6 text-center text-3xl leading-none font-black xl:pb-6 xl:text-[1.8vw]">
+      DO NOT MISS IT
+    </h2>
+    <DoNotMissIt do_not_miss_it={do_not_miss_it} />
   </section>
 </Layout>

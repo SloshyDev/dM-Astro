@@ -10,6 +10,9 @@ import react from "@astrojs/react";
 
 // https://astro.build/config
 export default defineConfig({
+  image: {
+    domains: ["api.yokaicdmx.com"],
+  },
   build: {
       inlineStylesheets: "always"
   },

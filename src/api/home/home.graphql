@@ -42,6 +42,7 @@ query HomeQuery($locale: I18NLocaleCode) {
       ... on ComponentDataContentDataContent {
         data_contents {
           Slug
+          Title
           Promo {
             url
             width
@@ -54,6 +55,7 @@ query HomeQuery($locale: I18NLocaleCode) {
       ... on ComponentImageWithLinkImageWithLink {
         Link
         TypeOfLink
+        Title
         Image {
           url
           width
@@ -65,12 +67,24 @@ query HomeQuery($locale: I18NLocaleCode) {
     }
     reading_recommendations {
       Link
+      Title
       TypeOfLink
       Image {
         width
         height
         hash
         url
+        formats
+      }
+    }
+    do_not_miss_it {
+      Title
+      Link
+      TypeOfLink
+      Image {
+        url
+        width
+        height
         formats
       }
     }

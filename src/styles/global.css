@@ -57,7 +57,7 @@ body {
 }
 
 .dm_button {
-  @apply font-myriad-condensed bg-gradient-buttom border-teal-dark from-green to-natura-lime 3xl:text-5xl rounded-xl border-4 bg-linear-to-b from-55% pt-3 pb-1 text-center text-3xl leading-none font-black text-white transition-transform duration-300 hover:scale-105 xl:text-[1.8vw];
+  @apply font-myriad-condensed bg-gradient-buttom border-teal-dark from-green to-natura-lime 3xl:text-[2.5rem] rounded-xl border-4 bg-linear-to-b from-55% pt-3 pb-1 text-center text-3xl leading-none font-black text-white transition-transform duration-300 hover:scale-105 xl:text-[1.8vw];
 }
 
 .splide__arrows {
@@ -82,7 +82,7 @@ body {
 }
 
 .splide__pagination__page {
-  @apply relative top-4 m-2 size-2 rounded-full bg-white/60;
+  @apply relative top-4 m-2 size-2 cursor-pointer rounded-full bg-white/60;
 }
 
 .splide__pagination__page.is-active {
