@@ -2,12 +2,18 @@
 const { news_vault } = Astro.props;
 ---
 
-<section class="bg-teal-dark border-teal-mid 3xl:border-15 mx-auto flex h-auto overflow-hidden rounded-4xl border-6 xl:w-[85%] xl:border-[1vw]">
-  <img width="229" height="232" class="3xl:w-50 absolute -ml-8 w-[9vw]" src="https://api.sloshy.cloud/uploads/Vault_Icon_2ce9f99ed7.svg" alt="" />
-  <div class="bg-natura-dark 3xl:w-24 h-max min-h-180 w-[5vw]"></div>
-  <div class="3xl:mt-14 w-full xl:mt-[2.5vw]">
+<section class="bg-teal-dark border-teal-mid 3xl:border-15 mx-3 flex h-auto overflow-hidden rounded-4xl border-6 xl:mx-auto xl:w-[85%] xl:border-[1vw]">
+  <img
+    width="229"
+    height="232"
+    class="3xl:w-50 absolute -ml-8 hidden w-[9vw] xl:block"
+    src="https://api.sloshy.cloud/uploads/Vault_Icon_2ce9f99ed7.svg"
+    alt=""
+  />
+  <div class="bg-natura-dark 3xl:w-24 hidden h-max min-h-180 w-[5vw] xl:block"></div>
+  <div class="3xl:mt-14 mt-4 w-full xl:mt-[2.5vw]">
     <h2 class="text-natura-dark font-myriad-condensed 3xl:text-8xl text-center text-5xl font-bold xl:text-7xl">NEWS VAULT</h2>
-    <ul class="newsVaultBox mx-6 mt-10 max-h-135 overflow-y-scroll">
+    <ul class="newsVaultBox mx-6 mt-4 max-h-135 overflow-y-scroll xl:mt-10">
       {
         news_vault.map((news, index) => {
           return (
