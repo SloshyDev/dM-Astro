@@ -1,4 +1,4 @@
-schema: https://api.yokaicdmx.com/graphql
+schema: https://api.sloshy.cloud/graphql
 
 documents:
   - "src/**/*.graphql"

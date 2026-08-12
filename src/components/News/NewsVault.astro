@@ -1,0 +1,37 @@
+---
+const { news_vault } = Astro.props;
+---
+
+<section class="bg-teal-dark border-teal-mid 3xl:border-15 mx-auto flex h-auto overflow-hidden rounded-4xl border-6 xl:w-[85%] xl:border-[1vw]">
+  <img width="229" height="232" class="3xl:w-50 absolute -ml-8 w-[9vw]" src="https://api.sloshy.cloud/uploads/Vault_Icon_2ce9f99ed7.svg" alt="" />
+  <div class="bg-natura-dark 3xl:w-24 h-max min-h-180 w-[5vw]"></div>
+  <div class="3xl:mt-14 w-full xl:mt-[2.5vw]">
+    <h2 class="text-natura-dark font-myriad-condensed 3xl:text-8xl text-center text-5xl font-bold xl:text-7xl">NEWS VAULT</h2>
+    <ul class="newsVaultBox mx-6 mt-10 max-h-135 overflow-y-scroll">
+      {
+        news_vault.map((news, index) => {
+          return (
+            <li class="mb-6 snap-start">
+              <a class="group flex items-center gap-4" href={news.Link}>
+                <img
+                  fetchpriority={index <= 4 ? "high" : "low"}
+                  class="size-8 transition-transform duration-300 group-hover:scale-[.80] xl:size-13"
+                  src="https://api.sloshy.cloud/uploads/arrow_Icon_471e388187.svg"
+                  alt=""
+                />
+                <div class="">
+                  <h2 class="font-myriad-condensed group-hover:text-natura-dark 3xl:text-5xl pr-2 text-xl leading-none font-light text-pretty text-white transition-colors duration-300 xl:text-[1.8vw]">
+                    {news.Tittle}
+                  </h2>
+                  <p class="font-myriad-condensed text-natura-dark 3xl:text-3xl leading-none font-light underline decoration-transparent transition-colors duration-300 group-hover:text-white group-hover:decoration-white xl:text-2xl">
+                    {news.Source}
+                  </p>
+                </div>
+              </a>
+            </li>
+          );
+        })
+      }
+    </ul>
+  </div>
+</section>

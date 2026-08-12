@@ -13,7 +13,7 @@
   --font-menu: "myriad-pro", "Arial Narrow", sans-serif;
   --color-menu-text: #09090b;
   --color-menu-text-dark: #f4f4f5;
-  --color-teal-dark: #004340;
+  --color-teal-dark: #102f2e;
   --color-teal-mid: #1b6460;
   --color-teal: #23736f;
   --color-green: #699948;
@@ -21,6 +21,7 @@
   --color-green-dark: #3a5f28;
   --color-natura-lime: #d8df50;
   --color-natura-mid: #dad248;
+  --color-natura-dark: #b9b326;
   --background-image-gradient-buttom: linear-gradient(0deg, #1b716f 0%, #a0ae20 100%);
 }
 
@@ -34,7 +35,7 @@ body {
 }
 
 .dm_button {
-  @apply font-myriad-condensed bg-gradient-buttom border-teal-dark from-green to-natura-lime 3xl:text-[2.5rem] rounded-xl border-4 bg-linear-to-b from-55% pt-3 pb-1 text-center text-3xl leading-none font-black text-white transition-transform duration-300 hover:scale-105 xl:text-[1.8vw];
+  @apply font-myriad-condensed bg-gradient-buttom border-teal-dark from-green to-natura-lime 3xl:text-[2.5rem] rounded-xl border-4 bg-linear-to-b from-55% pt-1 pb-1 text-center text-3xl leading-none font-black text-white transition-all duration-300 hover:scale-105 xl:text-[1.8vw];
 }
 
 .splide__arrows {
@@ -68,4 +69,30 @@ body {
 
 .menu_link {
   @apply font-menu 3xl:text-xl text-menu-text dark:text-menu-text-dark text-xl 2xl:text-[0.93vw];
+}
+
+.newsVaultBox {
+  --sb-track-color: #004340;
+  --sb-thumb-color: #dad248;
+  --sb-size: 8px;
+}
+
+.newsVaultBox::-webkit-scrollbar {
+  width: var(--sb-size);
+}
+
+.newsVaultBox::-webkit-scrollbar-track {
+  background: var(--sb-track-color);
+  border-radius: 5px;
+}
+
+.newsVaultBox::-webkit-scrollbar-thumb {
+  background: var(--sb-thumb-color);
+  border-radius: 5px;
+}
+
+@supports not selector(::-webkit-scrollbar) {
+  .newsVaultBox {
+    scrollbar-color: var(--sb-thumb-color) var(--sb-track-color);
+  }
 }

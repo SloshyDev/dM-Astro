@@ -37,11 +37,7 @@ const splides = promos.flatMap((splide) =>
 
           return (
             <li class="splide__slide h-full">
-              <Link
-                href={href}
-                class="block"
-                target={splide.typeOfLink === "ExternalLink" ? "_blank" : undefined}
-                rel={splide.typeOfLink === "ExternalLink" ? "noopener noreferrer" : undefined}>
+              <Link href={href} class="block" typeOfLink={splide.typeOfLink}>
                 <img
                   class="rounded-xl transition-transform duration-300 hover:scale-[.95]"
                   fetchpriority="high"

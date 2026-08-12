@@ -1,10 +1,19 @@
 ---
-const { href, ...anchorProps } = Astro.props;
+import type { HTMLAttributes } from "astro/types";
+
+interface Props extends HTMLAttributes<"a"> {
+  typeOfLink?: "ExternalLink" | "InternalLink" | "dataContent";
+  typeoflink?: "ExternalLink" | "InternalLink" | "dataContent";
+}
+
+const { href, typeOfLink, typeoflink, target, rel, ...anchorProps } = Astro.props as Props;
+const isExternal = (typeOfLink ?? typeoflink) === "ExternalLink";
+const externalRel = [...new Set([rel, "noopener", "noreferrer"].filter(Boolean).flatMap((value) => value.split(/\s+/)))].join(" ");
 ---
 
 {
   href ? (
-    <a href={href} {...anchorProps}>
+    <a href={href} target={isExternal ? "_blank" : target} rel={isExternal ? externalRel : rel} {...anchorProps}>
       <slot />
     </a>
   ) : (

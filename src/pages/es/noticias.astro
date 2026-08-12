@@ -1,7 +1,7 @@
 ---
-import { getAboutData } from "../api/about_us/getAboutData";
-import Layout from "../layouts/Layout.astro";
-import { getAbsoluteUrl, getImageSrcSet } from "../utils/media";
+import { getAboutData } from "../../api/about_us/getAboutData";
+import Layout from "../../layouts/Layout.astro";
+import { getAbsoluteUrl, getImageSrcSet } from "../../utils/media";
 
 const aboutData = await getAboutData("en");
 
@@ -12,12 +12,9 @@ const advisory_icon = aboutData.Advisory_team_icon;
 const advisory_board = aboutData.Advisory_board_connection?.nodes ?? [];
 const founding_icon = aboutData.Founding_team_icon;
 const founding_members = aboutData.Founding_group_connection?.nodes ?? [];
-const title = "About dataMares | WORK • PUBLISH • RELEASE";
-const description = "Learn about dataMares' mission, vision, team, advisory committee, and founding members.";
-const image = getAbsoluteUrl(banner.url);
 ---
 
-<Layout title={title} description={description} image={image} type="website">
+<Layout>
   <section class="max_page pt-4">
     <img
       width={banner.width}

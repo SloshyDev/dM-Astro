@@ -1,0 +1,47 @@
+---
+import { getAbsoluteUrl, getImageSrcSet, getLink } from "../../utils/media";
+import Link from "../Link.astro";
+
+const { banners } = Astro.props;
+---
+
+<section class="max_page">
+  {
+    banners.map((banner, index) => {
+      const image = banner.Image;
+      const srcSet = getImageSrcSet(image);
+      const src = getAbsoluteUrl(image.url);
+      if (banner.Link) {
+        return (
+          <Link href={getLink(banner.Link, banner.TypeOfLink)} typeOfLink={banner.TypeOfLink}>
+            <img
+              width={image.width}
+              height={image.height}
+              fetchpriority={index === 0 ? "high" : "auto"}
+              loading={index === 0 ? "eager" : "lazy"}
+              sizes="100vw"
+              class="3xl:rounded-2xl w-full transition-transform duration-300 hover:scale-[.98] hover:rounded-2xl"
+              srcset={srcSet || undefined}
+              src={src}
+              alt={banner.Title || ""}
+            />
+          </Link>
+        );
+      } else {
+        return (
+          <img
+            sizes="100vw"
+            fetchpriority={index === 0 ? "high" : "auto"}
+            loading={index === 0 ? "eager" : "lazy"}
+            width={image.width}
+            height={image.height}
+            class="3xl:rounded-2xl w-full"
+            srcset={srcSet || undefined}
+            src={src}
+            alt={banner.Title || ""}
+          />
+        );
+      }
+    })
+  }
+</section>

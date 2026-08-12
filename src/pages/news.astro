@@ -1,0 +1,80 @@
+---
+import { getNewsData } from "../api/news/getAboutData";
+import Link from "../components/Link.astro";
+import Banners from "../components/News/Banners.astro";
+import NewsVault from "../components/News/NewsVault.astro";
+import Layout from "../layouts/Layout.astro";
+import { getAbsoluteUrl, getImageSrcSet, getLink } from "../utils/media";
+
+const newsGallery = await getNewsData();
+
+const banners = newsGallery.Banners;
+const news_vault = newsGallery.News_vault;
+
+const news = newsGallery.News;
+
+const sustainabilityDispatch = news.find((item) => item.Title === "SUSTAINABILITY DISPATCH");
+const marineProsperityAreas = news.find((item) => item.Title === "NEW SECTION MARINE PROSPERITY AREAS");
+const datamaresEnLaPandilla = news.find((item) => item.Title === "dataMares en LA PANDILLA");
+
+console.log(datamaresEnLaPandilla);
+---
+
+<Layout>
+  <Banners banners={banners} />
+  <section class="max_page mx-2 mb-12 justify-between xl:mx-0 xl:flex">
+    <div class="min-h-screen w-full space-y-6 py-6 xl:py-12">
+      <NewsVault news_vault={news_vault} />
+      <div class="mx-auto px-4 xl:w-11/12">
+        <Link href={sustainabilityDispatch.Link} typeOfLink={sustainabilityDispatch.TypeOfLink}>
+          <img
+            srcset={getImageSrcSet(sustainabilityDispatch.Image)}
+            sizes="auto"
+            width={sustainabilityDispatch.Image.width}
+            height={sustainabilityDispatch.Image.height}
+            class="w-full rounded-2xl transition-transform duration-300 hover:scale-[.98]"
+            src={getAbsoluteUrl(sustainabilityDispatch.Image.url)}
+            alt={sustainabilityDispatch.Title}
+          />
+        </Link>
+      </div>
+      <div class="mx-auto px-4 xl:w-11/12">
+        <Link href={marineProsperityAreas.Link} typeOfLink={marineProsperityAreas.TypeOfLink}>
+          <img
+            srcset={getImageSrcSet(marineProsperityAreas.Image)}
+            sizes="auto"
+            width={marineProsperityAreas.Image.width}
+            height={marineProsperityAreas.Image.height}
+            class="w-full rounded-2xl transition-transform duration-300 hover:scale-[.98]"
+            src={getAbsoluteUrl(marineProsperityAreas.Image.url)}
+            alt={marineProsperityAreas.Title}
+          />
+        </Link>
+      </div>
+    </div>
+    <div class="bg-teal-mid mx-4 hidden min-h-screen w-5 rounded-b-full xl:block"></div>
+    <div class="min-h-screen w-full space-y-6 pb-6 xl:py-12">
+      <div
+        class="3xl:min-h-266 bg-teal-dark border-teal-mid mx-3 flex min-h-100 flex-col items-center overflow-hidden rounded-2xl border-6 py-4 xl:mx-auto xl:min-h-[40.4vw] xl:w-11/12 xl:rounded-4xl xl:border-15">
+        <img width="731" height="131" class="mb-8 w-[95%]" src="https://api.sloshy.cloud/uploads/Interviews_Icon_0d34ec2665.svg" alt="Icon interviews" />
+
+        <Link
+          class="group relative mx-auto block w-9/10"
+          href={datamaresEnLaPandilla.Link}
+          typeOfLink={datamaresEnLaPandilla.TypeOfLink}
+          aria-label="Escuchar la entrevista dataMares en La Pandilla">
+          <img
+            sizes="(min-width: 912px) 45vw, 90vw"
+            class="block w-full rounded-2xl"
+            width={datamaresEnLaPandilla.Image.width}
+            height={datamaresEnLaPandilla.Image.height}
+            srcset={getImageSrcSet(datamaresEnLaPandilla.Image)}
+            src={getAbsoluteUrl(datamaresEnLaPandilla.Image.url)}
+            alt=""
+          />
+          <span class="dm_button absolute bottom-[8%] left-[34%] w-[24%] group-hover:scale-105 group-hover:shadow-2xl"> ESCÚCHALO </span>
+        </Link>
+      </div>
+    </div>
+  </section>
+</Layout>

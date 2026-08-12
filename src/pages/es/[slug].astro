@@ -1,7 +1,9 @@
 ---
 import SimpleMenuPage from "../../components/SimpleMenuPage.astro";
 import { getMenuPages } from "../../components/Header/menuData";
+import { getAboutData } from "../../api/about_us/getAboutData";
 import Layout from "../../layouts/Layout.astro";
+import { getAbsoluteUrl } from "../../utils/media";
 
 export function getStaticPaths() {
   const paths = [];
@@ -17,8 +19,13 @@ export function getStaticPaths() {
 }
 
 const { page } = Astro.props;
+const isAboutPage = page.id === "about";
+const aboutData = isAboutPage ? await getAboutData("es") : null;
+const title = isAboutPage ? "Sobre dataMares | WORK • PUBLISH • RELEASE" : `${page.label} | dataMares`;
+const description = isAboutPage ? "Conoce la misión, visión, equipo, comité asesor y miembros fundadores de dataMares." : undefined;
+const image = aboutData?.Banner ? getAbsoluteUrl(aboutData.Banner.url) : undefined;
 ---
 
-<Layout title={`${page.label} | dataMares`}>
+<Layout title={title} description={description} image={image} type="website">
   <SimpleMenuPage title={page.label} section={page.section} scientificName={page.scientificName} lang="es" />
 </Layout>

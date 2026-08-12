@@ -1,0 +1,34 @@
+query NewsQuery($locale: I18NLocaleCode) {
+  newsGallery(locale: $locale) {
+    Banners {
+      Title
+      Link
+      Image {
+        mime
+        width
+        height
+        formats
+        url
+        hash
+      }
+      TypeOfLink
+    }
+    News_vault {
+      Tittle
+      Source
+      Link
+    }
+    News {
+      Title
+      Link
+      TypeOfLink
+      Image {
+        url
+        width
+        height
+        formats
+        mime
+      }
+    }
+  }
+}

@@ -46,11 +46,7 @@ const heightRatio = Math.max(...slides.map((slide) => slide.height / slide.width
 
           return (
             <li class="splide__slide h-full">
-              <Link
-                href={href}
-                class="block h-full"
-                target={slide.typeOfLink === "ExternalLink" ? "_blank" : undefined}
-                rel={slide.typeOfLink === "ExternalLink" ? "noopener noreferrer" : undefined}>
+              <Link href={href} class="block h-full" typeOfLink={slide.typeOfLink}>
                 <img
                   class="block h-full w-full rounded-xl object-cover transition-transform duration-300 hover:scale-105"
                   fetchpriority="high"

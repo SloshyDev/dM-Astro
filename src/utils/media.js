@@ -9,6 +9,10 @@ export const getAbsoluteUrl = (url) => {
 };
 
 export const getImageSrcSet = (image) => {
+  const isSvg = image?.mime === "image/svg+xml" || /\.svg(?:$|[?#])/i.test(image?.url ?? "");
+
+  if (isSvg) return "";
+
   const formats = Object.values(image?.formats ?? {})
     .filter((format) => format?.url && format.width)
     .map((format) => `${getAbsoluteUrl(format.url)} ${format.width}w`);

@@ -1,0 +1,65 @@
+name: Desplegar sloshy.cloud
+
+on:
+  push:
+    branches: [produccion]
+
+concurrency:
+  group: sloshy-cloud-production
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    name: Construir y publicar sloshy.cloud
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Obtener el código
+        uses: actions/checkout@v4
+
+      - name: Preparar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Instalar dependencias
+        run: npm ci
+
+      - name: Construir el sitio
+        run: npm run build
+        env:
+          STRAPI_URL: https://api.sloshy.cloud
+          PUBLIC_STRAPI_URL: https://api.sloshy.cloud
+
+      - name: Configurar acceso SSH
+        run: |
+          install -d -m 700 ~/.ssh
+          printf '%s' "$SLOSHY_SSH_KEY_BASE64" | base64 --decode > ~/.ssh/sloshy_deploy_key
+          printf '%s\n' "$SLOSHY_KNOWN_HOSTS" > ~/.ssh/known_hosts
+          chmod 600 ~/.ssh/sloshy_deploy_key ~/.ssh/known_hosts
+          ssh -i ~/.ssh/sloshy_deploy_key -o StrictHostKeyChecking=yes "$SLOSHY_USER@$SLOSHY_HOST" true
+        env:
+          SLOSHY_HOST: ${{ secrets.SLOSHY_HOST }}
+          SLOSHY_USER: ${{ secrets.SLOSHY_USER }}
+          SLOSHY_KNOWN_HOSTS: ${{ secrets.SLOSHY_KNOWN_HOSTS }}
+          SLOSHY_SSH_KEY_BASE64: ${{ secrets.SLOSHY_SSH_KEY_BASE64 }}
+
+      - name: Publicar la nueva versión
+        env:
+          SLOSHY_HOST: ${{ secrets.SLOSHY_HOST }}
+          SLOSHY_USER: ${{ secrets.SLOSHY_USER }}
+          GITHUB_SHA: ${{ github.sha }}
+        run: |
+          RELEASE_DIR="/var/www/sloshy.cloud/releases/${GITHUB_SHA}"
+          SSH="ssh -i ~/.ssh/sloshy_deploy_key -o StrictHostKeyChecking=yes"
+          $SSH "$SLOSHY_USER@$SLOSHY_HOST" "mkdir -p '$RELEASE_DIR'"
+          rsync -az --delete -e "$SSH" dist/ "$SLOSHY_USER@$SLOSHY_HOST:$RELEASE_DIR/"
+          $SSH "$SLOSHY_USER@$SLOSHY_HOST" "
+            set -eu
+            test -f '$RELEASE_DIR/index.html'
+            ln -sfn 'releases/${GITHUB_SHA}' /var/www/sloshy.cloud/current
+          "
