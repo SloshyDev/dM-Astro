@@ -16,8 +16,13 @@ const news = newsGallery.News;
 const sustainabilityDispatch = news.find((item) => item.Title === "SUSTAINABILITY DISPATCH");
 const marineProsperityAreas = news.find((item) => item.Title === "NEW SECTION MARINE PROSPERITY AREAS");
 const datamaresEnLaPandilla = news.find((item) => item.Title === "dataMares en LA PANDILLA");
-
-console.log(datamaresEnLaPandilla);
+const radioChapingoEntrevista = news.find((item) => item.Title === "Entrevista Radio Chapingo");
+const habitareCreatividad = news.find((item) => item.Title === "HABITARE - CREATIVIDAD EN UNA INFOGRAFIA");
+const losNinosPreguntan = news.find((item) => item.Title === "LOS NIÑOS PREGUNTAN");
+const dataMaresEnLaUnam = news.find((item) => item.Title === "DATAMARES EN LA UNAM");
+const laCienciaQueSomos = news.find((item) => item.Title === "LA CIENCIA QUE SOMOS");
+const podcastRadioUnam = news.find((item) => item.Title === "PODCAST RADIO UNAM");
+const catalinaEnLaPandilla = news.find((item) => item.Title === "CATALINA LOPEZ SAGASTEGUI EN LA PANDILLA ");
 ---
 
 <Layout>
@@ -25,20 +30,20 @@ console.log(datamaresEnLaPandilla);
   <section class="max_page mx-2 mb-12 justify-between xl:mx-0 xl:flex">
     <div class="min-h-screen w-full space-y-6 py-6 xl:py-12">
       <NewsVault news_vault={news_vault} />
-      <div class="mx-auto px-4 xl:w-11/12">
+      <div class="mx-auto px-4 xl:w-[87%] xl:px-0">
         <Link href={sustainabilityDispatch.Link} typeOfLink={sustainabilityDispatch.TypeOfLink}>
           <img
             srcset={getImageSrcSet(sustainabilityDispatch.Image)}
             sizes="auto"
             width={sustainabilityDispatch.Image.width}
             height={sustainabilityDispatch.Image.height}
-            class="w-full rounded-2xl transition-transform duration-300 hover:scale-[.98]"
+            class="w-full rounded-md transition-transform duration-300 hover:scale-[.98] xl:rounded-2xl"
             src={getAbsoluteUrl(sustainabilityDispatch.Image.url)}
             alt={sustainabilityDispatch.Title}
           />
         </Link>
       </div>
-      <div class="mx-auto px-4 xl:w-11/12">
+      <div class="mx-auto px-4 xl:w-[87%] xl:px-0">
         <Link href={marineProsperityAreas.Link} typeOfLink={marineProsperityAreas.TypeOfLink}>
           <img
             srcset={getImageSrcSet(marineProsperityAreas.Image)}
@@ -55,25 +60,158 @@ console.log(datamaresEnLaPandilla);
     <div class="bg-teal-mid mx-4 hidden min-h-screen w-5 rounded-b-full xl:block"></div>
     <div class="min-h-screen w-full space-y-6 pb-6 xl:py-12">
       <div
-        class="3xl:min-h-266 bg-teal-dark border-teal-mid mx-3 flex min-h-100 flex-col items-center overflow-hidden rounded-2xl border-6 py-4 xl:mx-auto xl:min-h-[40.4vw] xl:w-11/12 xl:rounded-4xl xl:border-15">
+        class="3xl:min-h-266 bg-teal-dark border-teal-mid 3xl:border-12 mx-3 flex min-h-100 flex-col items-center overflow-hidden rounded-2xl border-6 py-4 xl:mx-auto xl:min-h-[40.4vw] xl:w-[87%] xl:rounded-4xl xl:border-[.5vw]">
         <img width="731" height="131" class="mb-8 w-[95%]" src="https://api.sloshy.cloud/uploads/Interviews_Icon_0d34ec2665.svg" alt="Icon interviews" />
-
-        <Link
-          class="group relative mx-auto block w-9/10"
-          href={datamaresEnLaPandilla.Link}
-          typeOfLink={datamaresEnLaPandilla.TypeOfLink}
-          aria-label="Escuchar la entrevista dataMares en La Pandilla">
-          <img
-            sizes="(min-width: 912px) 45vw, 90vw"
-            class="block w-full rounded-2xl"
-            width={datamaresEnLaPandilla.Image.width}
-            height={datamaresEnLaPandilla.Image.height}
-            srcset={getImageSrcSet(datamaresEnLaPandilla.Image)}
-            src={getAbsoluteUrl(datamaresEnLaPandilla.Image.url)}
-            alt=""
-          />
-          <span class="dm_button absolute bottom-[8%] left-[34%] w-auto px-2 group-hover:scale-105 group-hover:shadow-2xl xl:w-[24%]"> ESCÚCHALO </span>
-        </Link>
+        <section class="newsVaultBox space-y-6 overflow-y-scroll xl:mr-4 xl:max-h-[45vw]">
+          <Link
+            class="group relative mx-auto block w-9/10"
+            href={datamaresEnLaPandilla.Link}
+            typeOfLink={datamaresEnLaPandilla.TypeOfLink}
+            aria-label="Escuchar la entrevista dataMares en La Pandilla">
+            <h2 class="font-myriad-condensed absolute bottom-[70%] left-[18%] text-center text-white">
+              <span class="text-4xl font-black">dataMares en LA PANDILLA</span><br /> Nacho Casas and his gang interview the dataMares team to talk about the marine
+              world.
+            </h2>
+            <img class="rounded-md xl:rounded-2xl" src="https://api.sloshy.cloud/uploads/Fondo_DM_La_Pandilla_c80a6cea18.svg" alt="" />
+            <img class="absolute bottom-[10%] left-[2%] w-72" src="https://api.sloshy.cloud/uploads/Recurso_2_2x_bae704ade6.webp" alt="" />
+            <img class="absolute bottom-[10%] left-[50%] w-80" src="https://api.sloshy.cloud/uploads/Recurso_5_2x_d6eb4cdbce.webp" alt="" />
+            <span class="dm_button absolute bottom-[8%] left-[34%] w-auto px-2 group-hover:scale-105 group-hover:shadow-2xl xl:w-[24%]"> LISTEN </span>
+          </Link>
+          <Link
+            class="group relative mx-auto block w-9/10"
+            href={datamaresEnLaPandilla.Link}
+            typeOfLink={datamaresEnLaPandilla.TypeOfLink}
+            aria-label="Escuchar la entrevista dataMares en La Pandilla">
+            <img
+              sizes="(min-width: 912px) 45vw, 90vw"
+              class="block w-full rounded-md xl:rounded-2xl"
+              width={datamaresEnLaPandilla.Image.width}
+              height={datamaresEnLaPandilla.Image.height}
+              srcset={getImageSrcSet(datamaresEnLaPandilla.Image)}
+              src={getAbsoluteUrl(datamaresEnLaPandilla.Image.url)}
+              alt=""
+            />
+            <span class="dm_button absolute bottom-[8%] left-[34%] w-auto px-2 group-hover:scale-105 group-hover:shadow-2xl xl:w-[24%]"> LISTEN </span>
+          </Link>
+          <Link
+            class="group relative mx-auto block w-9/10 pb-6"
+            href={radioChapingoEntrevista.Link}
+            typeOfLink={radioChapingoEntrevista.TypeOfLink}
+            aria-label="Escuchar la entrevista dataMares en La Pandilla">
+            <img
+              sizes="(min-width: 912px) 45vw, 90vw"
+              class="plmd block w-full rounded-lg xl:rounded-2xl"
+              width={radioChapingoEntrevista.Image.width}
+              height={radioChapingoEntrevista.Image.height}
+              srcset={getImageSrcSet(radioChapingoEntrevista.Image)}
+              src={getAbsoluteUrl(radioChapingoEntrevista.Image.url)}
+              alt=""
+            />
+            <span class="dm_button absolute bottom-[-8%] left-[1%] w-auto px-2 group-hover:scale-105 group-hover:shadow-2xl xl:left-[0%] xl:w-[24%]">
+              LISTEN
+            </span>
+          </Link>
+          <Link
+            class="group relative mx-auto block w-9/10"
+            href={habitareCreatividad.Link}
+            typeOfLink={habitareCreatividad.TypeOfLink}
+            aria-label="Escuchar la entrevista dataMares en La Pandilla">
+            <img
+              sizes="(min-width: 912px) 45vw, 90vw"
+              class="block w-full rounded-md xl:rounded-2xl"
+              width={habitareCreatividad.Image.width}
+              height={habitareCreatividad.Image.height}
+              srcset={getImageSrcSet(habitareCreatividad.Image)}
+              src={getAbsoluteUrl(habitareCreatividad.Image.url)}
+              alt=""
+            />
+            <span class="dm_button absolute bottom-[8%] left-[70%] w-auto px-2 group-hover:scale-105 group-hover:shadow-2xl xl:w-[24%]"> LISTEN </span>
+          </Link>
+          <Link
+            class="group relative mx-auto block w-9/10"
+            href={losNinosPreguntan.Link}
+            typeOfLink={losNinosPreguntan.TypeOfLink}
+            aria-label="Escuchar la entrevista dataMares en La Pandilla">
+            <img
+              sizes="(min-width: 912px) 45vw, 90vw"
+              class="block w-full rounded-md xl:rounded-2xl"
+              width={losNinosPreguntan.Image.width}
+              height={losNinosPreguntan.Image.height}
+              srcset={getImageSrcSet(losNinosPreguntan.Image)}
+              src={getAbsoluteUrl(losNinosPreguntan.Image.url)}
+              alt=""
+            />
+            <span class="dm_button absolute bottom-[-3%] left-[70%] w-auto px-2 group-hover:scale-105 group-hover:shadow-2xl xl:left-[30%] xl:w-[24%]">
+              VIDEO
+            </span>
+          </Link>
+          <Link
+            class="group relative mx-auto block w-9/10"
+            href={dataMaresEnLaUnam.Link}
+            typeOfLink={dataMaresEnLaUnam.TypeOfLink}
+            aria-label="Escuchar la entrevista dataMares en La Pandilla">
+            <img
+              sizes="(min-width: 912px) 45vw, 90vw"
+              class="block w-full rounded-md xl:rounded-2xl"
+              width={dataMaresEnLaUnam.Image.width}
+              height={dataMaresEnLaUnam.Image.height}
+              srcset={getImageSrcSet(dataMaresEnLaUnam.Image)}
+              src={getAbsoluteUrl(dataMaresEnLaUnam.Image.url)}
+              alt=""
+            />
+            <span class="dm_button absolute bottom-[1%] left-[70%] w-auto px-2 group-hover:scale-105 group-hover:shadow-2xl xl:left-[30%] xl:w-[24%]">
+              VIDEO
+            </span>
+          </Link>
+          <Link
+            class="group relative mx-auto block w-9/10"
+            href={laCienciaQueSomos.Link}
+            typeOfLink={laCienciaQueSomos.TypeOfLink}
+            aria-label="Escuchar la entrevista dataMares en La Pandilla">
+            <img
+              sizes="(min-width: 912px) 45vw, 90vw"
+              class="block w-full rounded-md xl:rounded-2xl"
+              width={laCienciaQueSomos.Image.width}
+              height={laCienciaQueSomos.Image.height}
+              srcset={getImageSrcSet(laCienciaQueSomos.Image)}
+              src={getAbsoluteUrl(laCienciaQueSomos.Image.url)}
+              alt=""
+            />
+            <span class="dm_button absolute bottom-[8%] left-[51%] w-auto px-2 group-hover:scale-105 group-hover:shadow-2xl xl:w-[24%]"> VIDEO </span>
+          </Link>
+          <Link
+            class="group relative mx-auto block w-9/10 pb-4"
+            href={podcastRadioUnam.Link}
+            typeOfLink={podcastRadioUnam.TypeOfLink}
+            aria-label="Escuchar la entrevista dataMares en La Pandilla">
+            <img
+              sizes="(min-width: 912px) 45vw, 90vw"
+              class="block w-full rounded-md xl:rounded-2xl"
+              width={podcastRadioUnam.Image.width}
+              height={podcastRadioUnam.Image.height}
+              srcset={getImageSrcSet(podcastRadioUnam.Image)}
+              src={getAbsoluteUrl(podcastRadioUnam.Image.url)}
+              alt=""
+            />
+            <span class="dm_button absolute bottom-[8%] left-[-1%] w-auto px-2 group-hover:scale-105 group-hover:shadow-2xl xl:w-[24%]"> VIDEO </span>
+          </Link>
+          <Link
+            class="group relative mx-auto block w-9/10 pb-4"
+            href={catalinaEnLaPandilla.Link}
+            typeOfLink={catalinaEnLaPandilla.TypeOfLink}
+            aria-label="Escuchar la entrevista dataMares en La Pandilla">
+            <img
+              sizes="(min-width: 912px) 45vw, 90vw"
+              class="block w-full rounded-md xl:rounded-2xl"
+              width={catalinaEnLaPandilla.Image.width}
+              height={catalinaEnLaPandilla.Image.height}
+              srcset={getImageSrcSet(catalinaEnLaPandilla.Image)}
+              src={getAbsoluteUrl(catalinaEnLaPandilla.Image.url)}
+              alt=""
+            />
+            <span class="dm_button absolute bottom-[12%] left-[70%] w-auto px-2 group-hover:scale-105 group-hover:shadow-2xl xl:w-[24%]"> VIDEO </span>
+          </Link>
+        </section>
       </div>
     </div>
   </section>
