@@ -29,6 +29,21 @@ jobs:
       - name: Instalar dependencias
         run: npm ci
 
+      - name: Esperar a que Strapi esté disponible
+        run: |
+          for attempt in 1 2 3 4 5 6; do
+            if curl --fail --silent --show-error --connect-timeout 10 --max-time 20 \
+              --request POST \
+              --header 'Content-Type: application/json' \
+              --data '{"query":"{ __typename }"}' \
+              https://api.sloshy.cloud/graphql; then
+              exit 0
+            fi
+            echo "Strapi no respondió (intento ${attempt}/6); reintentando en 10 segundos..."
+            sleep 10
+          done
+          exit 1
+
       - name: Construir el sitio
         run: npm run build
         env:
