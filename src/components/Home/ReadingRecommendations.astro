@@ -11,7 +11,19 @@ const { reading_recommendations } = Astro.props;
       const image = reading_recommendation.Image;
       const src = getAbsoluteUrl(image.url);
       const srcSet = getImageSrcSet(image);
-      return <img alt={reading_recommendation.Title} sizes="auto" class="h-auto w-full" width={image.width} height={image.height} srcset={srcSet} src={src} />;
+      return (
+        <img
+          alt={reading_recommendation.Title}
+          sizes="auto"
+          class="h-auto w-full"
+          width={image.width}
+          height={image.height}
+          loading="lazy"
+          decoding="async"
+          srcset={srcSet}
+          src={src}
+        />
+      );
     })
   }
 </div>

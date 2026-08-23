@@ -28,9 +28,7 @@ const pathname = Astro.url.pathname;
     <meta name="viewport" content="width=device-width" />
     <link rel="preconnect" href="https://use.typekit.net" />
     <link rel="preconnect" href="https://p.typekit.net" crossorigin />
-    <link rel="preload" href="https://use.typekit.net/kna1chv.css" as="style" />
-    <link rel="stylesheet" href="https://use.typekit.net/kna1chv.css" media="print" onload="this.media='all'" />
-    <noscript><link rel="stylesheet" href="https://use.typekit.net/kna1chv.css" /></noscript>
+    <link rel="stylesheet" href="https://use.typekit.net/kna1chv.css" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" href="/favicon.ico" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=2" />
@@ -59,6 +57,7 @@ const pathname = Astro.url.pathname;
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={imageUrl} />
+    <script defer src="https://analytics.sloshy.cloud/script.js" data-website-id="c555b5ea-c629-477c-9c87-bd4e92746c52" data-performance="true"></script>
     <script defer src="https://analytics.sloshy.cloud/script.js" data-website-id="49b2c0f4-4fb4-4570-8242-079515495797" data-performance="true"></script>
     <script is:inline>
       (() => {

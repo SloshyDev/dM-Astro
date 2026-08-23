@@ -33,14 +33,18 @@ const slides = carrousel.flatMap((banner) => {
 });
 
 const heightRatio = Math.max(...slides.map((slide) => slide.height / slide.width).filter(Number.isFinite));
+const aspectRatio = Number.isFinite(heightRatio) && heightRatio > 0 ? 1 / heightRatio : undefined;
 ---
 
-<!-- Guardamos heightRatio en el data-attribute data-height-ratio -->
-<section class="splide carrouselBanners overflow-hidden rounded-2xl xl:w-[73%]" aria-label="Banners carousel" data-height-ratio={heightRatio || undefined}>
+<section
+  class="splide carrouselBanners overflow-hidden rounded-2xl xl:w-[73%]"
+  aria-label="Banners carousel"
+  data-height-ratio={heightRatio || undefined}
+  style={aspectRatio ? `aspect-ratio: ${aspectRatio}` : undefined}>
   <div class="splide__track">
     <ul class="splide__list">
       {
-        slides.map((slide) => {
+        slides.map((slide, index) => {
           const href = getLink(slide.link, slide.typeOfLink);
           const srcSet = getImageSrcSet(slide);
 
@@ -49,7 +53,10 @@ const heightRatio = Math.max(...slides.map((slide) => slide.height / slide.width
               <Link href={href} class="block h-full" typeOfLink={slide.typeOfLink}>
                 <img
                   class="block h-full w-full rounded-xl object-cover transition-transform duration-300 hover:scale-105"
-                  fetchpriority="high"
+                  width={slide.width}
+                  height={slide.height}
+                  fetchpriority={index === 0 ? "high" : "auto"}
+                  loading={index === 0 ? "eager" : "lazy"}
                   sizes="(min-width: 1600px) 73vw, 100vw"
                   src={slide.url}
                   srcset={srcSet || undefined}

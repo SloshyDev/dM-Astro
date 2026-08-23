@@ -23,6 +23,8 @@ const cardSizes = "(min-width: 912px) calc((100vw - 3rem) / 2), calc(100vw - 2re
           sizes={cardSizes}
           width={featuredItem.Image.width}
           height={featuredItem.Image.height}
+          loading="lazy"
+          decoding="async"
           alt={featuredItem.Title ?? ""}
           class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[.98]"
         />
@@ -42,6 +44,8 @@ const cardSizes = "(min-width: 912px) calc((100vw - 3rem) / 2), calc(100vw - 2re
               sizes={cardSizes}
               width={item.Image.width}
               height={item.Image.height}
+              loading="lazy"
+              decoding="async"
               alt={item.Title ?? ""}
               class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[.98]"
             />

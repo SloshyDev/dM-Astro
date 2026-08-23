@@ -40,7 +40,8 @@ const splides = promos.flatMap((splide) =>
               <Link href={href} class="block" typeOfLink={splide.typeOfLink}>
                 <img
                   class="rounded-xl transition-transform duration-300 hover:scale-[.95]"
-                  fetchpriority="high"
+                  loading="lazy"
+                  decoding="async"
                   width={splide.width}
                   height={splide.height}
                   sizes="(min-width: 1600px) min(608px, calc(25vw - 2rem)), (min-width: 901px) calc(25vw - 2rem), calc(100vw - 2rem)"
