@@ -1,0 +1,19 @@
+---
+import { getAbsoluteUrl, getImageSrcSet } from "../../utils/media";
+import Link from "../Link.astro";
+
+const { interview, className } = Astro.props;
+---
+
+<Link class={`group relative mx-auto block w-9/10 ${className}`} href={interview.Link} typeOfLink={interview.TypeOfLink} aria-label={interview.Title}>
+  <img
+    sizes="(min-width: 912px) 45vw, 90vw"
+    class="block w-full rounded-md xl:rounded-2xl"
+    width={interview.Image.width}
+    height={interview.Image.height}
+    srcset={getImageSrcSet(interview.Image)}
+    src={getAbsoluteUrl(interview.Image.url)}
+    alt=""
+  />
+  <slot />
+</Link>

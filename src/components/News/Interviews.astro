@@ -1,0 +1,97 @@
+---
+import { getAbsoluteUrl, getImageSrcSet } from "../../utils/media";
+import Link from "../Link.astro";
+import BasicInterview from "./BasicInterview.astro";
+
+const { news } = Astro.props;
+
+function findInterview(name) {
+  const interview = news.find((item) => item.Title === name);
+
+  return interview;
+}
+
+const datamaresEnLaPandilla = findInterview("dataMares en LA PANDILLA");
+const radioChapingoEntrevista = findInterview("Entrevista Radio Chapingo");
+const habitareCreatividad = findInterview("HABITARE - CREATIVIDAD EN UNA INFOGRAFIA");
+const losNinosPreguntan = findInterview("LOS NIÑOS PREGUNTAN");
+const dataMaresEnLaUnam = findInterview("DATAMARES EN LA UNAM");
+const laCienciaQueSomos = findInterview("LA CIENCIA QUE SOMOS");
+const podcastRadioUnam = findInterview("PODCAST RADIO UNAM");
+const catalinaEnLaPandilla = findInterview("CATALINA LOPEZ SAGASTEGUI EN LA PANDILLA ");
+const referente = findInterview("REFERENTE");
+const hablameDeCiencia = findInterview("HÁBLAME DE CIENCIA");
+---
+
+<section class="newsVaultBox space-y-6 overflow-y-scroll xl:mr-4 xl:max-h-[45vw]">
+  <BasicInterview interview={datamaresEnLaPandilla}>
+    <span class="dm_button absolute bottom-[8%] left-[34%] w-auto px-2 group-hover:scale-105 group-hover:shadow-2xl xl:w-[24%]"> LISTEN </span>
+  </BasicInterview>
+  <BasicInterview className="pb-6" interview={radioChapingoEntrevista}>
+    <span class="dm_button absolute bottom-[-8%] left-[1%] w-auto px-2 group-hover:scale-105 group-hover:shadow-2xl xl:left-[0%] xl:w-[24%]"> LISTEN </span>
+  </BasicInterview>
+  <BasicInterview interview={habitareCreatividad}>
+    <span class="dm_button absolute bottom-[8%] left-[70%] w-auto px-2 group-hover:scale-105 group-hover:shadow-2xl xl:w-[24%]"> LISTEN </span>
+  </BasicInterview>
+  <BasicInterview interview={losNinosPreguntan}>
+    <span class="dm_button absolute bottom-[-3%] left-[70%] w-auto px-2 group-hover:scale-105 group-hover:shadow-2xl xl:left-[30%] xl:w-[24%]"> VIDEO </span>
+  </BasicInterview>
+  <BasicInterview interview={dataMaresEnLaUnam}>
+    <span class="dm_button absolute bottom-[1%] left-[70%] w-auto px-2 group-hover:scale-105 group-hover:shadow-2xl xl:left-[30%] xl:w-[24%]"> VIDEO </span>
+  </BasicInterview>
+  <BasicInterview interview={laCienciaQueSomos}>
+    <span class="dm_button absolute bottom-[8%] left-[51%] w-auto px-2 group-hover:scale-105 group-hover:shadow-2xl xl:w-[24%]"> VIDEO </span>
+  </BasicInterview>
+  <BasicInterview className="pb-6" interview={podcastRadioUnam}>
+    <span class="dm_button absolute bottom-[8%] left-[-1%] w-auto px-2 group-hover:scale-105 group-hover:shadow-2xl xl:w-[24%]"> VIDEO </span>
+  </BasicInterview>
+  <BasicInterview interview={catalinaEnLaPandilla}>
+    <span class="dm_button absolute bottom-[8%] left-[70%] w-auto px-2 group-hover:scale-105 group-hover:shadow-2xl xl:w-[24%]"> VIDEO </span>
+  </BasicInterview>
+  <div class="relative mx-auto block w-9/10">
+    <h2
+      class="font-myriad-condensed 3xl:text-3xl 3xl:px-40 absolute bottom-[75%] px-4 text-center text-lg leading-none text-white xl:bottom-[60%] xl:px-26 xl:text-[1.4vw]">
+      <span class="3xl:text-6xl text-xl font-black xl:text-[2.2vw]">dataMares en LA PANDILLA</span><br /> Nacho Casas and his gang interview the dataMares team to
+      talk about the marine world.
+    </h2>
+    <img
+      class="h-80 w-full rounded-md object-cover object-center xl:h-auto xl:rounded-2xl"
+      src="https://api.sloshy.cloud/uploads/Fondo_DM_La_Pandilla_c80a6cea18.svg"
+      alt=""
+    />
+    <img
+      class="3xl:w-90 absolute bottom-[38%] left-[5%] w-60 xl:bottom-[10%] xl:left-[1%] xl:w-[15vw]"
+      src="https://api.sloshy.cloud/uploads/Recurso_2_2x_bae704ade6.webp"
+      alt=""
+    />
+    <img
+      class="3xl:w-100 absolute bottom-[2%] left-[5%] w-66 xl:bottom-[10%] xl:left-[50%] xl:w-[16.6vw]"
+      src="https://api.sloshy.cloud/uploads/Recurso_5_2x_d6eb4cdbce.webp"
+      alt=""
+    />
+    <button
+      id="AudioCatalina"
+      class="dm_button absolute bottom-[42%] left-[43%] w-auto cursor-pointer px-2 hover:scale-[.90] hover:shadow-2xl xl:bottom-[12%] xl:left-[19%] xl:w-[24%] xl:scale-[.75]">
+      LISTEN
+    </button>
+    <button
+      id="AudioLuisMiguel"
+      class="dm_button absolute bottom-[6%] left-[42%] w-auto cursor-pointer px-2 hover:scale-[.90] hover:shadow-2xl xl:bottom-[12%] xl:left-[67%] xl:w-[24%] xl:scale-[.75]">
+      LISTEN
+    </button>
+  </div>
+  <div class="mx-auto flex w-9/10 items-center gap-4">
+    <button class="group relative mx-auto block w-9/10 cursor-pointer pb-4 transition-transform hover:scale-105" aria-label="Ver video de Referente">
+      <img
+        sizes="(min-width: 912px) 45vw, 90vw"
+        class="block w-full rounded-md xl:rounded-2xl"
+        width={referente.Image.width}
+        height={referente.Image.height}
+        srcset={getImageSrcSet(referente.Image)}
+        src={getAbsoluteUrl(referente.Image.url)}
+        alt=""
+      />
+    </button>
+    <BasicInterview className="pb-4 transition-transform hover:scale-105" interview={hablameDeCiencia} />
+  </div>
+</section>

@@ -13,12 +13,12 @@ query NewsQuery($locale: I18NLocaleCode) {
       }
       TypeOfLink
     }
-    News_vault {
+    News_vault(pagination: { limit: 100 }) {
       Tittle
       Source
       Link
     }
-    News {
+    News(pagination: { limit: 20 }) {
       Title
       Link
       TypeOfLink
