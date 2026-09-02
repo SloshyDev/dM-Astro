@@ -6,24 +6,36 @@ const { reports } = Astro.props;
 console.log(reports.data_contents);
 ---
 
-<section class="border-teal-mid mx-auto w-[93.5%] rounded-2xl border-10 bg-zinc-200 p-4">
-  <h2 class="font-myriad-condensed text-center text-[2vw] leading-none font-semibold text-zinc-700">
+<style>
+  .splide__arrow {
+    stroke: #dad248 !important;
+  }
+</style>
+
+<section class="border-teal-mid mx-auto mb-8 w-[93.5%] rounded-2xl border-10 bg-zinc-300 p-4">
+  <h2 class="font-myriad-condensed text-center text-lg leading-none font-semibold text-zinc-700 xl:text-[2vw]">
     EXPLORE OUR STUDIES AND TECHNICAL REPORTS ON <br />
-    <span class="text-[3vw]">BIODIVERSITY AND FISHERIES</span>
+    <span class="text-3xl xl:text-[3vw]">BIODIVERSITY AND FISHERIES</span>
   </h2>
-  <p class="mx-auto my-4 w-4/5 text-center text-[1.2vw] leading-none text-zinc-700">
+  <p class="text-md mx-auto my-4 w-11/12 text-center leading-none text-zinc-700 xl:w-4/5 xl:text-[1.2vw]">
     Sharing advances and findings from scientific work is one of the Gulf of California Marine Program’s and its collaborators' commitments. Dive into the
     digital library and discover what scientists are uncovering through their research projects.
   </p>
 
-  <section id="" class="carrouselReports splide my-12" aria-label="Splide Basic HTML Example">
-    <div class="splide__track mx-12">
+  <section id="" class="carrouselReports splide mx-auto w-11/12" aria-label="Splide Basic HTML Example">
+    <div class="splide__track xl:mx-18">
       <ul class="splide__list">
         {
           reports.data_contents.map((report) => {
             return (
-              <li class="splide__slide">
-                <img class="mx-auto rounded-2xl" src={getAbsoluteUrl(report.Poster.url)} alt="" />
+              <li class="splide__slide py-6">
+                <a href={`/reports/${report.Slug}/`} aria-label={`Read report: ${report.Title}`}>
+                  <img
+                    class="mx-auto w-120 rounded-2xl transition-all duration-300 hover:scale-[.95] hover:shadow-xl xl:w-70"
+                    src={getAbsoluteUrl(report.Poster.url)}
+                    alt={report.Title}
+                  />
+                </a>
               </li>
             );
           })
@@ -46,7 +58,16 @@ console.log(reports.data_contents);
       new Splide(carrouselBanners, {
         type: "loop",
         pauseOnHover: true,
+        breakpoints: {
+          400: {
+            perPage: 1,
+          },
+          700: {
+            perPage: 4,
+          },
+        },
         pagination: false,
+        gap: "1rem",
         perPage: 4,
         autoplay: true,
         arrowPath: "M8 8 17 20 8 32M22 8l9 12-9 12",

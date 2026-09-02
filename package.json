@@ -14,11 +14,14 @@
   "dependencies": {
     "@astrojs/node": "^11.1.5",
     "@astrojs/react": "^6.0.1",
+    "@heroicons/react": "^2.2.0",
     "@splidejs/splide": "^4.1.4",
     "@tailwindcss/vite": "^4.3.1",
     "astro": "^7.0.2",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
+    "react-pageflip": "^2.0.3",
+    "react-pdf": "^10.5.0",
     "tailwindcss": "^4.3.1"
   },
   "devDependencies": {

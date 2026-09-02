@@ -1,0 +1,36 @@
+---
+export const prerender = false;
+
+import { getReportBySlug } from "../../api/reports/getReportData";
+import ReportViewer from "../../components/ReportViewer.jsx";
+import Layout from "../../layouts/Layout.astro";
+import { getAbsoluteUrl } from "../../utils/media";
+
+const slug = Astro.params.slug;
+const report = slug ? await getReportBySlug(slug) : null;
+
+if (!report || report.Type !== "Report" || !report.PDF?.url) {
+  return new Response(null, { status: 404, statusText: "Not Found" });
+}
+
+const pdfUrl = getAbsoluteUrl(report.PDF.url);
+const sharingImage = report.SharingContent?.url ? getAbsoluteUrl(report.SharingContent.url) : undefined;
+const description = `Read the dataMares report: ${report.Title}.`;
+---
+
+<Layout
+  title={`${report.Title} | dataMares`}
+  description={description}
+  image={sharingImage}
+  imageAlt={`Cover image for ${report.Title}`}
+  imageWidth={report.SharingContent?.width}
+  imageHeight={report.SharingContent?.height}
+  type="article">
+  <section class="mx-auto w-full px-4 sm:px-6">
+    <h1 class="text-green font-myriad-condensed mt-8 text-center text-3xl leading-none font-bold sm:text-4xl">{report.Title}</h1>
+
+    <div class="bg-white p-3 sm:p-2 dark:bg-zinc-900">
+      <ReportViewer client:only="react" pdfUrl={pdfUrl} title={report.Title} downloadUrl={`/reports/download/${report.Slug}/`} />
+    </div>
+  </section>
+</Layout>

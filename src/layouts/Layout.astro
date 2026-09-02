@@ -13,7 +13,7 @@ const defaultDescription =
 const defaultImage = "/Logo.svg";
 const strapiOrigin = import.meta.env.PUBLIC_STRAPI_URL?.replace(/\/$/, "");
 
-const { title = defaultTitle, description = defaultDescription, image = defaultImage, type = "website" } = Astro.props;
+const { title = defaultTitle, description = defaultDescription, image = defaultImage, imageAlt = "dataMares logo", imageWidth, imageHeight, type = "website" } = Astro.props;
 
 const lang = Astro.currentLocale === "es" ? "es" : "en";
 const canonicalUrl = new URL(Astro.url.pathname, siteUrl).toString();
@@ -50,13 +50,17 @@ const pathname = Astro.url.pathname;
     {strapiOrigin && <link rel="preconnect" href={strapiOrigin} crossorigin="anonymous" />}
     <meta property="og:url" content={canonicalUrl} />
     <meta property="og:image" content={imageUrl} />
-    <meta property="og:image:alt" content="dataMares logo" />
+    <meta property="og:image:secure_url" content={imageUrl} />
+    {imageWidth && <meta property="og:image:width" content={imageWidth} />}
+    {imageHeight && <meta property="og:image:height" content={imageHeight} />}
+    <meta property="og:image:alt" content={imageAlt} />
     <meta property="og:locale" content={lang === "es" ? "es_MX" : "en_US"} />
 
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={imageUrl} />
+    <meta name="twitter:image:alt" content={imageAlt} />
     <script defer src="https://analytics.sloshy.cloud/script.js" data-website-id="49b2c0f4-4fb4-4570-8242-079515495797" data-performance="true"></script>
     <script is:inline>
       (() => {

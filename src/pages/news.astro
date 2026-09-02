@@ -3,9 +3,9 @@ export const prerender = false;
 
 import { getNewsData } from "../api/news/getAboutData";
 import Banners from "../components/News/Banners.astro";
+import CarrouselReports from "../components/News/CarrouselReports.astro";
 import Interviews from "../components/News/Interviews.astro";
 import NewsVault from "../components/News/NewsVault.astro";
-import Reports from "../components/News/Reports.astro";
 import Link from "../components/Utils/Link.astro";
 import Layout from "../layouts/Layout.astro";
 import { getAbsoluteUrl, getImageSrcSet, getLink } from "../utils/media";
@@ -84,5 +84,5 @@ const dataPage = news.find((item) => item.Title === "DATA");
     </div>
   </section>
 
-  <Reports reports={reports} />
+  <CarrouselReports reports={reports} />
 </Layout>

@@ -1,0 +1,20 @@
+query ReportBySlug($slug: String!) {
+  dataContents(
+    filters: { Slug: { eq: $slug }, Type: { eq: "Report" } }
+    pagination: { limit: 1 }
+  ) {
+    documentId
+    Title
+    Slug
+    Type
+    PDF {
+      url
+    }
+    SharingContent {
+      url
+      width
+      height
+      size
+    }
+  }
+}

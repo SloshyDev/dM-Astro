@@ -47,7 +47,11 @@ button.dm_button {
 }
 
 .splide__arrow {
-  @apply pointer-events-auto w-18 cursor-pointer fill-none stroke-white/65 stroke-[.3rem];
+  @apply pointer-events-auto w-18 cursor-pointer fill-none stroke-white/75 stroke-[.3rem];
+}
+
+.carrouselReports.splide__arrow {
+  @apply stroke-natura-mid/75 pointer-events-auto w-18 cursor-pointer fill-none stroke-[.3rem];
 }
 
 .splide__arrow--prev {
