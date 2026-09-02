@@ -15,7 +15,7 @@ if (!report || report.Type !== "Report" || !report.PDF?.url) {
 
 const pdfUrl = getAbsoluteUrl(report.PDF.url);
 const sharingImage = report.SharingContent?.url ? getAbsoluteUrl(report.SharingContent.url) : undefined;
-const description = `${report.Caption}.`;
+const description = report.Caption;
 ---
 
 <Layout
