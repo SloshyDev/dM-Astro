@@ -6,14 +6,22 @@ import ViewPort from "../components/ViewPort";
 import "../styles/global.css";
 import BackToTop from "../components/Utils/BackToTop.astro";
 
-const siteUrl = "https://datamares.org";
+const siteUrl = "https://sloshy.cloud";
 const defaultTitle = "dataMares | WORK • PUBLISH • RELEASE";
 const defaultDescription =
   "dataMares facilitates access to scientific knowledge and data to promote transparency, education, and evidence-based conservation in Mexico's ecosystems.";
 const defaultImage = "/Logo.svg";
 const strapiOrigin = import.meta.env.PUBLIC_STRAPI_URL?.replace(/\/$/, "");
 
-const { title = defaultTitle, description = defaultDescription, image = defaultImage, imageAlt = "dataMares logo", imageWidth, imageHeight, type = "website" } = Astro.props;
+const {
+  title = defaultTitle,
+  description = defaultDescription,
+  image = defaultImage,
+  imageAlt = "dataMares logo",
+  imageWidth,
+  imageHeight,
+  type = "website",
+} = Astro.props;
 
 const lang = Astro.currentLocale === "es" ? "es" : "en";
 const canonicalUrl = new URL(Astro.url.pathname, siteUrl).toString();
