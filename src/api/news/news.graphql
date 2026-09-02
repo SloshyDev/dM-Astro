@@ -30,5 +30,17 @@ query NewsQuery($locale: I18NLocaleCode) {
         mime
       }
     }
+    Reports {
+      data_contents {
+        Poster {
+          url
+          width
+          formats
+          height
+        }
+        Title
+        Slug
+      }
+    }
   }
 }

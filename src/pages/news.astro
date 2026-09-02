@@ -2,10 +2,11 @@
 export const prerender = false;
 
 import { getNewsData } from "../api/news/getAboutData";
-import Link from "../components/Link.astro";
 import Banners from "../components/News/Banners.astro";
 import Interviews from "../components/News/Interviews.astro";
 import NewsVault from "../components/News/NewsVault.astro";
+import Reports from "../components/News/Reports.astro";
+import Link from "../components/Utils/Link.astro";
 import Layout from "../layouts/Layout.astro";
 import { getAbsoluteUrl, getImageSrcSet, getLink } from "../utils/media";
 
@@ -15,6 +16,8 @@ const banners = newsGallery.Banners;
 const news_vault = newsGallery.News_vault;
 
 const news = newsGallery.News;
+
+const reports = newsGallery.Reports;
 
 const sustainabilityDispatch = news.find((item) => item.Title === "SUSTAINABILITY DISPATCH");
 const marineProsperityAreas = news.find((item) => item.Title === "NEW SECTION MARINE PROSPERITY AREAS");
@@ -80,4 +83,6 @@ const dataPage = news.find((item) => item.Title === "DATA");
       </div>
     </div>
   </section>
+
+  <Reports reports={reports} />
 </Layout>

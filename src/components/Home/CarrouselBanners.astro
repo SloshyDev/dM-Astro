@@ -1,7 +1,7 @@
 ---
 import "@splidejs/splide/css/core";
-import Link from "../Link.astro";
 import { getAbsoluteUrl, getImageSrcSet, getLink } from "../../utils/media";
+import Link from "../Utils/Link.astro";
 
 const { carrousel = [] } = Astro.props;
 const slides = carrousel.flatMap((banner) => {
