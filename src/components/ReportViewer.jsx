@@ -81,11 +81,11 @@ export default function ReportViewer({ pdfUrl, title, downloadUrl }) {
   return (
     <div ref={viewerRef} className="report-viewer mx-auto w-full">
       {pages > 0 && (
-        <div className="mb-4 flex flex-wrap items-center justify-center gap-3 text-teal-dark sm:gap-5">
+        <div className="mb-4 flex max-w-6xl flex-wrap items-center justify-center gap-3 text-teal-dark sm:mx-auto sm:grid sm:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] sm:gap-5">
           <button
             type="button"
             aria-label="Spanish version"
-            className="border-teal-mid bg-white text-teal-dark hover:bg-teal-mid inline-flex items-center gap-2 rounded-full border-2 px-3 py-1.5 text-sm font-bold shadow-sm transition hover:text-white dark:border-natura-mid dark:bg-teal-dark dark:text-white dark:hover:bg-teal-mid">
+            className="border-teal-mid bg-white text-teal-dark hover:bg-teal-mid inline-flex items-center gap-2 rounded-full border-2 px-3 py-1.5 text-sm font-bold shadow-sm transition hover:text-white dark:border-natura-mid dark:bg-teal-dark dark:text-white dark:hover:bg-teal-mid sm:justify-self-end">
             <img src="/Flags/MX.svg" alt="" className="size-6 rounded-full object-cover" />
             Spanish version
           </button>
@@ -114,7 +114,7 @@ export default function ReportViewer({ pdfUrl, title, downloadUrl }) {
             </button>
           </div>
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 sm:justify-self-start">
             <ul className="flex items-center gap-2" aria-label="Share this report">
               <FacebookIcon size="size-4" link={facebookShareUrl} />
               <TwitterIcon size="size-4" link={twitterShareUrl} />
