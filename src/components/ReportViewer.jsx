@@ -5,6 +5,8 @@ import "react-pdf/dist/Page/AnnotationLayer.css";
 import "react-pdf/dist/Page/TextLayer.css";
 import { ChevronDoubleLeftIcon, ChevronDoubleRightIcon } from "@heroicons/react/16/solid";
 import { ArrowDownTrayIcon } from "@heroicons/react/24/outline";
+import FacebookIcon from "../Assets/FacebookIcon";
+import TwitterIcon from "../Assets/TwitterIcon";
 
 pdfjs.GlobalWorkerOptions.workerSrc = new URL("pdfjs-dist/build/pdf.worker.min.mjs", import.meta.url).toString();
 
@@ -29,6 +31,9 @@ export default function ReportViewer({ pdfUrl, title, downloadUrl }) {
   const [currentPage, setCurrentPage] = useState(0);
   const [error, setError] = useState(false);
   const [viewerMetrics, setViewerMetrics] = useState({ pageWidth: PAGE_WIDTH, pageHeight: PAGE_HEIGHT, layoutMode: "spread" });
+  const shareUrl = typeof window === "undefined" ? "" : window.location.href;
+  const facebookShareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`;
+  const twitterShareUrl = `https://twitter.com/intent/tweet?url=${encodeURIComponent(shareUrl)}&text=${encodeURIComponent(title)}`;
 
   useEffect(() => {
     const viewer = viewerRef.current;
@@ -109,12 +114,18 @@ export default function ReportViewer({ pdfUrl, title, downloadUrl }) {
             </button>
           </div>
 
-          <a
-            href={downloadUrl}
-            className="bg-teal-mid hover:bg-teal inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-bold text-white shadow-sm transition-colors">
-            <ArrowDownTrayIcon className="size-5" aria-hidden="true" />
-            Download PDF
-          </a>
+          <div className="flex items-center gap-2">
+            <ul className="flex items-center gap-2" aria-label="Share this report">
+              <FacebookIcon size="size-4" link={facebookShareUrl} />
+              <TwitterIcon size="size-4" link={twitterShareUrl} />
+            </ul>
+            <a
+              href={downloadUrl}
+              className="bg-teal-mid hover:bg-teal inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-bold text-white shadow-sm transition-colors">
+              <ArrowDownTrayIcon className="size-5" aria-hidden="true" />
+              Download PDF
+            </a>
+          </div>
         </div>
       )}
 
