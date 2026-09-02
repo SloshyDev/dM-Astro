@@ -1,0 +1,53 @@
+---
+const { id } = Astro.props;
+---
+
+<main id={`modal-${id}`} role="dialog" aria-modal="true" class="fixed inset-0 z-50 hidden min-h-screen overflow-y-auto bg-zinc-900/80 backdrop-blur-md">
+  <button type="button" data-modal-close class="dm_button absolute top-10 right-10 w-20 cursor-pointer" aria-label="Cerrar modal"> ESC </button>
+  <section class="flex h-full w-full items-center justify-center">
+    <slot />
+  </section>
+</main>
+
+<script>
+  function closeOpenModals() {
+    const openModals = document.querySelectorAll<HTMLElement>('[role="dialog"]:not(.hidden)');
+
+    if (openModals.length === 0) return;
+
+    openModals.forEach((modal) => {
+      modal.querySelectorAll<HTMLMediaElement>("audio, video").forEach((media) => media.pause());
+      modal.classList.add("hidden");
+    });
+    document.querySelectorAll<HTMLElement>("[data-modal-open]").forEach((trigger) => trigger.setAttribute("aria-expanded", "false"));
+    document.body.classList.remove("overflow-hidden");
+  }
+
+  document.addEventListener("click", (event) => {
+    const closeButton = (event.target as Element).closest<HTMLElement>("[data-modal-close]");
+
+    if (closeButton) {
+      closeOpenModals();
+      return;
+    }
+
+    const trigger = (event.target as Element).closest<HTMLElement>("[data-modal-open]");
+
+    if (!trigger) return;
+
+    const modalId = trigger.dataset.modalOpen;
+    const modal = modalId ? document.getElementById(`modal-${modalId}`) : null;
+
+    if (!modal) return;
+
+    modal.classList.remove("hidden");
+    trigger.setAttribute("aria-expanded", "true");
+    document.body.classList.add("overflow-hidden");
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key !== "Escape") return;
+
+    closeOpenModals();
+  });
+</script>

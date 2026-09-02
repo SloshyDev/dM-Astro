@@ -1,6 +1,8 @@
 ---
 import { getAbsoluteUrl, getImageSrcSet } from "../../utils/media";
-import Link from "../Link.astro";
+import AudioPlayer from "../AudioPlayer.astro";
+import Modal from "../Modal.astro";
+import VideoPlayer from "../VideoPlayer.astro";
 import BasicInterview from "./BasicInterview.astro";
 
 const { news } = Astro.props;
@@ -23,7 +25,7 @@ const referente = findInterview("REFERENTE");
 const hablameDeCiencia = findInterview("HÁBLAME DE CIENCIA");
 ---
 
-<section class="newsVaultBox space-y-6 overflow-y-scroll xl:mr-4 xl:max-h-[45vw]">
+<section class="newsVaultBox 3xl:max-h-270 space-y-6 overflow-y-scroll xl:mr-4 xl:max-h-[45vw]">
   <BasicInterview interview={datamaresEnLaPandilla}>
     <span class="dm_button absolute bottom-[8%] left-[34%] w-auto px-2 group-hover:scale-105 group-hover:shadow-2xl xl:w-[24%]"> LISTEN </span>
   </BasicInterview>
@@ -60,28 +62,39 @@ const hablameDeCiencia = findInterview("HÁBLAME DE CIENCIA");
       alt=""
     />
     <img
-      class="3xl:w-90 absolute bottom-[38%] left-[5%] w-60 xl:bottom-[10%] xl:left-[1%] xl:w-[15vw]"
+      class="3xl:w-90 absolute bottom-[38%] left-[5%] w-60 xl:bottom-[6%] xl:left-[1%] xl:w-[15vw]"
       src="https://api.sloshy.cloud/uploads/Recurso_2_2x_bae704ade6.webp"
       alt=""
     />
     <img
-      class="3xl:w-100 absolute bottom-[2%] left-[5%] w-66 xl:bottom-[10%] xl:left-[50%] xl:w-[16.6vw]"
+      class="3xl:w-100 absolute bottom-[2%] left-[5%] w-66 xl:bottom-[6%] xl:left-[50%] xl:w-[16.6vw]"
       src="https://api.sloshy.cloud/uploads/Recurso_5_2x_d6eb4cdbce.webp"
       alt=""
     />
     <button
-      id="AudioCatalina"
-      class="dm_button absolute bottom-[42%] left-[43%] w-auto cursor-pointer px-2 hover:scale-[.90] hover:shadow-2xl xl:bottom-[12%] xl:left-[19%] xl:w-[24%] xl:scale-[.75]">
+      type="button"
+      data-modal-open="AudioCatalina"
+      aria-controls="modal-AudioCatalina"
+      aria-expanded="false"
+      class="dm_button absolute bottom-[42%] left-[43%] w-auto cursor-pointer px-2 hover:scale-[.90] hover:shadow-2xl xl:bottom-[10%] xl:left-[19%] xl:w-[24%] xl:scale-[.75]">
       LISTEN
     </button>
+
     <button
-      id="AudioLuisMiguel"
-      class="dm_button absolute bottom-[6%] left-[42%] w-auto cursor-pointer px-2 hover:scale-[.90] hover:shadow-2xl xl:bottom-[12%] xl:left-[67%] xl:w-[24%] xl:scale-[.75]">
+      type="button"
+      data-modal-open="AudioLuisMiguel"
+      aria-controls="modal-AudioLuisMiguel"
+      class="dm_button absolute bottom-[6%] left-[42%] w-auto cursor-pointer px-2 hover:scale-[.90] hover:shadow-2xl xl:bottom-[10%] xl:left-[67%] xl:w-[24%] xl:scale-[.75]">
       LISTEN
     </button>
   </div>
   <div class="mx-auto flex w-9/10 items-center gap-4">
-    <button class="group relative mx-auto block w-9/10 cursor-pointer pb-4 transition-transform hover:scale-105" aria-label="Ver video de Referente">
+    <button
+      type="button"
+      data-modal-open="VideoReferente"
+      aria-controls="modal-VideoReferente"
+      class="group relative mx-auto block w-9/10 cursor-pointer pb-4 transition-transform hover:scale-105"
+      aria-label="Ver video de Referente">
       <img
         sizes="(min-width: 912px) 45vw, 90vw"
         class="block w-full rounded-md xl:rounded-2xl"
@@ -95,3 +108,29 @@ const hablameDeCiencia = findInterview("HÁBLAME DE CIENCIA");
     <BasicInterview className="pb-4 transition-transform hover:scale-105" interview={hablameDeCiencia} />
   </div>
 </section>
+
+<Modal id="AudioCatalina">
+  <AudioPlayer
+    title="Catalina"
+    eyebrow="INTERVIEW"
+    subtitle="López-Sagástegui · Director"
+    image="https://api.sloshy.cloud/uploads/Recurso_1_62e83afec3.webp"
+    audioSource="https://api.sloshy.cloud/uploads/Audio_Catalina_1_6de1b846dc.mp3"
+    backgroundImage="https://api.sloshy.cloud/uploads/Fondo_DM_La_Pandilla_c80a6cea18.svg"
+  />
+</Modal>
+
+<Modal id="AudioLuisMiguel">
+  <AudioPlayer
+    title="LUIS MIGUEL"
+    eyebrow="INTERVIEW"
+    subtitle="De la Cruz · Art Director"
+    image="https://api.sloshy.cloud/uploads/Recurso_2_ea6269976f.webp"
+    audioSource="https://api.sloshy.cloud/uploads/Audio_Luis_Miguel_b0150fd2bb.mp3"
+    backgroundImage="https://api.sloshy.cloud/uploads/Fondo_DM_La_Pandilla_c80a6cea18.svg"
+  />
+</Modal>
+
+<Modal id="VideoReferente">
+  <VideoPlayer title="Referente" videoSource="https://api.sloshy.cloud/uploads/Solorzano_Entrevista_CLS_26_enero_2023_a6d0494320.mp4" />
+</Modal>

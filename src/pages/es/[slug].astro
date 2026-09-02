@@ -1,24 +1,17 @@
 ---
+export const prerender = false;
+
 import SimpleMenuPage from "../../components/SimpleMenuPage.astro";
 import { getMenuPages } from "../../components/Header/menuData";
 import { getAboutData } from "../../api/about_us/getAboutData";
 import Layout from "../../layouts/Layout.astro";
 import { getAbsoluteUrl } from "../../utils/media";
 
-export function getStaticPaths() {
-  const paths = [];
+const page = getMenuPages("es").find((entry) => entry.slug === Astro.params.slug);
 
-  for (const page of getMenuPages("es")) {
-    paths.push({
-      params: { slug: page.slug },
-      props: { page },
-    });
-  }
-
-  return paths;
+if (!page) {
+  return new Response(null, { status: 404, statusText: "Not Found" });
 }
-
-const { page } = Astro.props;
 const isAboutPage = page.id === "about";
 const aboutData = isAboutPage ? await getAboutData("es") : null;
 const title = isAboutPage ? "Sobre dataMares | WORK • PUBLISH • RELEASE" : `${page.label} | dataMares`;

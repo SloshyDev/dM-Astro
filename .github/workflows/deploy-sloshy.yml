@@ -72,9 +72,13 @@ jobs:
           RELEASE_DIR="/var/www/sloshy.cloud/releases/${GITHUB_SHA}"
           SSH="ssh -i ~/.ssh/sloshy_deploy_key -o StrictHostKeyChecking=yes"
           $SSH "$SLOSHY_USER@$SLOSHY_HOST" "mkdir -p '$RELEASE_DIR'"
-          rsync -az --delete -e "$SSH" dist/ "$SLOSHY_USER@$SLOSHY_HOST:$RELEASE_DIR/"
+          rsync -az --delete -e "$SSH" dist/ "$SLOSHY_USER@$SLOSHY_HOST:$RELEASE_DIR/dist/"
+          rsync -az -e "$SSH" package.json package-lock.json "$SLOSHY_USER@$SLOSHY_HOST:$RELEASE_DIR/"
           $SSH "$SLOSHY_USER@$SLOSHY_HOST" "
             set -eu
-            test -f '$RELEASE_DIR/index.html'
+            cd '$RELEASE_DIR'
+            npm ci --omit=dev
+            test -f '$RELEASE_DIR/dist/server/entry.mjs'
             ln -sfn 'releases/${GITHUB_SHA}' /var/www/sloshy.cloud/current
+            sudo systemctl restart sloshy-astro
           "

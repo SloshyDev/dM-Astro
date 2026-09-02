@@ -1,0 +1,18 @@
+[Unit]
+Description=sloshy.cloud Astro SSR
+After=network.target
+
+[Service]
+Type=simple
+User=__SLOSHY_USER__
+WorkingDirectory=/var/www/sloshy.cloud/current
+Environment=HOST=127.0.0.1
+Environment=PORT=4321
+Environment=STRAPI_URL=https://api.sloshy.cloud
+Environment=PUBLIC_STRAPI_URL=https://api.sloshy.cloud
+ExecStart=/usr/bin/node ./dist/server/entry.mjs
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

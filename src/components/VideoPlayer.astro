@@ -1,0 +1,26 @@
+---
+interface Props {
+  videoSource: string;
+  title: string;
+  frameImage?: string;
+  poster?: string;
+}
+
+const { videoSource, title, poster, frameImage = "https://api.sloshy.cloud/uploads/Compu_Dm_a27192a403.svg" } = Astro.props;
+---
+
+<section class="mx-auto w-[min(92vw,58rem)]" aria-label={title}>
+  <div class="relative aspect-277/201 w-full">
+    <img class="absolute inset-0 z-0 h-full w-full select-none" src={frameImage} alt="" aria-hidden="true" />
+    <video
+      class="absolute top-[9%] left-[12%] z-10 h-[59%] w-[76%] rounded-[7%] bg-black object-cover"
+      controls
+      preload="metadata"
+      playsinline
+      poster={poster}
+      aria-label={title}>
+      <source src={videoSource} />
+      Tu navegador no permite reproducir este video.
+    </video>
+  </div>
+</section>

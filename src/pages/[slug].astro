@@ -1,22 +1,15 @@
 ---
+export const prerender = false;
+
 import SimpleMenuPage from "../components/SimpleMenuPage.astro";
 import { getMenuPages } from "../components/Header/menuData";
 import Layout from "../layouts/Layout.astro";
 
-export function getStaticPaths() {
-  const paths = [];
+const page = getMenuPages("en").find((entry) => entry.slug === Astro.params.slug);
 
-  for (const page of getMenuPages("en")) {
-    paths.push({
-      params: { slug: page.slug },
-      props: { page },
-    });
-  }
-
-  return paths;
+if (!page) {
+  return new Response(null, { status: 404, statusText: "Not Found" });
 }
-
-const { page } = Astro.props;
 ---
 
 <Layout title={`${page.label} | dataMares`}>

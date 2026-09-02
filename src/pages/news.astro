@@ -1,4 +1,6 @@
 ---
+export const prerender = false;
+
 import { getNewsData } from "../api/news/getAboutData";
 import Link from "../components/Link.astro";
 import Banners from "../components/News/Banners.astro";
@@ -16,6 +18,7 @@ const news = newsGallery.News;
 
 const sustainabilityDispatch = news.find((item) => item.Title === "SUSTAINABILITY DISPATCH");
 const marineProsperityAreas = news.find((item) => item.Title === "NEW SECTION MARINE PROSPERITY AREAS");
+const dataPage = news.find((item) => item.Title === "DATA");
 ---
 
 <Layout>
@@ -53,9 +56,27 @@ const marineProsperityAreas = news.find((item) => item.Title === "NEW SECTION MA
     <div class="bg-teal-mid mx-4 hidden min-h-screen w-5 rounded-b-full xl:block"></div>
     <div class="min-h-screen w-full space-y-6 pb-6 xl:py-12">
       <div
-        class="3xl:min-h-266 bg-teal-dark border-teal-mid 3xl:border-12 mx-3 flex min-h-100 flex-col items-center overflow-hidden rounded-2xl border-6 py-4 xl:mx-auto xl:min-h-[40.4vw] xl:w-[87%] xl:rounded-4xl xl:border-[.5vw]">
+        class="3xl:min-h-266 bg-teal-dark border-teal-mid 3xl:border-12 2xl mx-3 flex min-h-100 flex-col items-center overflow-hidden rounded-2xl border-6 py-4 xl:mx-auto xl:min-h-[40.4vw] xl:w-[87%] xl:rounded-4xl xl:border-[.5vw]">
         <img width="731" height="131" class="mb-8 w-[95%]" src="https://api.sloshy.cloud/uploads/Interviews_Icon_0d34ec2665.svg" alt="Icon interviews" />
         <Interviews news={news} />
+      </div>
+      <div class="mx-auto px-4 xl:w-[87%] xl:px-0">
+        <h3 class="text-green font-myriad-condensed 3xl:text-7xl text-center leading-none font-bold xl:text-[3vw]">DIVE INTO OUR NEW SECTION</h3>
+        <h2 class="text-teal font-myriad-condensed 3xl:text-9xl 3xl:leading-none text-center font-bold xl:text-[7vw] xl:leading-[5vw]">DATA</h2>
+      </div>
+
+      <div class="mx-auto px-4 xl:w-[87%] xl:px-0">
+        <Link href={dataPage.Link} typeOfLink={dataPage.TypeOfLink}>
+          <img
+            srcset={getImageSrcSet(dataPage.Image)}
+            sizes="auto"
+            width={dataPage.Image.width}
+            height={dataPage.Image.height}
+            class="w-full rounded-2xl transition-transform duration-300 hover:scale-[.98]"
+            src={getAbsoluteUrl(dataPage.Image.url)}
+            alt={dataPage.Title}
+          />
+        </Link>
       </div>
     </div>
   </section>
