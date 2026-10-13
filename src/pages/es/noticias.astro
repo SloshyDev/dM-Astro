@@ -1,119 +1,88 @@
 ---
 export const prerender = false;
 
-import { getAboutData } from "../../api/about_us/getAboutData";
+import { getNewsData } from "../../api/news/getAboutData";
+import Banners from "../../components/News/Banners.astro";
+import CarrouselReports from "../../components/News/CarrouselReports.astro";
+import Interviews from "../../components/News/Interviews.astro";
+import NewsVault from "../../components/News/NewsVault.astro";
+import Link from "../../components/Utils/Link.astro";
 import Layout from "../../layouts/Layout.astro";
-import { getAbsoluteUrl, getImageSrcSet } from "../../utils/media";
+import { getAbsoluteUrl, getImageSrcSet, getLink } from "../../utils/media";
 
-const aboutData = await getAboutData("en");
+const newsGallery = await getNewsData();
 
-const banner = aboutData.Banner;
-const dm_icon = aboutData.Dm_team_icon;
-const dm_team = aboutData.Dm_team_connection.nodes;
-const advisory_icon = aboutData.Advisory_team_icon;
-const advisory_board = aboutData.Advisory_board_connection?.nodes ?? [];
-const founding_icon = aboutData.Founding_team_icon;
-const founding_members = aboutData.Founding_group_connection?.nodes ?? [];
+const banners = newsGallery.Banners;
+const news_vault = newsGallery.News_vault;
+
+const news = newsGallery.News;
+
+const reports = newsGallery.Reports;
+
+const sustainabilityDispatch = news.find((item) => item.Title === "SUSTAINABILITY DISPATCH");
+const marineProsperityAreas = news.find((item) => item.Title === "NEW SECTION MARINE PROSPERITY AREAS");
+const dataPage = news.find((item) => item.Title === "DATA");
 ---
 
 <Layout>
-  <section class="max_page pt-4">
-    <img
-      width={banner.width}
-      fetchpriority="high"
-      height={banner.height}
-      class="3xl:rounded-2xl w-full"
-      src={getAbsoluteUrl(banner.url)}
-      alt="Banner about us"
-    />
-    <div class="my-8 xl:my-16">
-      <h2 class="font-myriad 3xl:text-[2.5rem] text-teal-mid dark:text-teal py-6 text-center text-3xl leading-none font-bold xl:pb-6 xl:text-3xl 2xl:text-4xl">
-        MISSION STATEMENT
-      </h2>
-      <p class="font-myriad text- mx-4 text-center text-lg leading-tight text-pretty xl:mx-auto xl:w-3/5 xl:text-xl 2xl:text-2xl">{aboutData.Mission}</p>
+  <Banners banners={banners} />
+  <section class="max_page mx-2 mb-12 justify-between xl:mx-0 xl:flex">
+    <div class="min-h-screen w-full space-y-6 py-6 xl:py-12">
+      <NewsVault news_vault={news_vault} />
+      <div class="mx-auto px-4 xl:w-[87%] xl:px-0">
+        <Link href={sustainabilityDispatch.Link} typeOfLink={sustainabilityDispatch.TypeOfLink}>
+          <img
+            srcset={getImageSrcSet(sustainabilityDispatch.Image)}
+            sizes="auto"
+            width={sustainabilityDispatch.Image.width}
+            height={sustainabilityDispatch.Image.height}
+            class="w-full rounded-md transition-transform duration-300 hover:scale-[.98] xl:rounded-2xl"
+            src={getAbsoluteUrl(sustainabilityDispatch.Image.url)}
+            alt={sustainabilityDispatch.Title}
+          />
+        </Link>
+      </div>
+      <div class="mx-auto px-4 xl:w-[87%] xl:px-0">
+        <Link href={marineProsperityAreas.Link} typeOfLink={marineProsperityAreas.TypeOfLink}>
+          <img
+            srcset={getImageSrcSet(marineProsperityAreas.Image)}
+            sizes="auto"
+            width={marineProsperityAreas.Image.width}
+            height={marineProsperityAreas.Image.height}
+            class="w-full rounded-2xl transition-transform duration-300 hover:scale-[.98]"
+            src={getAbsoluteUrl(marineProsperityAreas.Image.url)}
+            alt={marineProsperityAreas.Title}
+          />
+        </Link>
+      </div>
     </div>
-    <div class="my-8 xl:my-16">
-      <h2 class="font-myriad 3xl:text-[2.5rem] text-teal-mid dark:text-teal py-6 text-center text-3xl leading-none font-bold xl:pb-6 xl:text-3xl 2xl:text-4xl">
-        VISION
-      </h2>
-      <p class="font-myriad text- mx-4 text-center text-lg leading-tight text-pretty xl:mx-auto xl:w-3/5 xl:text-xl 2xl:text-2xl">{aboutData.Vision}</p>
+    <div class="bg-teal-mid mx-4 hidden min-h-screen w-5 rounded-b-full xl:block"></div>
+    <div class="min-h-screen w-full space-y-6 pb-6 xl:py-12">
+      <div
+        class="3xl:min-h-266 bg-teal-dark border-teal-mid 3xl:border-12 2xl mx-3 flex min-h-100 flex-col items-center overflow-hidden rounded-2xl border-6 py-4 xl:mx-auto xl:min-h-[40.4vw] xl:w-[87%] xl:rounded-4xl xl:border-[.5vw]">
+        <img width="731" height="131" class="mb-8 w-[95%]" src="https://api.sloshy.cloud/uploads/Interviews_Icon_0d34ec2665.svg" alt="Icon interviews" />
+        <Interviews news={news} />
+      </div>
+      <div class="mx-auto px-4 xl:w-[87%] xl:px-0">
+        <h3 class="text-green font-myriad-condensed 3xl:text-7xl text-center leading-none font-bold xl:text-[3vw]">DIVE INTO OUR NEW SECTION</h3>
+        <h2 class="text-teal font-myriad-condensed 3xl:text-9xl 3xl:leading-none text-center font-bold xl:text-[7vw] xl:leading-[5vw]">DATA</h2>
+      </div>
+
+      <div class="mx-auto px-4 xl:w-[87%] xl:px-0">
+        <Link href={dataPage.Link} typeOfLink={dataPage.TypeOfLink}>
+          <img
+            srcset={getImageSrcSet(dataPage.Image)}
+            sizes="auto"
+            width={dataPage.Image.width}
+            height={dataPage.Image.height}
+            class="w-full rounded-2xl transition-transform duration-300 hover:scale-[.98]"
+            src={getAbsoluteUrl(dataPage.Image.url)}
+            alt={dataPage.Title}
+          />
+        </Link>
+      </div>
     </div>
-    <div class="mb-20">
-      <p class="font-myriad text-teal flex w-full items-center justify-center gap-2 text-2xl font-bold">
-        <span>
-          <img src={getAbsoluteUrl(dm_icon.url)} width={dm_icon.width} height={dm_icon.height} alt="" />
-        </span>
-        DATAMARES
-      </p>
-      <section class="mx-6 mt-6 grid w-fit grid-cols-2 gap-8 xl:mx-auto xl:grid-cols-3">
-        {
-          dm_team.map((team) => {
-            const srcSet = getImageSrcSet(team);
-            const src = getAbsoluteUrl(team.url);
-
-            return (
-              <img class="mx-auto" width={team.width} height={team.height} srcset={srcSet || undefined} src={src} alt={team.alternativeText || "Team member"} />
-            );
-          })
-        }
-      </section>
-    </div>
-    <details class="group mb-10">
-      <summary class="font-myriad text-teal flex cursor-pointer list-none items-center justify-center gap-2 text-2xl font-bold marker:content-none">
-        <img src={getAbsoluteUrl(advisory_icon.url)} width={advisory_icon.width} height={advisory_icon.height} alt="" />
-        ADVISING COMMITTEE
-        <svg class="size-5 transition-transform group-open:rotate-180" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-          <path d="m6 9 6 6 6-6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
-        </svg>
-      </summary>
-      <section class="mx-auto mt-6 flex max-w-5xl flex-wrap justify-center gap-x-8 gap-y-10 px-6">
-        {
-          advisory_board.map((member) => {
-            const srcSet = getImageSrcSet(member);
-            const src = getAbsoluteUrl(member.url);
-
-            return (
-              <img
-                class="h-auto w-36 shrink-0 sm:w-44 xl:w-52"
-                width={member.width}
-                height={member.height}
-                srcset={srcSet || undefined}
-                src={src}
-                alt={member.alternativeText || "Advising committee member"}
-              />
-            );
-          })
-        }
-      </section>
-    </details>
-
-    <details class="group mb-20">
-      <summary class="font-myriad text-teal flex cursor-pointer list-none items-center justify-center gap-2 text-2xl font-bold marker:content-none">
-        <img src={getAbsoluteUrl(founding_icon.url)} width={founding_icon.width} height={founding_icon.height} alt="" />
-        FOUNDING MEMBERS
-        <svg class="size-5 transition-transform group-open:rotate-180" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-          <path d="m6 9 6 6 6-6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
-        </svg>
-      </summary>
-      <section class="mx-auto mt-6 flex flex-wrap justify-center gap-x-8 gap-y-10 px-6">
-        {
-          founding_members.map((member) => {
-            const srcSet = getImageSrcSet(member);
-            const src = getAbsoluteUrl(member.url);
-
-            return (
-              <img
-                class="h-auto w-36 shrink-0 sm:w-44 xl:w-48"
-                width={member.width}
-                height={member.height}
-                srcset={srcSet || undefined}
-                src={src}
-                alt={member.alternativeText || "Founding member"}
-              />
-            );
-          })
-        }
-      </section>
-    </details>
   </section>
+
+  <CarrouselReports reports={reports} />
 </Layout>
